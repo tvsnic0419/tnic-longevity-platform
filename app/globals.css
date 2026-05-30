@@ -1,0 +1,58 @@
+/* TNiC Premium Institutional Design System — Sharp, Deep, Professional */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --navy: #0A1628;
+  --emerald: #0D9488;
+  --gold: #C5A26F;
+  --surface: #0F1F36;
+}
+
+body {
+  font-feature-settings: "kern" "liga" "tnum" "ss01";
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Premium Card Depth */
+.card {
+  transition: transform 0.25s cubic-bezier(0.23, 1, 0.32, 1), 
+              box-shadow 0.25s cubic-bezier(0.23, 1, 0.32, 1),
+              border-color 0.2s ease;
+  will-change: transform;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 30px 70px -15px rgb(0 0 0 / 0.4),
+              0 10px 20px -5px rgb(0 0 0 / 0.2);
+  border-color: rgba(255,255,255,0.15);
+}
+
+/* Sharp Typography */
+h1, h2, h3 {
+  font-feature-settings: "kern" "liga" "tnum";
+}
+
+/* Subtle Professional Motion */
+.section {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeUp 0.6s cubic-bezier(0.23,1,0.32,1) forwards;
+}
+
+@keyframes fadeUp {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Modal / Detail Depth */
+.modal {
+  animation: modalEnter 0.2s cubic-bezier(0.23,1,0.32,1);
+}
+
+@keyframes modalEnter {
+  from { opacity: 0; transform: translateY(10px) scale(0.985); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
