@@ -1,0 +1,44 @@
+name: TNiC Self-Healing Monitor
+
+on:
+  schedule:
+    - cron: '*/30 * * * *'
+  workflow_dispatch:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check site availability
+        run: |
+          echo "Checking https://tnic.help"
+
+          CODE=$(curl -s -o /dev/null -w "%{http_code}" https://tnic.help)
+
+          if [ "$CODE" != "200" ]; then
+            echo "FAIL: Site returned $CODE"
+            exit 1
+          fi
+
+      - name: Validate correct build version
+        run: |
+          CONTENT=$(curl -s https://tnic.help)
+
+          if [[ "$CONTENT" != *"High-Powered Anti-Aging Stack"* ]]; then
+            echo "FAIL: Incorrect or old deployment detected"
+            exit 1
+          fi
+
+      - name: Validate sourcing module exists
+        run: |
+          CONTENT=$(curl -s https://tnic.help)
+
+          if [[ "$CONTENT" != *"Professional-Grade Sourcing"* ]]; then
+            echo "FAIL: Missing sourcing module"
+            exit 1
+          fi
+
+      - name: Confirm www resolves
+        run: |
+          curl -I --fail https://www.tnic.help
