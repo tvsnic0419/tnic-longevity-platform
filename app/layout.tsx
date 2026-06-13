@@ -30,6 +30,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <Link href="/science" className="hover:text-emerald-400 transition-colors">The Science</Link>
               <Link href="/library" className="hover:text-emerald-400 transition-colors">Library</Link>
               <Link href="/library/longevity-stack" className="hover:text-emerald-400 transition-colors">Anti-Aging Stack</Link>
+              <Link href="/elite-8" className="hover:text-emerald-400 transition-colors font-semibold">Elite 8</Link>
             </nav>
 
             <div className="flex items-center gap-3">
@@ -60,6 +61,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 <div className="space-y-1.5">
                   <Link href="/library/longevity-stack" className="block hover:text-white transition">Anti-Aging Stack</Link>
                   <Link href="/library" className="block hover:text-white transition">Full Library</Link>
+                  <Link href="/elite-8" className="block hover:text-white transition font-medium">Elite 8 LQ Ranking</Link>
                 </div>
               </div>
               <div>
