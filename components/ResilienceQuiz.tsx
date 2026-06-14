@@ -1,1 +1,1 @@
-Full quiz component
+FULL ResilienceQuiz code
