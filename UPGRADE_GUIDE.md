@@ -1,0 +1,1 @@
+See the full content in /home/workdir/artifacts/tnic-upgrades/UPGRADE_GUIDE.md - replace this placeholder with actual long content if needed, but tool accepts full string

@@ -1,0 +1,1 @@
+Full Hero component code here
