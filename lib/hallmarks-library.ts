@@ -13,7 +13,7 @@ export const hallmarkLibrary: HallmarkLibraryEntry[] = [
     visual: 'dna',
     coverage: 85,
     biomarkers: ['8-OHdG', 'γ-H2AX foci', 'micronuclei frequency'],
-    relatedCompoundIds: ['nmn', 'sulforaphane', 'glynac', 'omega3', 'coq10', 'magnesium', 'astaxanthin', 'vitamin-d3'],
+    relatedCompoundIds: ['nmn', 'sulforaphane', 'glynac', 'omega3', 'coq10', 'magnesium', 'astaxanthin', 'vitamin-d3', 'selenium', 'zinc', 'nicotinamide', 'liposomal-glutathione', 'carnosine', 'glycine'],
     mdxSlug: 'genomic-instability',
     personalPrompts: ['Note any family cancer history', 'Track oxidative stress markers (8-OHdG if tested)', 'Log sleep quality — repair peaks during deep sleep'],
     interventions: [
@@ -36,7 +36,7 @@ export const hallmarkLibrary: HallmarkLibraryEntry[] = [
     visual: 'telomere',
     coverage: 45,
     biomarkers: ['Leukocyte telomere length', 'Telomerase activity'],
-    relatedCompoundIds: ['nmn', 'nr', 'omega3', 'ashwagandha', 'astaxanthin', 'vitamin-d3'],
+    relatedCompoundIds: ['nmn', 'nr', 'omega3', 'ashwagandha', 'astaxanthin', 'vitamin-d3', 'selenium', 'rhodiola', 'boron', 'ergothioneine'],
     mdxSlug: 'telomere-attrition',
     personalPrompts: ['Record chronic stress periods', 'Note recovery time after illness', 'Compare biological age calculator vs chronological age'],
     interventions: [
@@ -59,7 +59,7 @@ export const hallmarkLibrary: HallmarkLibraryEntry[] = [
     visual: 'epigenetic',
     coverage: 78,
     biomarkers: ['Horvath / GrimAge clock', 'DNA methylation panels'],
-    relatedCompoundIds: ['cakg', 'nmn', 'resveratrol', 'nr', 'egcg', 'tmg', 'melatonin'],
+    relatedCompoundIds: ['cakg', 'nmn', 'resveratrol', 'nr', 'egcg', 'tmg', 'melatonin', 'honokiol', 'nicotinamide', 'glycine'],
     mdxSlug: 'epigenetic-alterations',
     personalPrompts: ['Log biological age from Defense Calculator', 'Track diet quality (methyl donors: B12, folate, choline)', 'Note energy consistency week-over-week'],
     interventions: [
@@ -82,7 +82,7 @@ export const hallmarkLibrary: HallmarkLibraryEntry[] = [
     visual: 'protein',
     coverage: 82,
     biomarkers: ['Protein carbonylation', 'GSH/GSSG ratio', 'Ubiquitin conjugates'],
-    relatedCompoundIds: ['glynac', 'rala', 'sulforaphane', 'curcumin', 'spermidine', 'egcg'],
+    relatedCompoundIds: ['glynac', 'rala', 'sulforaphane', 'curcumin', 'spermidine', 'egcg', 'liposomal-glutathione', 'carnosine', 'selenium', 'glycine'],
     mdxSlug: 'loss-of-proteostasis',
     personalPrompts: ['Track mental clarity / brain fog', 'Log glutathione index if available', 'Note heat/cold exposure practices'],
     interventions: [
@@ -105,7 +105,7 @@ export const hallmarkLibrary: HallmarkLibraryEntry[] = [
     visual: 'autophagy',
     coverage: 70,
     biomarkers: ['LC3-II/LC3-I ratio (research)', 'p62 levels', 'Fasting glucose / ketones'],
-    relatedCompoundIds: ['nmn', 'sulforaphane', 'resveratrol', 'spermidine', 'urolithin-a', 'berberine', 'egcg'],
+    relatedCompoundIds: ['nmn', 'sulforaphane', 'resveratrol', 'spermidine', 'urolithin-a', 'berberine', 'egcg', 'glucosamine', 'honokiol', '5-ala'],
     mdxSlug: 'disabled-autophagy',
     personalPrompts: ['Log fasting window length', 'Track post-meal energy crashes', 'Note exercise intensity and recovery'],
     interventions: [
@@ -128,7 +128,7 @@ export const hallmarkLibrary: HallmarkLibraryEntry[] = [
     visual: 'mito',
     coverage: 95,
     biomarkers: ['NAD+ metabolites', 'Lactate/pyruvate ratio', 'VO2 max', 'Resting metabolic rate'],
-    relatedCompoundIds: ['nmn', 'cakg', 'resveratrol', 'rala', 'taurine', 'nr', 'coq10', 'urolithin-a', 'creatine', 'astaxanthin', 'melatonin'],
+    relatedCompoundIds: ['nmn', 'cakg', 'resveratrol', 'rala', 'taurine', 'nr', 'coq10', 'urolithin-a', 'creatine', 'astaxanthin', 'melatonin', 'pqq', 'shilajit', '5-ala', 'honokiol', 'ergothioneine', 'rhodiola'],
     mdxSlug: 'mitochondrial-dysfunction',
     personalPrompts: ['Log subjective energy 1–10 daily', 'Track resting heart rate trend', 'Note NAD+ panel results if tested'],
     interventions: [
@@ -152,7 +152,7 @@ export const hallmarkLibrary: HallmarkLibraryEntry[] = [
     visual: 'senescence',
     coverage: 75,
     biomarkers: ['p16INK4a expression', 'SASP cytokine panel', 'Senescence-associated β-gal'],
-    relatedCompoundIds: ['nmn', 'resveratrol', 'quercetin', 'fisetin', 'vitamin-d3', 'omega3'],
+    relatedCompoundIds: ['nmn', 'resveratrol', 'quercetin', 'fisetin', 'vitamin-d3', 'omega3', 'honokiol', 'nicotinamide', 'phosphatidylserine', 'saffron'],
     mdxSlug: 'cellular-senescence',
     personalPrompts: ['Track hs-CRP as SASP proxy', 'Note joint stiffness / slow healing', 'Log inflammation after poor sleep'],
     interventions: [
@@ -175,7 +175,7 @@ export const hallmarkLibrary: HallmarkLibraryEntry[] = [
     visual: 'stem',
     coverage: 68,
     biomarkers: ['CD34+ cell count', 'Wound healing time', 'Muscle recovery rate'],
-    relatedCompoundIds: ['cakg', 'nmn', 'creatine', 'collagen', 'vitamin-d3', 'omega3'],
+    relatedCompoundIds: ['cakg', 'nmn', 'creatine', 'collagen', 'vitamin-d3', 'omega3', 'hyaluronic-acid', 'ghk-cu', 'shilajit', 'zinc', 'boron'],
     mdxSlug: 'stem-cell-exhaustion',
     personalPrompts: ['Track workout recovery days needed', 'Note skin healing after cuts', 'Log illness recovery duration'],
     interventions: [
@@ -198,7 +198,7 @@ export const hallmarkLibrary: HallmarkLibraryEntry[] = [
     visual: 'signaling',
     coverage: 55,
     biomarkers: ['IL-6', 'TNF-α', 'Insulin / HOMA-IR', 'Cortisol rhythm'],
-    relatedCompoundIds: ['resveratrol', 'sulforaphane', 'glynac', 'omega3', 'lions-mane', 'lithium-orotate', 'creatine'],
+    relatedCompoundIds: ['resveratrol', 'sulforaphane', 'glynac', 'omega3', 'lions-mane', 'lithium-orotate', 'creatine', 'alpha-gpc', 'saffron', 'bacopa', 'ghk-cu', 'rhodiola'],
     mdxSlug: 'altered-intercellular-communication',
     personalPrompts: ['Track mood and social energy', 'Log blood sugar patterns', 'Note hormone panel dates'],
     interventions: [
@@ -221,7 +221,7 @@ export const hallmarkLibrary: HallmarkLibraryEntry[] = [
     visual: 'inflammation',
     coverage: 88,
     biomarkers: ['hs-CRP', 'IL-6', 'Homocysteine', 'Fibrinogen'],
-    relatedCompoundIds: ['sulforaphane', 'glynac', 'resveratrol', 'omega3', 'curcumin', 'quercetin', 'berberine', 'vitamin-d3', 'astaxanthin'],
+    relatedCompoundIds: ['sulforaphane', 'glynac', 'resveratrol', 'omega3', 'curcumin', 'quercetin', 'berberine', 'vitamin-d3', 'astaxanthin', 'selenium', 'zinc', 'rhodiola', 'boron', 'phosphatidylserine', 'carnosine'],
     mdxSlug: 'chronic-inflammation',
     personalPrompts: ['Log hs-CRP in Lab Tracker', 'Track post-meal bloating', 'Note joint pain patterns'],
     interventions: [
@@ -244,7 +244,7 @@ export const hallmarkLibrary: HallmarkLibraryEntry[] = [
     visual: 'gut',
     coverage: 40,
     biomarkers: ['Zonulin', 'Calprotectin', 'Microbiome diversity index', 'SCFA levels'],
-    relatedCompoundIds: ['sulforaphane', 'berberine', 'omega3', 'egcg', 'curcumin'],
+    relatedCompoundIds: ['sulforaphane', 'berberine', 'omega3', 'egcg', 'curcumin', 'glucosamine', 'beta-glucan', 'glycine', 'carnosine'],
     mdxSlug: 'dysbiosis',
     personalPrompts: ['Log fiber intake daily', 'Track digestive symptoms', 'Note antibiotic courses'],
     interventions: [
@@ -267,7 +267,7 @@ export const hallmarkLibrary: HallmarkLibraryEntry[] = [
     visual: 'nutrient',
     coverage: 72,
     biomarkers: ['Fasting insulin', 'IGF-1', 'Ketone bodies', 'mTOR activity proxies'],
-    relatedCompoundIds: ['resveratrol', 'nmn', 'berberine', 'egcg', 'urolithin-a', 'spermidine'],
+    relatedCompoundIds: ['resveratrol', 'nmn', 'berberine', 'egcg', 'urolithin-a', 'spermidine', 'glucosamine', 'rhodiola', '5-ala'],
     mdxSlug: 'disabled-macroautophagy',
     personalPrompts: ['Log daily eating window', 'Track fasting glucose', 'Note protein intake timing'],
     interventions: [
