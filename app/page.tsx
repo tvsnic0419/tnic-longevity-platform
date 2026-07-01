@@ -13,6 +13,9 @@ import { TrustBanner } from '@/components/TrustBanner';
 import { seoRoutes } from '@/lib/seo-routes';
 
 // Lower-fold sections — lazy loaded so they don't inflate the initial bundle
+const EmailCapture = dynamic(() =>
+  import('@/components/sections/EmailCapture').then((m) => ({ default: m.EmailCapture }))
+);
 const LibraryHighlights = dynamic(() =>
   import('@/components/sections/LibraryHighlights').then((m) => ({ default: m.LibraryHighlights }))
 );
@@ -58,6 +61,7 @@ export default function HomePage() {
         <HallmarkProblemTiles />
         <TrustBanner />
         {/* Below-fold — dynamically imported to reduce initial bundle */}
+        <EmailCapture />
         <LibraryHighlights />
         <HomepageCompareRow />
         <ResearchIntel />
