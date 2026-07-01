@@ -1277,3 +1277,49 @@ body {
   background: linear-gradient(135deg, var(--color-text-primary) 0%, var(--accent-cyan) 45%, var(--accent-emerald) 100%);
   -webkit-background-clip: text; background-clip: text;
 }
+
+/* ── Float animations for hero chips ── */
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50%       { transform: translateY(-8px) rotate(0.5deg); }
+}
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  33%       { transform: translateY(-10px) rotate(-0.5deg); }
+  66%       { transform: translateY(-4px) rotate(0.3deg); }
+}
+@keyframes float-alt {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-6px); }
+}
+.float      { animation: float      4s ease-in-out infinite; }
+.float-slow { animation: float-slow 6s ease-in-out infinite; }
+.float-alt  { animation: float-alt  5s ease-in-out infinite; }
+@media (prefers-reduced-motion: reduce) {
+  .float, .float-slow, .float-alt { animation: none; }
+}
+
+/* ── SVG arc coverage ── */
+.arc-track { stroke: rgba(255,255,255,0.07); }
+[data-theme="light"] .arc-track { stroke: rgba(0,0,0,0.09); }
+
+/* ── Hero terminal frame ── */
+.terminal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.625rem 1rem;
+  background: color-mix(in srgb, var(--card) 80%, transparent);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  border-radius: 1rem 1rem 0 0;
+  border: 1px solid rgba(255,255,255,0.07);
+}
+.terminal-body {
+  border: 1px solid rgba(255,255,255,0.07);
+  border-top: none;
+  border-radius: 0 0 1rem 1rem;
+  overflow: hidden;
+  background: color-mix(in srgb, var(--card) 60%, transparent);
+  backdrop-filter: blur(16px);
+}

@@ -155,6 +155,26 @@ export function HomepageCTA() {
           </div>
         </motion.div>
 
+        {/* Editorial stat numbers — the numbers that matter */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.1 }}
+          className="grid grid-cols-3 gap-4 mb-12 max-w-2xl"
+        >
+          {[
+            { n: '50', label: 'Compounds indexed', color: 'text-accent-cyan' },
+            { n: '12', label: 'Hallmarks mapped',  color: 'text-accent-violet' },
+            { n: '$0', label: 'Revenue from you',  color: 'text-accent-emerald' },
+          ].map(({ n, label, color }) => (
+            <div key={n} className="flex flex-col">
+              <span className={`text-5xl md:text-6xl font-black tracking-[-0.04em] leading-none ${color}`}>{n}</span>
+              <span className="text-[11px] font-mono text-muted-foreground/70 mt-2 leading-tight">{label}</span>
+            </div>
+          ))}
+        </motion.div>
+
         {/* Four path cards */}
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-12">
           {paths.map((path, i) => {
