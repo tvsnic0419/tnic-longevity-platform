@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { ArrowRight, ClipboardList, Dna, Menu, Search, ShoppingBag, X } from 'lucide-react';
 import { navLinks } from '@/lib/data';
 import { SiteSearch } from '@/components/SiteSearch';
@@ -13,6 +14,7 @@ export function Nav() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
+  const pathname = usePathname();
 
   useEffect(() => {
     let rafId: number;
@@ -59,12 +61,18 @@ export function Nav() {
         </Link>
 
         <div className="hidden lg:flex gap-0.5 xl:gap-1">
-          {navLinks.map((link) =>
-            isExternal(link.href) ? (
+          {navLinks.map((link) => {
+            const active = pathname === link.href || pathname.startsWith(link.href + '/');
+            return isExternal(link.href) ? (
               <Link
                 key={link.href}
                 href={link.href}
-                className="focus-ring interactive px-3.5 py-2 rounded-xl text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-accent-cyan/10 transition-all"
+                className={`focus-ring interactive px-3.5 py-2 rounded-xl text-sm font-medium transition-all ${
+                  active
+                    ? 'text-accent-cyan bg-accent-cyan/10'
+                    : 'text-muted-foreground hover:text-foreground hover:bg-accent-cyan/10'
+                }`}
+                aria-current={active ? 'page' : undefined}
               >
                 {link.label}
               </Link>
@@ -72,12 +80,16 @@ export function Nav() {
               <a
                 key={link.href}
                 href={link.href}
-                className="focus-ring interactive px-3.5 py-2 rounded-xl text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-accent-cyan/10 transition-all"
+                className={`focus-ring interactive px-3.5 py-2 rounded-xl text-sm font-medium transition-all ${
+                  active
+                    ? 'text-accent-cyan bg-accent-cyan/10'
+                    : 'text-muted-foreground hover:text-foreground hover:bg-accent-cyan/10'
+                }`}
               >
                 {link.label}
               </a>
-            ),
-          )}
+            );
+          })}
         </div>
 
         <div className="hidden md:flex items-center gap-2 shrink-0">
@@ -138,13 +150,15 @@ export function Nav() {
             className="lg:hidden relative nav-glass nav-glass-scrolled border-b border-border"
           >
             <div className="container-page py-4 flex flex-col gap-1">
-              {navLinks.map((link) =>
-                isExternal(link.href) ? (
+              {navLinks.map((link) => {
+                const active = pathname === link.href || pathname.startsWith(link.href + '/');
+                return isExternal(link.href) ? (
                   <Link
                     key={link.href}
                     href={link.href}
                     onClick={() => setMobileOpen(false)}
-                    className="focus-ring interactive flex justify-between items-center text-foreground hover:text-accent-cyan py-3.5 min-h-[var(--space-touch)] text-base font-medium border-b border-border/50 last:border-0"
+                    className={`focus-ring interactive flex justify-between items-center py-3.5 min-h-[var(--space-touch)] text-base font-medium border-b border-border/50 last:border-0 ${active ? 'text-accent-cyan' : 'text-foreground hover:text-accent-cyan'}`}
+                    aria-current={active ? 'page' : undefined}
                   >
                     {link.label}
                   </Link>
@@ -153,12 +167,12 @@ export function Nav() {
                     key={link.href}
                     href={link.href}
                     onClick={() => setMobileOpen(false)}
-                    className="focus-ring interactive flex justify-between items-center text-foreground hover:text-accent-cyan py-3.5 min-h-[var(--space-touch)] text-base font-medium border-b border-border/50 last:border-0"
+                    className={`focus-ring interactive flex justify-between items-center py-3.5 min-h-[var(--space-touch)] text-base font-medium border-b border-border/50 last:border-0 ${active ? 'text-accent-cyan' : 'text-foreground hover:text-accent-cyan'}`}
                   >
                     {link.label}
                   </a>
-                ),
-              )}
+                );
+              })}
               <div className="flex flex-col gap-2 mt-3">
                 <Link
                   href="/quiz"

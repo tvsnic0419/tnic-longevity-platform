@@ -17,10 +17,10 @@ import type { Compound, Hallmark, PathwayNode, RoadmapItem } from './types';
 export const navLinks = [
   { href: '/bio-age', label: 'Bio Age', mod: 'MOD-AGE-20' },
   { href: '/library', label: 'Library', mod: 'MOD-LIB-13' },
+  { href: '/hallmarks', label: 'Hallmarks', mod: 'MOD-HLM-22' },
   { href: '/stacks', label: 'Stacks', mod: 'MOD-ARC-04' },
   { href: '/labs', label: 'Labs', mod: 'MOD-LAB-11' },
   { href: '/learn', label: 'Learn', mod: 'MOD-LRN-09' },
-  { href: '/about', label: 'About', mod: 'MOD-ABT-17' },
 ];
 
 export const communityPulse = [

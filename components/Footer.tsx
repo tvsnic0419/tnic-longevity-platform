@@ -29,7 +29,7 @@ const resourceLinks = [
   { href: '/labs#lab-partner-oauth', label: 'Lab Partner OAuth', icon: FlaskConical },
   { href: '/contact', label: 'Contact', icon: HelpCircle },
   { href: '/library/compare', label: 'Comparisons', icon: BookOpen },
-  { href: '/#hallmark-targets', label: 'Hallmark Targets', icon: Dna },
+  { href: '/hallmarks', label: '12 Hallmarks Guide', icon: Dna },
   { href: '/#next-up', label: "What's Next", icon: Rocket },
   { href: '/faq', label: 'FAQ', icon: HelpCircle },
   { href: '/trust', label: 'Trust & Transparency', icon: Shield },

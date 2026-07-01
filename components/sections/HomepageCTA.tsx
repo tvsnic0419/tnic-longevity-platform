@@ -21,9 +21,9 @@ const basePaths = [
   {
     icon: Scan,
     title: 'Run defense scan',
-    desc: 'Estimate biological age from lifestyle inputs. Sets your OS profile locally.',
-    href: '/tools?tab=healthspan',
-    cta: 'Defense Scan',
+    desc: 'Score 5 biomarker domains and get a biological age estimate. Sets your OS profile locally.',
+    href: '/bio-age',
+    cta: 'Bio Age Score',
     accent: 'rose' as AccentKey,
   },
   {

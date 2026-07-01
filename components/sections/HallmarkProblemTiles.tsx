@@ -127,10 +127,7 @@ export function HallmarkProblemTiles() {
                 viewport={{ once: true, margin: '-40px' }}
                 transition={{ delay: Math.min(i * 0.04, 0.4) }}
               >
-                <Link
-                  href={`/library/${h.slug}`}
-                  className={`focus-ring block h-full card-ultra card-ultra-hover p-5 group transition-all duration-300 ${ac.glowHover}`}
-                >
+                <div className={`card-ultra h-full p-5 flex flex-col group transition-all duration-300 ${ac.glowHover}`}>
                   <div className="flex items-start justify-between gap-3 mb-4">
                     <div className={`rounded-xl p-2.5 ${ac.iconWrap}`}>
                       <HallmarkIcon type={h.visual} size={24} />
@@ -143,7 +140,7 @@ export function HallmarkProblemTiles() {
                   <h3 className={`font-bold text-sm mb-1.5 leading-snug transition-colors ${ac.titleHover}`}>
                     {h.title}
                   </h3>
-                  <p className="text-xs text-muted-foreground mb-4 line-clamp-2 leading-relaxed">
+                  <p className="text-xs text-muted-foreground mb-4 line-clamp-2 leading-relaxed flex-1">
                     {h.tagline}
                   </p>
 
@@ -160,7 +157,7 @@ export function HallmarkProblemTiles() {
                   </div>
 
                   {top && (
-                    <div className="pt-3 border-t border-border/40">
+                    <div className="pt-3 border-t border-border/40 mb-3">
                       <p className={`text-[10px] font-mono font-semibold uppercase tracking-wider mb-1 ${ac.badgeText}`}>
                         Top intervention
                       </p>
@@ -171,10 +168,21 @@ export function HallmarkProblemTiles() {
                     </div>
                   )}
 
-                  <span className={`inline-flex items-center gap-1 text-xs font-semibold mt-3 opacity-0 group-hover:opacity-100 transition-opacity duration-200 ${ac.badgeText}`}>
-                    Open module <ArrowRight className="w-3 h-3" />
-                  </span>
-                </Link>
+                  <div className="flex gap-2 pt-1">
+                    <Link
+                      href={`/hallmarks/${h.slug}`}
+                      className={`focus-ring flex-1 text-center text-[11px] font-semibold py-2 rounded-lg border ${ac.badgeBorder} ${ac.badgeBg} ${ac.badgeText} hover:opacity-80 transition-opacity`}
+                    >
+                      Deep Dive
+                    </Link>
+                    <Link
+                      href={`/library/${h.slug}`}
+                      className="focus-ring flex-1 text-center text-[11px] font-medium py-2 rounded-lg border border-border/60 bg-card/60 text-muted-foreground hover:text-foreground transition-colors"
+                    >
+                      Library
+                    </Link>
+                  </div>
+                </div>
               </motion.div>
             );
           })}
@@ -182,17 +190,23 @@ export function HallmarkProblemTiles() {
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mt-12">
           <Link
+            href="/hallmarks"
+            className="focus-ring btn-gradient text-sm"
+          >
+            All 12 Hallmarks Guide <ArrowRight className="w-4 h-4" />
+          </Link>
+          <Link
             href="/library"
             className="focus-ring btn-ghost-premium text-sm"
           >
-            Explore full library <ArrowRight className="w-4 h-4" />
+            Explore full library
           </Link>
           <Link
             href="/stacks"
             className="focus-ring interactive inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-accent-violet/10 hover:bg-accent-violet/20 border border-accent-violet/30 hover:border-accent-violet/50 text-accent-violet text-sm font-semibold transition-all"
           >
             <Target className="w-4 h-4" />
-            Build a stack for a hallmark
+            Build a stack
           </Link>
         </div>
       </div>
