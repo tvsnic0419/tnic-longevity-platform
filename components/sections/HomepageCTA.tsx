@@ -1,8 +1,8 @@
 'use client';
 
 import Link from 'next/link';
-import { ArrowRight, Scan, BookOpen, LayoutDashboard, ShoppingBag, Bell } from 'lucide-react';
-import { ContextRail } from '@/components/ui/ContextRail';
+import { motion } from 'framer-motion';
+import { ArrowRight, Scan, BookOpen, LayoutDashboard, ShoppingBag, ArrowUpRight, Zap } from 'lucide-react';
 import { usePlatform } from '@/context/PlatformContext';
 import { buildShopPresetUrl } from '@/lib/stack-url';
 import type { PresetKey } from '@/lib/presets';
@@ -12,72 +12,100 @@ type AccentKey = 'cyan' | 'rose' | 'emerald' | 'amber';
 const basePaths = [
   {
     icon: BookOpen,
-    title: 'Search the library',
-    desc: 'Hallmarks, compounds, synergies — full-text search with evidence tiers.',
+    label: '01',
+    title: 'Anti-Aging Library',
+    desc: 'Hallmarks, compounds, synergies — full-text search with PMID-cited evidence tiers.',
     href: '/library',
-    cta: 'Open Library',
+    cta: 'Search Library',
     accent: 'cyan' as AccentKey,
+    stat: '50 compounds',
   },
   {
     icon: Scan,
-    title: 'Run defense scan',
-    desc: 'Score 5 biomarker domains and get a biological age estimate. Sets your OS profile locally.',
+    label: '02',
+    title: 'Bio Age Defense Scan',
+    desc: 'Score 5 biomarker domains, get a biological age estimate, set your OS profile locally.',
     href: '/bio-age',
-    cta: 'Bio Age Score',
+    cta: 'Run Scan',
     accent: 'rose' as AccentKey,
+    stat: '5 domains',
   },
   {
     icon: LayoutDashboard,
-    title: 'Launch command center',
-    desc: 'Stack, labs, milestones, hallmark grid — unified dashboard. Data stays local.',
+    label: '03',
+    title: 'Command Center',
+    desc: 'Stack, labs, milestones, hallmark coverage grid — your entire OS in one view.',
     href: '/dashboard',
     cta: 'Open Dashboard',
     accent: 'emerald' as AccentKey,
+    stat: 'Zero accounts',
   },
   {
     icon: ShoppingBag,
-    title: 'Verify at Protocol Shop',
-    desc: 'Stack-filtered COA checklists and red flags — TNiC earns $0 from products.',
+    label: '04',
+    title: 'Protocol Shop',
+    desc: 'Stack-filtered COA checklists and quality red flags. TNiC earns $0 from products.',
     href: '/shop',
-    cta: 'Open Shop',
+    cta: 'Verify Quality',
     accent: 'amber' as AccentKey,
+    stat: 'Unbiased',
   },
 ];
 
-const accentConfig: Record<AccentKey, {
-  iconBadge: string;
+const cfg: Record<AccentKey, {
+  grad: string;
+  border: string;
+  topBar: string;
+  iconBg: string;
   iconText: string;
-  gradFrom: string;
   ctaText: string;
-  glowHover: string;
+  glow: string;
+  statText: string;
+  labelText: string;
 }> = {
   cyan: {
-    iconBadge: 'icon-badge-cyan',
+    grad: 'from-accent-cyan/[0.10] via-accent-cyan/[0.04] to-transparent',
+    border: 'border-accent-cyan/20 hover:border-accent-cyan/50',
+    topBar: 'from-accent-cyan to-accent-emerald',
+    iconBg: 'icon-badge-cyan',
     iconText: 'text-accent-cyan',
-    gradFrom: 'from-accent-cyan/[0.08]',
     ctaText: 'text-accent-cyan',
-    glowHover: 'glow-hover-cyan',
+    glow: 'glow-hover-cyan',
+    statText: 'text-accent-cyan',
+    labelText: 'text-accent-cyan/50',
   },
   rose: {
-    iconBadge: 'icon-badge-rose',
+    grad: 'from-accent-rose/[0.10] via-accent-rose/[0.04] to-transparent',
+    border: 'border-accent-rose/20 hover:border-accent-rose/50',
+    topBar: 'from-accent-rose to-accent-violet',
+    iconBg: 'icon-badge-rose',
     iconText: 'text-accent-rose',
-    gradFrom: 'from-accent-rose/[0.08]',
     ctaText: 'text-accent-rose',
-    glowHover: 'glow-hover-rose',
+    glow: 'glow-hover-rose',
+    statText: 'text-accent-rose',
+    labelText: 'text-accent-rose/50',
   },
   emerald: {
-    iconBadge: 'icon-badge-emerald',
+    grad: 'from-accent-emerald/[0.10] via-accent-emerald/[0.04] to-transparent',
+    border: 'border-accent-emerald/20 hover:border-accent-emerald/50',
+    topBar: 'from-accent-emerald to-accent-cyan',
+    iconBg: 'icon-badge-emerald',
     iconText: 'text-accent-emerald',
-    gradFrom: 'from-accent-emerald/[0.08]',
     ctaText: 'text-accent-emerald',
-    glowHover: 'glow-hover-emerald',
+    glow: 'glow-hover-emerald',
+    statText: 'text-accent-emerald',
+    labelText: 'text-accent-emerald/50',
   },
   amber: {
-    iconBadge: 'icon-badge-amber',
+    grad: 'from-accent-amber/[0.10] via-accent-amber/[0.04] to-transparent',
+    border: 'border-accent-amber/20 hover:border-accent-amber/50',
+    topBar: 'from-accent-amber to-accent-rose',
+    iconBg: 'icon-badge-amber',
     iconText: 'text-accent-amber',
-    gradFrom: 'from-accent-amber/[0.08]',
     ctaText: 'text-accent-amber',
-    glowHover: 'glow-hover-amber',
+    glow: 'glow-hover-amber',
+    statText: 'text-accent-amber',
+    labelText: 'text-accent-amber/50',
   },
 };
 
@@ -89,70 +117,150 @@ export function HomepageCTA() {
       : '/shop';
 
   const paths = basePaths.map((p) =>
-    p.title === 'Verify at Protocol Shop' ? { ...p, href: shopHref } : p,
+    p.title === 'Protocol Shop' ? { ...p, href: shopHref } : p,
   );
 
   return (
-    <section className="py-20 md:py-28 relative overflow-hidden section-mesh section-glow-cyan">
-      <div className="absolute inset-0 bg-gradient-to-t from-accent-cyan/8 via-transparent to-accent-violet/6 pointer-events-none" />
+    <section className="py-24 md:py-32 relative overflow-hidden border-b border-border">
+      {/* Deep ambient gradients */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-0 left-0 w-[600px] h-[500px] rounded-full bg-accent-cyan/[0.06] blur-[140px]" />
+        <div className="absolute bottom-0 right-0 w-[500px] h-[400px] rounded-full bg-accent-violet/[0.06] blur-[120px]" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] rounded-full bg-accent-emerald/[0.03] blur-[160px]" />
+      </div>
+
       <div className="relative container-page">
-        <div className="text-center mb-8">
-          <h2 className="heading-section mb-4">Four paths into your OS.</h2>
-          <p className="text-muted-foreground max-w-xl mx-auto">
-            Learn → scan → command center → verify. Every path leads to the same local-first Longevity OS.
-          </p>
-        </div>
+        {/* Editorial header */}
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="mb-16 md:mb-20"
+        >
+          <div className="flex items-center gap-3 mb-6">
+            <div className="h-px flex-1 max-w-16 bg-gradient-to-r from-transparent to-accent-violet/60" />
+            <span className="text-[10px] font-mono font-bold tracking-[0.2em] text-accent-violet uppercase">Entry Points</span>
+            <div className="h-px flex-1 max-w-16 bg-gradient-to-l from-transparent to-accent-violet/60" />
+          </div>
+          <div className="max-w-3xl">
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-black tracking-tight leading-[1.0] mb-5">
+              Four ways in.{' '}
+              <br className="hidden sm:block" />
+              <span className="headline-gradient">One destination.</span>
+            </h2>
+            <p className="text-muted-foreground text-lg max-w-2xl leading-relaxed">
+              Learn the science, scan your biology, command your protocol, verify your sources.
+              Every path leads to the same local-first OS — no account, no paywall, no agenda.
+            </p>
+          </div>
+        </motion.div>
 
-        <ContextRail
-          what="Four conversion paths — library science, defense scan, dashboard OS, and stack-filtered shop verification."
-          why="Different visitors arrive with different intent. TNiC surfaces the right next step without forcing everyone through the same funnel."
-          next={quizResult?.preset ? `Your quiz preset deep-links Shop to ${quizResult.preset} — verify before you buy.` : 'Take the quiz first for preset-aware Shop and Stack Architect handoffs.'}
-          theme="cyan"
-          className="mb-10 max-w-4xl mx-auto"
-        />
-
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-14">
-          {paths.map((path) => {
-            const cfg = accentConfig[path.accent];
+        {/* Four path cards */}
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-12">
+          {paths.map((path, i) => {
+            const c = cfg[path.accent];
+            const Icon = path.icon;
             return (
-              <Link
+              <motion.div
                 key={path.title}
-                href={path.href}
-                className={`group block card-premium p-6 bg-gradient-to-br ${cfg.gradFrom} to-transparent transition-all duration-300 ${cfg.glowHover} h-full`}
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-20px' }}
+                transition={{ delay: i * 0.08, duration: 0.5 }}
               >
-                <div className={`w-11 h-11 rounded-xl flex items-center justify-center mb-5 ${cfg.iconBadge}`}>
-                  <path.icon className={`w-5 h-5 ${cfg.iconText}`} aria-hidden="true" />
-                </div>
-                <h3 className="font-bold mb-2 text-sm">{path.title}</h3>
-                <p className="text-xs text-muted-foreground mb-5 leading-relaxed">{path.desc}</p>
-                <span className={`inline-flex items-center gap-2 text-sm font-semibold ${cfg.ctaText} group-hover:gap-3 transition-all`}>
-                  {path.cta}
-                  <ArrowRight className="w-4 h-4" />
-                </span>
-              </Link>
+                <Link
+                  href={path.href}
+                  className={[
+                    'focus-ring group relative flex flex-col h-full overflow-hidden rounded-2xl border transition-all duration-300',
+                    'bg-gradient-to-br', c.grad,
+                    c.border,
+                    c.glow,
+                    'min-h-[240px]',
+                  ].join(' ')}
+                >
+                  {/* Colored top bar */}
+                  <div className={`h-px w-full bg-gradient-to-r ${c.topBar} opacity-60`} />
+
+                  <div className="flex flex-col flex-1 p-6">
+                    {/* Icon + label row */}
+                    <div className="flex items-start justify-between mb-5">
+                      <div className={`w-11 h-11 rounded-xl flex items-center justify-center ${c.iconBg} group-hover:scale-110 transition-transform duration-300`}>
+                        <Icon className={`w-5 h-5 ${c.iconText}`} aria-hidden="true" />
+                      </div>
+                      <span className={`text-[10px] font-mono font-bold ${c.labelText}`}>{path.label}</span>
+                    </div>
+
+                    <h3 className="font-bold text-base leading-tight mb-2">{path.title}</h3>
+                    <p className="text-xs text-muted-foreground leading-relaxed flex-1 mb-5">{path.desc}</p>
+
+                    <div className="flex items-center justify-between">
+                      <span className={`inline-flex items-center gap-1.5 text-sm font-semibold ${c.ctaText} group-hover:gap-2.5 transition-all duration-300`}>
+                        {path.cta}
+                        <ArrowUpRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" aria-hidden="true" />
+                      </span>
+                      <span className={`text-[10px] font-mono ${c.statText} opacity-60`}>{path.stat}</span>
+                    </div>
+                  </div>
+                </Link>
+              </motion.div>
             );
           })}
         </div>
 
-        <div className="card-premium p-8 md:p-12 text-center max-w-3xl mx-auto">
-          <p className="text-label text-accent-violet mb-3">YOUR OS AWAITS</p>
-          <h3 className="text-2xl md:text-3xl font-bold mb-3 tracking-tight">
-            Everything in one place.<br className="hidden sm:block" /> Free. Local. Yours.
-          </h3>
-          <p className="text-sm text-muted-foreground mb-8 max-w-md mx-auto leading-relaxed">
-            Stack architect, lab hub, 12-hallmark library, six evidence tools — all running in your browser with no account required.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-3 justify-center">
-            <Link href="/dashboard" className="focus-ring btn-gradient text-sm">
-              <LayoutDashboard className="w-4 h-4" />
-              Launch Longevity OS
-            </Link>
-            <Link href="/brief" className="focus-ring btn-ghost-premium text-sm text-accent-violet">
-              <Bell className="w-4 h-4" />
-              Protocol Brief
-            </Link>
+        {/* Hero CTA block — editorial terminal style */}
+        <motion.div
+          initial={{ opacity: 0, y: 32 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.2, duration: 0.6 }}
+          className="relative overflow-hidden rounded-3xl border border-accent-violet/20 bg-gradient-to-br from-accent-violet/[0.08] via-accent-cyan/[0.04] to-transparent"
+        >
+          {/* Internal glow */}
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[200px] bg-accent-violet/[0.12] blur-[80px] rounded-full pointer-events-none" />
+          <div className="h-px w-full bg-gradient-to-r from-transparent via-accent-violet/50 to-transparent" />
+
+          <div className="relative p-10 md:p-14 text-center">
+            <div className="inline-flex items-center gap-2 mb-6 px-4 py-2 rounded-full border border-accent-violet/25 bg-accent-violet/8 text-[11px] font-mono font-bold text-accent-violet tracking-widest uppercase">
+              <Zap className="w-3 h-3" aria-hidden="true" />
+              Your OS awaits
+            </div>
+            <h3 className="text-3xl md:text-4xl lg:text-5xl font-black tracking-tight mb-5 leading-[1.05]">
+              Everything in one place.
+              <br />
+              <span className="text-foreground/50">Free. Local. Yours.</span>
+            </h3>
+            <p className="text-muted-foreground max-w-lg mx-auto mb-10 leading-relaxed">
+              Stack architect, lab hub, 12-hallmark library, six evidence tools — all running in your browser with zero accounts required. Your health data never touches our servers.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link
+                href="/dashboard"
+                className="focus-ring btn-gradient group text-base px-8 py-3.5"
+              >
+                <LayoutDashboard className="w-5 h-5" />
+                Launch Longevity OS
+                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" aria-hidden="true" />
+              </Link>
+              <Link
+                href="/quiz"
+                className="focus-ring btn-ghost-premium text-base px-8 py-3.5 border-accent-violet/30 text-accent-violet hover:border-accent-violet/60"
+              >
+                Take the quiz first
+              </Link>
+            </div>
+
+            {/* Trust micro-copy row */}
+            <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 mt-8 text-[11px] font-mono text-muted-foreground/60">
+              <span>No account</span>
+              <span className="w-1 h-1 rounded-full bg-muted-foreground/30" aria-hidden="true" />
+              <span>localStorage only</span>
+              <span className="w-1 h-1 rounded-full bg-muted-foreground/30" aria-hidden="true" />
+              <span>No paywall. Ever.</span>
+              <span className="w-1 h-1 rounded-full bg-muted-foreground/30" aria-hidden="true" />
+              <span>Not medical advice</span>
+            </div>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

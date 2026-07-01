@@ -18,7 +18,7 @@ export function HeroSection() {
   return (
     <section
       id="hero"
-      className="relative hero-mesh hero-cinematic noise scan-overlay min-h-[90vh] md:min-h-[94vh] flex items-center pt-24 md:pt-28 pb-14 md:pb-20 overflow-hidden"
+      className="relative hero-mesh hero-cinematic noise scan-overlay min-h-[92vh] md:min-h-[96vh] flex items-center pt-24 md:pt-28 pb-16 md:pb-24 overflow-hidden"
     >
       <HeroRings />
       <div className="hero-beam" aria-hidden="true" />
@@ -33,12 +33,13 @@ export function HeroSection() {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="inline-flex items-center gap-2 card-premium rounded-full px-5 py-2.5 mb-8 text-sm text-foreground/90"
+              className="inline-flex items-center gap-2.5 card-premium rounded-full px-5 py-2.5 mb-8 text-sm text-foreground/90"
             >
               <Sparkles className="w-4 h-4 text-accent-emerald animate-pulse-glow" aria-hidden="true" />
-              <span className="font-medium">Anti-Aging Operating System</span>
+              <span className="font-semibold tracking-wide">Anti-Aging Operating System</span>
+              <span className="w-px h-3 bg-border/60" aria-hidden="true" />
+              <span className="text-[11px] font-mono text-accent-emerald font-bold">v1.36</span>
               <span className="w-1.5 h-1.5 rounded-full bg-accent-emerald animate-pulse-glow" aria-hidden="true" />
-              <span className="text-caption font-mono hidden sm:inline">v1.36</span>
             </motion.div>
 
             <motion.h1
@@ -107,8 +108,9 @@ export function HeroSection() {
             transition={{ delay: 0.4, duration: 0.8, type: 'spring', stiffness: 80 }}
             className="lg:col-span-5 scroll-mt-28 relative"
           >
-            <div className="absolute -inset-4 bg-gradient-to-br from-accent-cyan/20 via-accent-emerald/10 to-accent-violet/15 rounded-3xl blur-2xl opacity-60 pointer-events-none" aria-hidden="true" />
-            <div className="relative card-premium p-1">
+            <div className="absolute -inset-6 bg-gradient-to-br from-accent-cyan/25 via-accent-emerald/12 to-accent-violet/20 rounded-3xl blur-3xl opacity-70 pointer-events-none" aria-hidden="true" />
+            <div className="absolute inset-0 rounded-3xl border border-accent-cyan/10 pointer-events-none" aria-hidden="true" />
+            <div className="relative card-premium p-1 shadow-2xl">
               <StarterQuiz />
             </div>
           </motion.div>
