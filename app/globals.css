@@ -1232,3 +1232,48 @@ body {
 @media (prefers-reduced-motion: reduce) {
   .ambient-orb, .hero-ring, .scroll-progress-glow { animation: none; }
 }
+/* ── Marquee / ticker ── */
+@keyframes marquee-left {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+@keyframes marquee-right {
+  from { transform: translateX(-50%); }
+  to   { transform: translateX(0); }
+}
+.marquee-track-left  { display: flex; width: max-content; animation: marquee-left  32s linear infinite; }
+.marquee-track-right { display: flex; width: max-content; animation: marquee-right 28s linear infinite; }
+.marquee-wrap { overflow: hidden; mask-image: linear-gradient(90deg, transparent, black 12%, black 88%, transparent); }
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track-left, .marquee-track-right { animation: none; }
+}
+
+/* ── Bento OS card ── */
+.bento-featured {
+  background:
+    radial-gradient(ellipse 80% 60% at 20% 30%, color-mix(in srgb, var(--accent-emerald) 12%, transparent), transparent),
+    var(--glass-bg);
+}
+.bento-number {
+  font-size: clamp(4rem, 8vw, 7rem);
+  font-weight: 900;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+  background: linear-gradient(135deg, var(--accent-emerald) 0%, var(--accent-cyan) 100%);
+  -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+  opacity: 0.15;
+  position: absolute;
+  bottom: 1.5rem; right: 1.5rem;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* ── CTA gradient headline ── */
+.headline-gradient {
+  background: linear-gradient(135deg, #ffffff 0%, var(--accent-cyan) 45%, var(--accent-emerald) 100%);
+  -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+}
+[data-theme="light"] .headline-gradient {
+  background: linear-gradient(135deg, var(--color-text-primary) 0%, var(--accent-cyan) 45%, var(--accent-emerald) 100%);
+  -webkit-background-clip: text; background-clip: text;
+}
