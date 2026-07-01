@@ -18,8 +18,17 @@ export const metadata: Metadata = {
 
 const EDITORIAL_SLUGS = new Set([
   'genomic-instability',
-  'cellular-senescence',
+  'telomere-attrition',
+  'epigenetic-alterations',
+  'loss-of-proteostasis',
+  'disabled-autophagy',
   'mitochondrial-dysfunction',
+  'cellular-senescence',
+  'stem-cell-exhaustion',
+  'altered-intercellular-communication',
+  'chronic-inflammation',
+  'dysbiosis',
+  'disabled-macroautophagy',
 ]);
 
 const COVERAGE_COLOR = (pct: number) =>
