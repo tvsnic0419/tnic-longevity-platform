@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useRef } from 'react';
+import { useState, useRef, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import {
   LayoutDashboard,
@@ -70,7 +70,7 @@ export function PersonalDashboard() {
     setTimeout(() => setImportMsg(null), 4000);
   };
 
-  const stats = [
+  const stats = useMemo(() => [
     {
       label: 'Synergy Score',
       value: `${score}`,
@@ -105,7 +105,7 @@ export function PersonalDashboard() {
       color: 'text-accent-emerald',
       href: '#learn',
     },
-  ];
+  ], [score, selected.length, profile.scanned, profile.age, defenseProfile.biologicalAge, defenseProfile.ageDelta, labs, labOptimal, checklistDone, checklistTotal]);
 
   return (
     <SectionShell

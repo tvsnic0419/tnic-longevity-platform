@@ -44,6 +44,7 @@ function ProductImage({ src, alt, compact }: { src?: string; alt: string; compac
       alt={alt}
       width={size}
       height={size}
+      sizes={compact ? '64px' : '104px'}
       className="object-contain rounded-lg bg-white/5 shrink-0"
       onError={() => setErrored(true)}
       unoptimized={src.endsWith('.svg')}
