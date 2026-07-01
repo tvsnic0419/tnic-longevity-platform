@@ -23,9 +23,18 @@ export function HallmarkDetail({
       <div className="max-w-7xl mx-auto px-6">
         <Link
           href="/library"
-          className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-accent-cyan transition mb-8"
+          className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-accent-cyan transition mb-4"
         >
           <ArrowLeft className="w-4 h-4" /> Back to Anti-Aging Library
+        </Link>
+
+        <Link
+          href={`/hallmarks/${hallmark.slug}`}
+          className="inline-flex items-center gap-2 w-full rounded-xl border border-accent-emerald/30 bg-accent-emerald/5 px-4 py-3 mb-8 text-sm font-semibold text-accent-emerald hover:bg-accent-emerald/10 transition-colors"
+        >
+          <BookOpen className="w-4 h-4 shrink-0" />
+          <span>Editorial Deep Dive — mechanisms, biomarkers &amp; evidence-graded interventions</span>
+          <ArrowLeft className="w-4 h-4 ml-auto rotate-180 shrink-0" />
         </Link>
 
         <div className="grid lg:grid-cols-12 gap-10">

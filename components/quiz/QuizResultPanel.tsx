@@ -70,23 +70,58 @@ export function QuizResultPanel({ result, answers, onRetake }: QuizResultPanelPr
       </div>
 
       <div className="glass rounded-xl p-4 mb-4">
-        <p className="text-[10px] font-mono text-accent-violet uppercase mb-2">
+        <p className="text-[10px] font-mono text-accent-violet uppercase mb-3">
           Recommended preset: {result.stack.label}
         </p>
-        <div className="flex flex-wrap gap-1.5 mb-3">
+        <p className="text-[10px] text-muted-foreground mb-3">{result.stack.desc}</p>
+
+        {/* Compound profile cards */}
+        <div className="space-y-2 mb-3">
           {result.stack.ids.map((id) => {
             const c = compounds.find((x) => x.id === id);
-            return c ? (
-              <span
-                key={id}
-                className="text-[10px] bg-accent-violet/10 text-violet-300 px-2 py-0.5 rounded font-semibold"
-              >
-                {c.name}
-              </span>
-            ) : null;
+            if (!c) return null;
+            return (
+              <div key={id} className="rounded-lg bg-accent-violet/5 border border-accent-violet/15 p-3">
+                <div className="flex items-center justify-between gap-2 mb-1">
+                  <span className="text-xs font-bold text-foreground">{c.name}</span>
+                  <span className={`text-[10px] font-mono px-1.5 py-0.5 rounded ${c.evidence === 'A' ? 'bg-emerald-500/15 text-emerald-400' : 'bg-amber-500/15 text-amber-400'}`}>
+                    Tier {c.evidence}
+                  </span>
+                </div>
+                <p className="text-[10px] text-muted-foreground leading-relaxed mb-1.5 line-clamp-2">{c.mechanism}</p>
+                <div className="flex items-center gap-3 text-[10px]">
+                  <span className="text-accent-cyan font-mono">{c.dose}</span>
+                  <span className="text-muted-foreground/60">·</span>
+                  <span className={`font-semibold ${c.timing === 'AM' ? 'text-amber-400' : 'text-violet-400'}`}>{c.timing}</span>
+                </div>
+              </div>
+            );
           })}
         </div>
-        <p className="text-[10px] text-muted-foreground">{result.stack.desc}</p>
+
+        {/* Timing schedule */}
+        {(() => {
+          const stackCompounds = result.stack.ids.map((id) => compounds.find((x) => x.id === id)).filter(Boolean) as typeof compounds;
+          const am = stackCompounds.filter((c) => c.timing === 'AM');
+          const ampm = stackCompounds.filter((c) => c.timing === 'AM/PM');
+          return (
+            <div className="rounded-lg bg-card/60 border border-border/40 p-3">
+              <p className="text-[10px] font-mono text-accent-cyan uppercase mb-2">Daily Schedule</p>
+              {am.length > 0 && (
+                <div className="mb-1.5">
+                  <span className="text-[10px] font-semibold text-amber-400">Morning (AM): </span>
+                  <span className="text-[10px] text-muted-foreground">{am.map((c) => c.name).join(', ')}</span>
+                </div>
+              )}
+              {ampm.length > 0 && (
+                <div>
+                  <span className="text-[10px] font-semibold text-violet-400">AM + PM: </span>
+                  <span className="text-[10px] text-muted-foreground">{ampm.map((c) => c.name).join(', ')}</span>
+                </div>
+              )}
+            </div>
+          );
+        })()}
       </div>
 
       <div className="space-y-2" role="group" aria-label="Quiz result actions">
