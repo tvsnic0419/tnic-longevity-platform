@@ -1,13 +1,29 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Lightbulb, Pill, Activity, Stethoscope, ArrowRight } from 'lucide-react';
+import { Lightbulb, Pill, Activity, Stethoscope, ArrowRight, BookOpen, Layers } from 'lucide-react';
 import Link from 'next/link';
 import type { LabRecommendation } from '@/lib/lab-analysis';
 import { hallmarkLibrary } from '@/lib/hallmarks-library';
 import { usePlatform } from '@/context/PlatformContext';
 
+const HALLMARK_PRESET_MAP: Record<string, string> = {
+  mito: 'mito',
+  genomic: 'nrf2',
+  inflammation: 'nrf2',
+  proteostasis: 'nrf2',
+  autophagy: 'mito',
+  epigenetic: 'mito',
+  senescence: 'nrf2',
+  stem: 'mito',
+  intercell: 'hybrid',
+  dysbiosis: 'starter',
+  telomere: 'hybrid',
+  macroautophagy: 'mito',
+};
+
 const hallmarkSlug = (id: string) => hallmarkLibrary.find((h) => h.id === id)?.slug ?? id;
+const hallmarkTitle = (id: string) => hallmarkLibrary.find((h) => h.id === id)?.title ?? id;
 
 const categoryIcon = {
   compound: Pill,
@@ -72,22 +88,34 @@ export function LabRecommendations({ recommendations }: LabRecommendationsProps)
                 <p className="text-xs text-muted-foreground mb-2">{rec.rationale}</p>
                 <p className="text-xs text-muted-foreground">{rec.action}</p>
                 {rec.compoundId && !inStack && (
-                  <button
-                    onClick={() => toggle(rec.compoundId!)}
-                    className="mt-3 text-xs font-semibold text-accent-rose hover:text-accent-cyan transition flex items-center gap-1"
-                  >
-                    Add to active stack <ArrowRight className="w-3 h-3" />
-                  </button>
+                  <div className="flex flex-wrap gap-3 mt-3">
+                    <button
+                      onClick={() => toggle(rec.compoundId!)}
+                      className="text-xs font-semibold text-accent-rose hover:text-accent-cyan transition flex items-center gap-1"
+                    >
+                      Add to active stack <ArrowRight className="w-3 h-3" />
+                    </button>
+                    {rec.priority === 'high' && rec.hallmarkIds[0] && (
+                      <Link
+                        href={`/stacks?from=labs&preset=${HALLMARK_PRESET_MAP[rec.hallmarkIds[0]] ?? 'hybrid'}`}
+                        className="text-xs font-semibold text-accent-violet hover:text-accent-cyan transition flex items-center gap-1"
+                      >
+                        <Layers className="w-3 h-3" />
+                        Load targeted stack
+                      </Link>
+                    )}
+                  </div>
                 )}
                 {rec.hallmarkIds.length > 0 && (
-                  <div className="flex flex-wrap gap-1 mt-2">
+                  <div className="flex flex-wrap gap-2 mt-2">
                     {rec.hallmarkIds.map((h) => (
                       <Link
                         key={h}
-                        href={`/library/${hallmarkSlug(h)}`}
-                        className="text-[9px] font-mono text-accent-cyan/70 hover:text-accent-cyan"
+                        href={`/hallmarks/${hallmarkSlug(h)}`}
+                        className="inline-flex items-center gap-1 text-[10px] font-medium text-accent-cyan hover:text-accent-emerald transition"
                       >
-                        #{h}
+                        <BookOpen className="w-3 h-3 shrink-0" />
+                        {hallmarkTitle(h)}
                       </Link>
                     ))}
                   </div>

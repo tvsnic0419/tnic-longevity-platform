@@ -2,9 +2,24 @@
 
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import { AlertTriangle, Shield, ArrowRight } from 'lucide-react';
+import { AlertTriangle, Shield, ArrowRight, BookOpen, Layers } from 'lucide-react';
 import { hallmarkLibrary } from '@/lib/hallmarks-library';
 import type { HallmarkRisk, RiskLevel } from '@/lib/lab-analysis';
+
+const HALLMARK_PRESET_MAP: Record<string, string> = {
+  mito: 'mito',
+  genomic: 'nrf2',
+  inflammation: 'nrf2',
+  proteostasis: 'nrf2',
+  autophagy: 'mito',
+  epigenetic: 'mito',
+  senescence: 'nrf2',
+  stem: 'mito',
+  intercell: 'hybrid',
+  dysbiosis: 'starter',
+  telomere: 'hybrid',
+  macroautophagy: 'mito',
+};
 
 const riskStyle: Record<RiskLevel, { bar: string; text: string; bg: string }> = {
   low: { bar: 'bg-accent-emerald', text: 'text-accent-emerald', bg: 'bg-accent-emerald/10' },
@@ -113,12 +128,35 @@ export function HallmarkRiskPanel({ risks, healthspanScore }: HallmarkRiskPanelP
                 </p>
               )}
 
-              <Link
-                href={`/library/${slugFor(risk.hallmarkId)}`}
-                className="text-xs font-semibold text-accent-cyan hover:text-accent-emerald transition inline-flex items-center gap-1"
-              >
-                Hallmark deep dive <ArrowRight className="w-3 h-3" />
-              </Link>
+              <div className="flex flex-wrap gap-2 mt-1">
+                <Link
+                  href={`/hallmarks/${slugFor(risk.hallmarkId)}`}
+                  className="inline-flex items-center gap-1 text-xs font-semibold text-accent-cyan hover:text-accent-emerald transition"
+                >
+                  <BookOpen className="w-3 h-3" />
+                  Editorial deep dive
+                </Link>
+                <span className="text-caption text-xs">·</span>
+                <Link
+                  href={`/library/${slugFor(risk.hallmarkId)}`}
+                  className="inline-flex items-center gap-1 text-xs text-muted-foreground hover:text-foreground transition"
+                >
+                  Library
+                  <ArrowRight className="w-3 h-3" />
+                </Link>
+                {(risk.riskLevel === 'high' || risk.riskLevel === 'elevated') && (
+                  <>
+                    <span className="text-caption text-xs">·</span>
+                    <Link
+                      href={`/stacks?from=labs&preset=${HALLMARK_PRESET_MAP[risk.hallmarkId] ?? 'hybrid'}`}
+                      className="inline-flex items-center gap-1 text-xs font-semibold text-accent-violet hover:text-accent-cyan transition"
+                    >
+                      <Layers className="w-3 h-3" />
+                      Load targeted stack
+                    </Link>
+                  </>
+                )}
+              </div>
             </motion.div>
           );
         })}
