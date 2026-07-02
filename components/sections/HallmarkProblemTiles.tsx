@@ -42,7 +42,7 @@ const accentClasses: Record<AccentKey, {
     badgeBorder: 'border-accent-cyan/25',
     barGrad: 'from-accent-cyan/70 to-accent-cyan',
     coverageText: 'text-accent-cyan',
-    iconWrap: 'icon-badge-cyan',
+    iconWrap: 'icon-badge-cyan-glow',
     glowHover: 'glow-hover-cyan',
   },
   amber: {
@@ -52,7 +52,7 @@ const accentClasses: Record<AccentKey, {
     badgeBorder: 'border-accent-amber/25',
     barGrad: 'from-accent-amber/70 to-accent-amber',
     coverageText: 'text-accent-amber',
-    iconWrap: 'icon-badge-amber',
+    iconWrap: 'icon-badge-amber-glow',
     glowHover: 'glow-hover-amber',
   },
   violet: {
@@ -62,7 +62,7 @@ const accentClasses: Record<AccentKey, {
     badgeBorder: 'border-accent-violet/25',
     barGrad: 'from-accent-violet/70 to-accent-violet',
     coverageText: 'text-accent-violet',
-    iconWrap: 'icon-badge-violet',
+    iconWrap: 'icon-badge-violet-glow',
     glowHover: 'glow-hover-violet',
   },
   emerald: {
@@ -72,7 +72,7 @@ const accentClasses: Record<AccentKey, {
     badgeBorder: 'border-accent-emerald/25',
     barGrad: 'from-accent-emerald/70 to-accent-emerald',
     coverageText: 'text-accent-emerald',
-    iconWrap: 'icon-badge-emerald',
+    iconWrap: 'icon-badge-emerald-glow',
     glowHover: 'glow-hover-emerald',
   },
   rose: {
@@ -82,7 +82,7 @@ const accentClasses: Record<AccentKey, {
     badgeBorder: 'border-accent-rose/25',
     barGrad: 'from-accent-rose/70 to-accent-rose',
     coverageText: 'text-accent-rose',
-    iconWrap: 'icon-badge-rose',
+    iconWrap: 'icon-badge-rose-glow',
     glowHover: 'glow-hover-rose',
   },
 };
@@ -97,16 +97,16 @@ export function HallmarkProblemTiles() {
 
       <div className="relative max-w-7xl mx-auto px-6">
         <div className="text-center mb-12 md:mb-16 section-header-mesh">
-          <div className="inline-flex items-center gap-2 mb-4">
-            <Target className="w-4 h-4 text-accent-violet" />
-            <p className="text-label text-accent-violet">
-              Target what slows with age
-            </p>
+          <div className="flex justify-center mb-4">
+            <span className="section-eyebrow section-eyebrow-violet">
+              <Target className="w-3 h-3" aria-hidden="true" />
+              Target What Slows With Age
+            </span>
           </div>
-          <h2 className="heading-section mb-4">
+          <h2 className="heading-section-glow mb-4">
             Twelve hallmarks. Twelve entry points.
           </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-body-sm max-w-2xl mx-auto">
             Each tile maps a biological problem to elevated MDX modules, top interventions, and lab markers.
             Pick the hallmark that matches your symptoms — not the supplement ad you saw last.
           </p>

@@ -52,28 +52,28 @@ const accentConfig: Record<AccentKey, {
   glowHover: string;
 }> = {
   cyan: {
-    iconBadge: 'icon-badge-cyan',
+    iconBadge: 'icon-badge-cyan-glow',
     iconText: 'text-accent-cyan',
     gradFrom: 'from-accent-cyan/[0.08]',
     ctaText: 'text-accent-cyan',
     glowHover: 'glow-hover-cyan',
   },
   rose: {
-    iconBadge: 'icon-badge-rose',
+    iconBadge: 'icon-badge-rose-glow',
     iconText: 'text-accent-rose',
     gradFrom: 'from-accent-rose/[0.08]',
     ctaText: 'text-accent-rose',
     glowHover: 'glow-hover-rose',
   },
   emerald: {
-    iconBadge: 'icon-badge-emerald',
+    iconBadge: 'icon-badge-emerald-glow',
     iconText: 'text-accent-emerald',
     gradFrom: 'from-accent-emerald/[0.08]',
     ctaText: 'text-accent-emerald',
     glowHover: 'glow-hover-emerald',
   },
   amber: {
-    iconBadge: 'icon-badge-amber',
+    iconBadge: 'icon-badge-amber-glow',
     iconText: 'text-accent-amber',
     gradFrom: 'from-accent-amber/[0.08]',
     ctaText: 'text-accent-amber',
@@ -96,9 +96,15 @@ export function HomepageCTA() {
     <section className="py-20 md:py-28 relative overflow-hidden section-mesh section-glow-cyan">
       <div className="absolute inset-0 bg-gradient-to-t from-accent-cyan/8 via-transparent to-accent-violet/6 pointer-events-none" />
       <div className="relative container-page">
-        <div className="text-center mb-8">
-          <h2 className="heading-section mb-4">Four paths into your OS.</h2>
-          <p className="text-muted-foreground max-w-xl mx-auto">
+        <div className="text-center mb-8 section-header-mesh">
+          <div className="flex justify-center mb-4">
+            <span className="section-eyebrow">
+              <span className="dot-pulse dot-pulse-cyan" aria-hidden="true" />
+              Get Started
+            </span>
+          </div>
+          <h2 className="heading-section-glow mb-4">Four paths into your OS.</h2>
+          <p className="text-body-sm max-w-xl mx-auto">
             Learn → scan → command center → verify. Every path leads to the same local-first Longevity OS.
           </p>
         </div>
@@ -135,15 +141,21 @@ export function HomepageCTA() {
         </div>
 
         <div className="card-premium p-8 md:p-12 text-center max-w-3xl mx-auto">
-          <p className="text-label text-accent-violet mb-3">YOUR OS AWAITS</p>
+          <div className="flex justify-center mb-5">
+            <span className="section-eyebrow section-eyebrow-violet">
+              <span className="dot-pulse dot-pulse-violet" aria-hidden="true" />
+              Your OS Awaits
+            </span>
+          </div>
           <h3 className="text-2xl md:text-3xl font-bold mb-3 tracking-tight">
-            Everything in one place.<br className="hidden sm:block" /> Free. Local. Yours.
+            Everything in one place.<br className="hidden sm:block" />{' '}
+            <span className="text-gradient-violet">Free. Local. Yours.</span>
           </h3>
-          <p className="text-sm text-muted-foreground mb-8 max-w-md mx-auto leading-relaxed">
+          <p className="text-body-sm mb-8 max-w-md mx-auto">
             Stack architect, lab hub, 12-hallmark library, six evidence tools — all running in your browser with no account required.
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
-            <Link href="/dashboard" className="focus-ring btn-gradient text-sm">
+            <Link href="/dashboard" className="focus-ring btn-gradient-v2 text-sm">
               <LayoutDashboard className="w-4 h-4" />
               Launch Longevity OS
             </Link>

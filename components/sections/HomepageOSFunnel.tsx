@@ -25,35 +25,35 @@ const accentConfig: Record<AccentKey, {
 }> = {
   emerald: {
     gradFrom: 'from-accent-emerald/[0.09]',
-    iconBadge: 'icon-badge-emerald',
+    iconBadge: 'icon-badge-emerald-glow',
     iconText: 'text-accent-emerald',
     ctaText: 'text-accent-emerald',
-    featuredRing: 'ring-1 ring-accent-emerald/25',
+    featuredRing: 'ring-1 ring-accent-emerald/30',
   },
   violet: {
     gradFrom: 'from-accent-violet/[0.09]',
-    iconBadge: 'icon-badge-violet',
+    iconBadge: 'icon-badge-violet-glow',
     iconText: 'text-accent-violet',
     ctaText: 'text-accent-violet',
     featuredRing: '',
   },
   cyan: {
     gradFrom: 'from-accent-cyan/[0.09]',
-    iconBadge: 'icon-badge-cyan',
+    iconBadge: 'icon-badge-cyan-glow',
     iconText: 'text-accent-cyan',
     ctaText: 'text-accent-cyan',
     featuredRing: '',
   },
   amber: {
     gradFrom: 'from-accent-amber/[0.09]',
-    iconBadge: 'icon-badge-amber',
+    iconBadge: 'icon-badge-amber-glow',
     iconText: 'text-accent-amber',
     ctaText: 'text-accent-amber',
     featuredRing: '',
   },
   rose: {
     gradFrom: 'from-accent-rose/[0.09]',
-    iconBadge: 'icon-badge-rose',
+    iconBadge: 'icon-badge-rose-glow',
     iconText: 'text-accent-rose',
     ctaText: 'text-accent-rose',
     featuredRing: '',
@@ -132,8 +132,13 @@ export function HomepageOSFunnel() {
     <section id="os" className="py-16 md:py-24 border-b border-border bg-card section-glow-emerald section-mesh">
       <div className="container-page">
         <div className="text-center mb-8 md:mb-10 section-header-mesh">
-          <p className="text-label text-accent-emerald mb-2">Longevity OS</p>
-          <h2 className="heading-section">
+          <div className="flex justify-center mb-4">
+            <span className="section-eyebrow section-eyebrow-emerald">
+              <span className="dot-pulse dot-pulse-emerald" aria-hidden="true" />
+              Longevity OS
+            </span>
+          </div>
+          <h2 className="heading-section-glow">
             One operating system. Five entry points.
           </h2>
           <p className="text-body-sm mt-3 max-w-xl mx-auto">

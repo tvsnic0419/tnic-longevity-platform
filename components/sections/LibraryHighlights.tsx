@@ -41,11 +41,16 @@ export function LibraryHighlights() {
       <div className="container-page">
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-8 section-header-mesh">
           <div>
-            <p className="text-label text-accent-violet mb-3">THE LIBRARY</p>
-            <h2 className="heading-section">
+            <div className="flex items-center gap-2 mb-4">
+              <span className="section-eyebrow section-eyebrow-violet">
+                <span className="dot-pulse dot-pulse-violet" aria-hidden="true" />
+                The Library
+              </span>
+            </div>
+            <h2 className="heading-section-glow">
               Curated stacks. Live research.
             </h2>
-            <p className="text-muted-foreground mt-3 max-w-xl">
+            <p className="text-body-sm mt-3 max-w-xl">
               Not a supplement catalog — an evidence library. Every stack is graded, every study linked to actionable compounds.
             </p>
           </div>
@@ -69,10 +74,10 @@ export function LibraryHighlights() {
           {/* Featured Stacks */}
           <div>
             <div className="flex items-center gap-2 mb-5">
-              <div className="icon-badge-violet w-7 h-7 rounded-lg flex items-center justify-center">
+              <div className="icon-badge-violet-glow w-7 h-7 rounded-lg flex items-center justify-center">
                 <Layers className="w-3.5 h-3.5 text-accent-violet" />
               </div>
-              <h3 className="text-sm font-bold uppercase tracking-wider">Featured Stacks</h3>
+              <h3 className="text-sm font-bold uppercase tracking-wider text-label-violet">Featured Stacks</h3>
             </div>
             <div className="grid sm:grid-cols-2 gap-4">
               {featuredStacks.map((stack, i) => (
@@ -112,10 +117,10 @@ export function LibraryHighlights() {
           {/* Latest Research */}
           <div>
             <div className="flex items-center gap-2 mb-5">
-              <div className="icon-badge-emerald w-7 h-7 rounded-lg flex items-center justify-center">
+              <div className="icon-badge-emerald-glow w-7 h-7 rounded-lg flex items-center justify-center">
                 <FlaskConical className="w-3.5 h-3.5 text-accent-emerald" />
               </div>
-              <h3 className="text-sm font-bold uppercase tracking-wider">
+              <h3 className="text-sm font-bold uppercase tracking-wider text-label-emerald">
                 {preset ? 'Research for your stack' : 'Latest Research'}
               </h3>
             </div>

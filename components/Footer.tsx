@@ -126,12 +126,12 @@ export function Footer() {
         </div>
 
         <div className="relative pt-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-          <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-accent-emerald/25 to-transparent" />
+          <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-accent-emerald/30 to-transparent" />
           <p className="text-caption font-mono">© 2026 TNiC · Independent · Evidence-First</p>
-          <div className="flex flex-wrap gap-x-4 gap-y-1 text-caption font-mono">
-            <span>Tier A: 4 compounds</span>
-            <span>Tier B: 2 compounds</span>
-            <span>{citationRegistry.length} indexed PMIDs</span>
+          <div className="flex flex-wrap gap-2 items-center">
+            <span className="tier-badge-a">Tier A · 4 compounds</span>
+            <span className="tier-badge-b">Tier B · 2 compounds</span>
+            <span className="text-caption font-mono">{citationRegistry.length} indexed PMIDs</span>
           </div>
         </div>
       </div>

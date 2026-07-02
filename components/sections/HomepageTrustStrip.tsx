@@ -19,11 +19,11 @@ const badges = [
   { icon: Shield,     label: 'Evidence-first',      desc: 'Est. 2025',                href: '/trust',             accent: 'emerald' },
 ] as const;
 
-const accentClasses: Record<string, { icon: string; hover: string; hoverBg: string }> = {
-  emerald: { icon: 'text-accent-emerald', hover: 'group-hover:text-accent-emerald', hoverBg: 'hover:bg-accent-emerald/8 hover:border-accent-emerald/30' },
-  cyan:    { icon: 'text-accent-cyan',    hover: 'group-hover:text-accent-cyan',    hoverBg: 'hover:bg-accent-cyan/8 hover:border-accent-cyan/30' },
-  amber:   { icon: 'text-accent-amber',   hover: 'group-hover:text-accent-amber',   hoverBg: 'hover:bg-accent-amber/8 hover:border-accent-amber/30' },
-  violet:  { icon: 'text-accent-violet',  hover: 'group-hover:text-accent-violet',  hoverBg: 'hover:bg-accent-violet/8 hover:border-accent-violet/30' },
+const accentClasses: Record<string, { icon: string; hover: string; hoverBg: string; iconGlow: string }> = {
+  emerald: { icon: 'text-accent-emerald', hover: 'group-hover:text-accent-emerald', hoverBg: 'hover:bg-accent-emerald/8 hover:border-accent-emerald/30', iconGlow: 'group-hover:drop-shadow-[0_0_8px_rgba(52,211,153,0.7)]' },
+  cyan:    { icon: 'text-accent-cyan',    hover: 'group-hover:text-accent-cyan',    hoverBg: 'hover:bg-accent-cyan/8 hover:border-accent-cyan/30',       iconGlow: 'group-hover:drop-shadow-[0_0_8px_rgba(34,211,238,0.7)]' },
+  amber:   { icon: 'text-accent-amber',   hover: 'group-hover:text-accent-amber',   hoverBg: 'hover:bg-accent-amber/8 hover:border-accent-amber/30',     iconGlow: 'group-hover:drop-shadow-[0_0_8px_rgba(251,191,36,0.7)]' },
+  violet:  { icon: 'text-accent-violet',  hover: 'group-hover:text-accent-violet',  hoverBg: 'hover:bg-accent-violet/8 hover:border-accent-violet/30',   iconGlow: 'group-hover:drop-shadow-[0_0_8px_rgba(167,139,250,0.7)]' },
 };
 
 export function HomepageTrustStrip() {
@@ -37,14 +37,14 @@ export function HomepageTrustStrip() {
               <Link
                 key={badge.label}
                 href={badge.href}
-                className={`focus-ring card-ultra card-ultra-hover rounded-xl p-4 text-center transition-all group block ${ac.hoverBg}`}
+                className={`focus-ring card-crystalline card-crystalline-hover rounded-xl p-4 text-center group block ${ac.hoverBg}`}
               >
                 <badge.icon
-                  className={`w-5 h-5 ${ac.icon} mx-auto mb-2 group-hover:scale-110 transition-transform`}
+                  className={`w-5 h-5 ${ac.icon} mx-auto mb-2.5 group-hover:scale-110 transition-all duration-300 ${ac.iconGlow}`}
                   aria-hidden="true"
                 />
                 <p className={`text-xs font-semibold leading-tight transition-colors ${ac.hover}`}>{badge.label}</p>
-                <p className="text-caption font-mono mt-1">{badge.desc}</p>
+                <p className="text-caption font-mono mt-1 opacity-70">{badge.desc}</p>
               </Link>
             );
           })}

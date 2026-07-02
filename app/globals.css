@@ -1232,3 +1232,765 @@ body {
 @media (prefers-reduced-motion: reduce) {
   .ambient-orb, .hero-ring, .scroll-progress-glow { animation: none; }
 }
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Design System v4 — Visual Depth & Typography (Sprint 37)
+   Chromatic gradient text · Crystalline surfaces · Depth layers · Accent labels
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* ── Global font rendering ── */
+body {
+  text-rendering: optimizeLegibility;
+  font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
+}
+
+/* ── Display text — chromatic multi-stop ── */
+.text-display-gradient {
+  font-size: clamp(2.5rem, 6vw + 1rem, 4.5rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1.02;
+  background: linear-gradient(
+    135deg,
+    #ffffff 0%,
+    var(--accent-cyan) 28%,
+    #6ee7b7 52%,
+    var(--accent-emerald) 72%,
+    #a5f3fc 90%,
+    #ffffff 100%
+  );
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradient-drift 8s ease infinite;
+}
+
+[data-theme="light"] .text-display-gradient {
+  background: linear-gradient(
+    135deg,
+    var(--color-text-primary) 0%,
+    var(--accent-cyan) 35%,
+    var(--accent-emerald) 70%,
+    var(--color-text-primary) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+/* ── Section headings with depth ── */
+.heading-section-glow {
+  font-size: clamp(1.5rem, 3vw + 0.5rem, 2.5rem);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 1.18;
+  color: var(--color-text-primary);
+  text-shadow:
+    0 0 40px color-mix(in srgb, var(--accent-cyan) 20%, transparent),
+    0 0 80px color-mix(in srgb, var(--accent-emerald) 10%, transparent);
+}
+
+/* ── Gradient text system — per-accent ── */
+.text-gradient-cyan {
+  background: linear-gradient(90deg, var(--accent-cyan) 0%, #a5f3fc 50%, var(--accent-emerald) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gradient-violet {
+  background: linear-gradient(90deg, var(--accent-violet) 0%, #c4b5fd 45%, var(--accent-cyan) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gradient-rose {
+  background: linear-gradient(90deg, var(--accent-rose) 0%, #fda4af 45%, var(--accent-amber) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gradient-amber {
+  background: linear-gradient(90deg, var(--accent-amber) 0%, #fde68a 50%, var(--accent-rose) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gradient-tri {
+  background: linear-gradient(90deg, var(--accent-cyan) 0%, var(--accent-emerald) 40%, var(--accent-violet) 80%, var(--accent-cyan) 100%);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 5s linear infinite;
+}
+
+/* ── Accent-tinted label variants ── */
+.text-label-cyan {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent-cyan);
+  text-shadow: 0 0 16px color-mix(in srgb, var(--accent-cyan) 45%, transparent);
+}
+
+.text-label-emerald {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent-emerald);
+  text-shadow: 0 0 16px color-mix(in srgb, var(--accent-emerald) 40%, transparent);
+}
+
+.text-label-violet {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent-violet);
+  text-shadow: 0 0 16px color-mix(in srgb, var(--accent-violet) 40%, transparent);
+}
+
+.text-label-rose {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent-rose);
+  text-shadow: 0 0 16px color-mix(in srgb, var(--accent-rose) 40%, transparent);
+}
+
+.text-label-amber {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent-amber);
+  text-shadow: 0 0 16px color-mix(in srgb, var(--accent-amber) 40%, transparent);
+}
+
+/* ── Shimmer text variants ── */
+.shimmer-text-violet {
+  background: linear-gradient(90deg, var(--accent-violet), #c4b5fd, var(--accent-cyan), #c4b5fd, var(--accent-violet));
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 5s linear infinite;
+}
+
+.shimmer-text-rose {
+  background: linear-gradient(90deg, var(--accent-rose), #fda4af, var(--accent-amber), #fda4af, var(--accent-rose));
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 5s linear infinite;
+}
+
+/* ── Crystalline card surface ── */
+.card-crystalline {
+  position: relative;
+  background: color-mix(in srgb, var(--glass-bg) 88%, transparent);
+  backdrop-filter: blur(32px) saturate(1.4) brightness(1.05);
+  border-radius: var(--radius-2xl);
+  border: 1px solid color-mix(in srgb, var(--accent-cyan) 18%, var(--color-border-subtle));
+  box-shadow:
+    0 0 0 1px color-mix(in srgb, var(--accent-cyan) 8%, transparent),
+    0 1px 0 color-mix(in srgb, #ffffff 12%, transparent),
+    0 6px 32px -6px rgba(0, 0, 0, 0.35),
+    0 32px 80px -24px color-mix(in srgb, var(--accent-cyan) 14%, transparent),
+    inset 0 1px 0 color-mix(in srgb, #ffffff 8%, transparent);
+  overflow: hidden;
+}
+
+.card-crystalline::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, #ffffff 25%, var(--accent-cyan) 60%),
+    color-mix(in srgb, var(--accent-emerald) 40%, transparent) 30%,
+    color-mix(in srgb, var(--accent-violet) 20%, transparent) 60%,
+    transparent 80%
+  );
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+.card-crystalline::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    color-mix(in srgb, #ffffff 55%, var(--accent-cyan) 30%),
+    color-mix(in srgb, #ffffff 55%, var(--accent-emerald) 30%),
+    transparent
+  );
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+.card-crystalline > * { position: relative; z-index: 1; }
+
+@media (hover: hover) {
+  .card-crystalline-hover {
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.4s ease, border-color 0.4s ease;
+  }
+  .card-crystalline-hover:hover {
+    transform: translateY(-5px) scale(1.005);
+    border-color: color-mix(in srgb, var(--accent-cyan) 40%, transparent);
+    box-shadow:
+      0 0 0 1px color-mix(in srgb, var(--accent-cyan) 25%, transparent),
+      0 1px 0 color-mix(in srgb, #ffffff 18%, transparent),
+      0 16px 48px -8px color-mix(in srgb, var(--accent-cyan) 35%, transparent),
+      0 48px 100px -24px color-mix(in srgb, var(--accent-emerald) 20%, transparent),
+      inset 0 1px 0 color-mix(in srgb, #ffffff 12%, transparent);
+  }
+}
+
+/* ── Edge-light system ── */
+.edge-light-top::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 15%;
+  right: 15%;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    color-mix(in srgb, #ffffff 60%, var(--accent-cyan) 30%),
+    transparent
+  );
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.edge-light-cyan::after {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--accent-cyan),
+    color-mix(in srgb, var(--accent-emerald) 70%, transparent),
+    transparent
+  );
+  opacity: 0.4;
+}
+
+.edge-light-violet::after {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--accent-violet),
+    color-mix(in srgb, var(--accent-cyan) 50%, transparent),
+    transparent
+  );
+  opacity: 0.4;
+}
+
+/* ── Deep section backgrounds ── */
+.section-deep-cyan {
+  background:
+    radial-gradient(ellipse 70% 50% at 0% 0%, color-mix(in srgb, var(--accent-cyan) 16%, transparent), transparent 55%),
+    radial-gradient(ellipse 50% 40% at 100% 100%, color-mix(in srgb, var(--accent-emerald) 10%, transparent), transparent 55%),
+    radial-gradient(ellipse 40% 30% at 50% 50%, color-mix(in srgb, var(--accent-cyan) 5%, transparent), transparent 60%),
+    var(--color-bg-base);
+}
+
+.section-deep-violet {
+  background:
+    radial-gradient(ellipse 70% 50% at 0% 0%, color-mix(in srgb, var(--accent-violet) 14%, transparent), transparent 55%),
+    radial-gradient(ellipse 50% 40% at 100% 100%, color-mix(in srgb, var(--accent-cyan) 10%, transparent), transparent 55%),
+    radial-gradient(ellipse 35% 25% at 50% 50%, color-mix(in srgb, var(--accent-violet) 5%, transparent), transparent 60%),
+    var(--color-bg-base);
+}
+
+.section-deep-rose {
+  background:
+    radial-gradient(ellipse 70% 50% at 0% 0%, color-mix(in srgb, var(--accent-rose) 12%, transparent), transparent 55%),
+    radial-gradient(ellipse 50% 40% at 100% 100%, color-mix(in srgb, var(--accent-amber) 10%, transparent), transparent 55%),
+    var(--color-bg-base);
+}
+
+.section-deep-emerald {
+  background:
+    radial-gradient(ellipse 70% 50% at 0% 0%, color-mix(in srgb, var(--accent-emerald) 14%, transparent), transparent 55%),
+    radial-gradient(ellipse 50% 40% at 100% 100%, color-mix(in srgb, var(--accent-cyan) 10%, transparent), transparent 55%),
+    radial-gradient(ellipse 30% 20% at 50% 100%, color-mix(in srgb, var(--accent-emerald) 6%, transparent), transparent 60%),
+    var(--color-bg-base);
+}
+
+/* ── Spotlight effect for key sections ── */
+.section-spotlight {
+  position: relative;
+}
+
+.section-spotlight::before {
+  content: '';
+  position: absolute;
+  top: -4rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(80vw, 900px);
+  height: 300px;
+  background: radial-gradient(
+    ellipse at 50% 0%,
+    color-mix(in srgb, var(--accent-cyan) 18%, transparent),
+    transparent 65%
+  );
+  pointer-events: none;
+}
+
+/* ── Micro-texture depth overlay ── */
+.depth-grid {
+  position: relative;
+}
+
+.depth-grid::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(34, 211, 238, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(34, 211, 238, 0.04) 1px, transparent 1px);
+  background-size: 32px 32px;
+  mask-image: radial-gradient(ellipse 70% 60% at 50% 50%, black 10%, transparent 75%);
+  pointer-events: none;
+}
+
+/* ── Enhanced hero beam with corona ── */
+.hero-beam-v2 {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2px;
+  height: 65%;
+  background: linear-gradient(
+    180deg,
+    transparent,
+    color-mix(in srgb, var(--accent-cyan) 55%, transparent) 25%,
+    color-mix(in srgb, var(--accent-emerald) 40%, transparent) 55%,
+    color-mix(in srgb, var(--accent-violet) 20%, transparent) 80%,
+    transparent
+  );
+  filter: blur(0.75px);
+  opacity: 0.65;
+  pointer-events: none;
+}
+
+.hero-beam-v2::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 320px;
+  height: 320px;
+  background: radial-gradient(
+    circle,
+    color-mix(in srgb, var(--accent-cyan) 18%, transparent) 0%,
+    color-mix(in srgb, var(--accent-emerald) 8%, transparent) 40%,
+    transparent 70%
+  );
+  filter: blur(50px);
+  opacity: 0.8;
+}
+
+.hero-beam-v2::after {
+  content: '';
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 160px;
+  height: 160px;
+  background: radial-gradient(
+    circle,
+    color-mix(in srgb, var(--accent-cyan) 30%, transparent),
+    transparent 65%
+  );
+  filter: blur(24px);
+}
+
+/* ── Stat value variants ── */
+.stat-value-cyan {
+  font-size: clamp(1.75rem, 3.5vw, 2.25rem);
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  background: linear-gradient(135deg, #ffffff 0%, var(--accent-cyan) 45%, #a5f3fc 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.stat-value-emerald {
+  font-size: clamp(1.75rem, 3.5vw, 2.25rem);
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  background: linear-gradient(135deg, #ffffff 0%, var(--accent-emerald) 45%, #6ee7b7 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.stat-value-violet {
+  font-size: clamp(1.75rem, 3.5vw, 2.25rem);
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  background: linear-gradient(135deg, #ffffff 0%, var(--accent-violet) 50%, #c4b5fd 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+[data-theme="light"] .stat-value-cyan,
+[data-theme="light"] .stat-value-emerald,
+[data-theme="light"] .stat-value-violet {
+  background: linear-gradient(135deg, var(--color-text-primary) 0%, var(--accent-cyan) 60%);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+/* ── Enhanced icon badge with depth ── */
+.icon-badge-cyan-glow {
+  background: color-mix(in srgb, var(--accent-cyan) 18%, transparent);
+  border: 1px solid color-mix(in srgb, var(--accent-cyan) 35%, transparent);
+  box-shadow:
+    0 0 0 3px color-mix(in srgb, var(--accent-cyan) 8%, transparent),
+    0 4px 16px -4px color-mix(in srgb, var(--accent-cyan) 35%, transparent),
+    inset 0 1px 0 color-mix(in srgb, #ffffff 15%, transparent);
+}
+
+.icon-badge-emerald-glow {
+  background: color-mix(in srgb, var(--accent-emerald) 18%, transparent);
+  border: 1px solid color-mix(in srgb, var(--accent-emerald) 35%, transparent);
+  box-shadow:
+    0 0 0 3px color-mix(in srgb, var(--accent-emerald) 8%, transparent),
+    0 4px 16px -4px color-mix(in srgb, var(--accent-emerald) 35%, transparent),
+    inset 0 1px 0 color-mix(in srgb, #ffffff 15%, transparent);
+}
+
+.icon-badge-violet-glow {
+  background: color-mix(in srgb, var(--accent-violet) 18%, transparent);
+  border: 1px solid color-mix(in srgb, var(--accent-violet) 35%, transparent);
+  box-shadow:
+    0 0 0 3px color-mix(in srgb, var(--accent-violet) 8%, transparent),
+    0 4px 16px -4px color-mix(in srgb, var(--accent-violet) 35%, transparent),
+    inset 0 1px 0 color-mix(in srgb, #ffffff 15%, transparent);
+}
+
+.icon-badge-rose-glow {
+  background: color-mix(in srgb, var(--accent-rose) 18%, transparent);
+  border: 1px solid color-mix(in srgb, var(--accent-rose) 35%, transparent);
+  box-shadow:
+    0 0 0 3px color-mix(in srgb, var(--accent-rose) 8%, transparent),
+    0 4px 16px -4px color-mix(in srgb, var(--accent-rose) 35%, transparent),
+    inset 0 1px 0 color-mix(in srgb, #ffffff 15%, transparent);
+}
+
+.icon-badge-amber-glow {
+  background: color-mix(in srgb, var(--accent-amber) 18%, transparent);
+  border: 1px solid color-mix(in srgb, var(--accent-amber) 35%, transparent);
+  box-shadow:
+    0 0 0 3px color-mix(in srgb, var(--accent-amber) 8%, transparent),
+    0 4px 16px -4px color-mix(in srgb, var(--accent-amber) 35%, transparent),
+    inset 0 1px 0 color-mix(in srgb, #ffffff 15%, transparent);
+}
+
+/* ── Enhanced btn-gradient v2 ── */
+.btn-gradient-v2 {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.625rem;
+  padding: 1rem 1.875rem;
+  min-height: var(--space-touch);
+  border-radius: 1rem;
+  font-weight: 700;
+  font-size: 0.9375rem;
+  letter-spacing: -0.01em;
+  color: #030712;
+  background: linear-gradient(135deg, #38bdf8 0%, var(--accent-cyan) 25%, var(--accent-emerald) 60%, #6ee7b7 85%, var(--accent-cyan) 100%);
+  background-size: 200% 200%;
+  box-shadow:
+    0 0 0 1px color-mix(in srgb, var(--accent-cyan) 45%, transparent),
+    0 4px 16px -2px color-mix(in srgb, var(--accent-cyan) 35%, transparent),
+    0 12px 40px -8px color-mix(in srgb, var(--accent-emerald) 30%, transparent),
+    inset 0 1px 0 rgba(255, 255, 255, 0.35),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background-position 0.45s ease;
+  overflow: hidden;
+}
+
+.btn-gradient-v2::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(105deg, transparent 35%, rgba(255,255,255,0.3) 50%, transparent 65%);
+  transform: translateX(-100%);
+  transition: transform 0.55s ease;
+}
+
+@media (hover: hover) {
+  .btn-gradient-v2:hover {
+    transform: translateY(-2px);
+    background-position: 100% 50%;
+    box-shadow:
+      0 0 0 1px color-mix(in srgb, var(--accent-emerald) 55%, transparent),
+      0 6px 24px -4px color-mix(in srgb, var(--accent-cyan) 55%, transparent),
+      0 16px 56px -8px color-mix(in srgb, var(--accent-emerald) 35%, transparent),
+      inset 0 1px 0 rgba(255, 255, 255, 0.4),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.08);
+  }
+  .btn-gradient-v2:hover::before { transform: translateX(100%); }
+}
+
+/* ── Enhanced section heading badge ── */
+.section-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.3125rem 0.875rem;
+  border-radius: 9999px;
+  background: color-mix(in srgb, var(--accent-cyan) 10%, var(--glass-bg));
+  border: 1px solid color-mix(in srgb, var(--accent-cyan) 22%, transparent);
+  box-shadow:
+    0 0 0 3px color-mix(in srgb, var(--accent-cyan) 6%, transparent),
+    inset 0 1px 0 color-mix(in srgb, #ffffff 10%, transparent);
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent-cyan);
+  text-shadow: 0 0 12px color-mix(in srgb, var(--accent-cyan) 50%, transparent);
+}
+
+.section-eyebrow-emerald {
+  background: color-mix(in srgb, var(--accent-emerald) 10%, var(--glass-bg));
+  border-color: color-mix(in srgb, var(--accent-emerald) 22%, transparent);
+  box-shadow:
+    0 0 0 3px color-mix(in srgb, var(--accent-emerald) 6%, transparent),
+    inset 0 1px 0 color-mix(in srgb, #ffffff 10%, transparent);
+  color: var(--accent-emerald);
+  text-shadow: 0 0 12px color-mix(in srgb, var(--accent-emerald) 45%, transparent);
+}
+
+.section-eyebrow-violet {
+  background: color-mix(in srgb, var(--accent-violet) 10%, var(--glass-bg));
+  border-color: color-mix(in srgb, var(--accent-violet) 22%, transparent);
+  box-shadow:
+    0 0 0 3px color-mix(in srgb, var(--accent-violet) 6%, transparent),
+    inset 0 1px 0 color-mix(in srgb, #ffffff 10%, transparent);
+  color: var(--accent-violet);
+  text-shadow: 0 0 12px color-mix(in srgb, var(--accent-violet) 45%, transparent);
+}
+
+.section-eyebrow-rose {
+  background: color-mix(in srgb, var(--accent-rose) 10%, var(--glass-bg));
+  border-color: color-mix(in srgb, var(--accent-rose) 22%, transparent);
+  box-shadow:
+    0 0 0 3px color-mix(in srgb, var(--accent-rose) 6%, transparent),
+    inset 0 1px 0 color-mix(in srgb, #ffffff 10%, transparent);
+  color: var(--accent-rose);
+  text-shadow: 0 0 12px color-mix(in srgb, var(--accent-rose) 45%, transparent);
+}
+
+.section-eyebrow-amber {
+  background: color-mix(in srgb, var(--accent-amber) 10%, var(--glass-bg));
+  border-color: color-mix(in srgb, var(--accent-amber) 22%, transparent);
+  box-shadow:
+    0 0 0 3px color-mix(in srgb, var(--accent-amber) 6%, transparent),
+    inset 0 1px 0 color-mix(in srgb, #ffffff 10%, transparent);
+  color: var(--accent-amber);
+  text-shadow: 0 0 12px color-mix(in srgb, var(--accent-amber) 45%, transparent);
+}
+
+/* ── Depth divider ── */
+.divider-glow {
+  position: relative;
+  height: 1px;
+  background: linear-gradient(90deg,
+    transparent,
+    color-mix(in srgb, var(--accent-cyan) 40%, transparent),
+    color-mix(in srgb, var(--accent-emerald) 30%, transparent),
+    color-mix(in srgb, var(--accent-cyan) 40%, transparent),
+    transparent
+  );
+}
+
+.divider-glow::after {
+  content: '';
+  position: absolute;
+  inset-x: 20%;
+  top: 0;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, var(--accent-cyan), var(--accent-emerald), transparent);
+  filter: blur(3px);
+  opacity: 0.4;
+}
+
+/* ── Badge tier depth ── */
+.tier-badge-a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3125rem;
+  padding: 0.1875rem 0.625rem;
+  border-radius: 9999px;
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent-emerald);
+  background: color-mix(in srgb, var(--accent-emerald) 12%, transparent);
+  border: 1px solid color-mix(in srgb, var(--accent-emerald) 30%, transparent);
+  box-shadow:
+    0 0 8px color-mix(in srgb, var(--accent-emerald) 20%, transparent),
+    inset 0 1px 0 color-mix(in srgb, #ffffff 10%, transparent);
+}
+
+.tier-badge-b {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3125rem;
+  padding: 0.1875rem 0.625rem;
+  border-radius: 9999px;
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent-amber);
+  background: color-mix(in srgb, var(--accent-amber) 12%, transparent);
+  border: 1px solid color-mix(in srgb, var(--accent-amber) 30%, transparent);
+  box-shadow:
+    0 0 8px color-mix(in srgb, var(--accent-amber) 20%, transparent),
+    inset 0 1px 0 color-mix(in srgb, #ffffff 10%, transparent);
+}
+
+.tier-badge-c {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3125rem;
+  padding: 0.1875rem 0.625rem;
+  border-radius: 9999px;
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  background: color-mix(in srgb, var(--color-text-faint) 10%, transparent);
+  border: 1px solid color-mix(in srgb, var(--color-text-faint) 20%, transparent);
+}
+
+/* ── Enhanced scrollbar ── */
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--accent-cyan), var(--accent-emerald));
+  border-radius: 3px;
+  box-shadow: 0 0 6px color-mix(in srgb, var(--accent-cyan) 30%, transparent);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, var(--accent-emerald), var(--accent-cyan));
+}
+
+/* ── Text selection refinement ── */
+::selection {
+  background: color-mix(in srgb, var(--accent-cyan) 35%, transparent);
+  color: var(--color-text-primary);
+  text-shadow: none;
+}
+
+/* ── Animated dot accent ── */
+@keyframes dot-pulse {
+  0%, 100% { opacity: 0.5; transform: scale(0.85); }
+  50% { opacity: 1; transform: scale(1.15); }
+}
+
+.dot-pulse {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  animation: dot-pulse 2.5s ease-in-out infinite;
+}
+
+.dot-pulse-cyan   { background: var(--accent-cyan);    box-shadow: 0 0 8px color-mix(in srgb, var(--accent-cyan) 60%, transparent); }
+.dot-pulse-emerald{ background: var(--accent-emerald); box-shadow: 0 0 8px color-mix(in srgb, var(--accent-emerald) 55%, transparent); }
+.dot-pulse-violet { background: var(--accent-violet);  box-shadow: 0 0 8px color-mix(in srgb, var(--accent-violet) 55%, transparent); }
+.dot-pulse-rose   { background: var(--accent-rose);    box-shadow: 0 0 8px color-mix(in srgb, var(--accent-rose) 55%, transparent); }
+.dot-pulse-amber  { background: var(--accent-amber);   box-shadow: 0 0 8px color-mix(in srgb, var(--accent-amber) 55%, transparent); }
+
+/* ── Chromatic number display ── */
+.number-display {
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  font-weight: 900;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.05em;
+  line-height: 0.9;
+  background: linear-gradient(
+    150deg,
+    #ffffff 0%,
+    var(--accent-cyan) 30%,
+    var(--accent-emerald) 60%,
+    #ffffff 100%
+  );
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradient-drift 6s ease infinite;
+}
+
+/* ── Contextual highlight spans ── */
+.highlight-cyan {
+  color: var(--accent-cyan);
+  font-weight: 600;
+  text-shadow: 0 0 20px color-mix(in srgb, var(--accent-cyan) 30%, transparent);
+}
+
+.highlight-emerald {
+  color: var(--accent-emerald);
+  font-weight: 600;
+  text-shadow: 0 0 20px color-mix(in srgb, var(--accent-emerald) 28%, transparent);
+}
+
+.highlight-violet {
+  color: var(--accent-violet);
+  font-weight: 600;
+  text-shadow: 0 0 20px color-mix(in srgb, var(--accent-violet) 28%, transparent);
+}
+
+/* ── Reduced motion overrides ── */
+@media (prefers-reduced-motion: reduce) {
+  .text-display-gradient,
+  .text-gradient-tri,
+  .shimmer-text-violet,
+  .shimmer-text-rose,
+  .btn-gradient-v2 { animation: none; }
+  .btn-gradient-v2::before { display: none; }
+}

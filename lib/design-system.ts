@@ -25,7 +25,20 @@ export const palette = {
 
 export const themes: Record<
   ThemeAccent,
-  { text: string; bg: string; bgSolid: string; border: string; glow: string; dot: string; cssVar: string }
+  {
+    text: string;
+    bg: string;
+    bgSolid: string;
+    border: string;
+    glow: string;
+    dot: string;
+    cssVar: string;
+    labelClass: string;
+    eyebrowClass: string;
+    deepBg: string;
+    iconBadgeGlow: string;
+    gradientText: string;
+  }
 > = {
   cyan: {
     text: 'text-accent-cyan',
@@ -35,6 +48,11 @@ export const themes: Record<
     glow: 'section-glow-cyan',
     dot: 'bg-accent-cyan',
     cssVar: 'var(--accent-cyan)',
+    labelClass: 'text-label-cyan',
+    eyebrowClass: 'section-eyebrow',
+    deepBg: 'section-deep-cyan',
+    iconBadgeGlow: 'icon-badge-cyan-glow',
+    gradientText: 'text-gradient-cyan',
   },
   emerald: {
     text: 'text-accent-emerald',
@@ -44,6 +62,11 @@ export const themes: Record<
     glow: 'section-glow-emerald',
     dot: 'bg-accent-emerald',
     cssVar: 'var(--accent-emerald)',
+    labelClass: 'text-label-emerald',
+    eyebrowClass: 'section-eyebrow section-eyebrow-emerald',
+    deepBg: 'section-deep-emerald',
+    iconBadgeGlow: 'icon-badge-emerald-glow',
+    gradientText: 'gradient-text-emerald',
   },
   amber: {
     text: 'text-accent-amber',
@@ -53,6 +76,11 @@ export const themes: Record<
     glow: 'section-glow-amber',
     dot: 'bg-accent-amber',
     cssVar: 'var(--accent-amber)',
+    labelClass: 'text-label-amber',
+    eyebrowClass: 'section-eyebrow section-eyebrow-amber',
+    deepBg: 'section-deep-cyan',
+    iconBadgeGlow: 'icon-badge-amber-glow',
+    gradientText: 'text-gradient-amber',
   },
   violet: {
     text: 'text-accent-violet',
@@ -62,6 +90,11 @@ export const themes: Record<
     glow: 'section-glow-violet',
     dot: 'bg-accent-violet',
     cssVar: 'var(--accent-violet)',
+    labelClass: 'text-label-violet',
+    eyebrowClass: 'section-eyebrow section-eyebrow-violet',
+    deepBg: 'section-deep-violet',
+    iconBadgeGlow: 'icon-badge-violet-glow',
+    gradientText: 'text-gradient-violet',
   },
   rose: {
     text: 'text-accent-rose',
@@ -71,6 +104,11 @@ export const themes: Record<
     glow: 'section-glow-rose',
     dot: 'bg-accent-rose',
     cssVar: 'var(--accent-rose)',
+    labelClass: 'text-label-rose',
+    eyebrowClass: 'section-eyebrow section-eyebrow-rose',
+    deepBg: 'section-deep-rose',
+    iconBadgeGlow: 'icon-badge-rose-glow',
+    gradientText: 'text-gradient-rose',
   },
 };
 

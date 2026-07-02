@@ -19,20 +19,25 @@ export function HomepageTrust() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.05 }}
-              className="stat-card rounded-2xl p-5 text-center"
+              className="stat-card-v3 rounded-2xl p-5 text-center"
             >
-              <p className="text-3xl md:text-4xl font-bold font-mono text-accent-emerald tabular-nums">{stat.value}</p>
-              <p className="text-label text-muted-foreground mt-1">{stat.label}</p>
+              <p className="stat-value-emerald">{stat.value}</p>
+              <p className="text-label mt-2">{stat.label}</p>
             </motion.div>
           ))}
         </div>
 
         <div className="text-center mb-10">
-          <p className="text-label text-accent-emerald mb-3">WHY TRUST TNIC</p>
-          <h2 className="heading-section">
+          <div className="flex justify-center mb-4">
+            <span className="section-eyebrow section-eyebrow-emerald">
+              <span className="dot-pulse dot-pulse-emerald" aria-hidden="true" />
+              Why Trust TNiC
+            </span>
+          </div>
+          <h2 className="heading-section-glow">
             Graded by evidence. Built for trust.
           </h2>
-          <p className="text-muted-foreground mt-3 max-w-2xl mx-auto text-sm">
+          <p className="text-body-sm mt-3 max-w-2xl mx-auto">
             We name the trial, the PMID, the year, and the effect size. We label every projection as modeled — not lab-measured. No black-box recommendations, no hidden affiliate pressure on evidence grading.
           </p>
         </div>
@@ -48,10 +53,12 @@ export function HomepageTrust() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.06 }}
-                className="card-premium glow-hover-emerald p-5 group block border border-border/60"
+                className="card-crystalline card-crystalline-hover glow-hover-emerald p-5 group block"
               >
-                <Icon className="w-5 h-5 text-accent-emerald mb-3" />
-                <h3 className="font-bold text-sm mb-2 group-hover:text-emerald-300 transition">{pillar.title}</h3>
+                <div className="icon-badge-emerald-glow w-10 h-10 rounded-xl flex items-center justify-center mb-3">
+                  <Icon className="w-5 h-5 text-accent-emerald" aria-hidden="true" />
+                </div>
+                <h3 className="font-bold text-sm mb-2 group-hover:text-accent-emerald transition-colors">{pillar.title}</h3>
                 <p className="text-xs text-muted-foreground leading-relaxed">{pillar.desc}</p>
               </motion.a>
             );

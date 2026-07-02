@@ -21,7 +21,7 @@ export function HeroSection() {
       className="relative hero-mesh hero-cinematic noise scan-overlay min-h-[90vh] md:min-h-[94vh] flex items-center pt-24 md:pt-28 pb-14 md:pb-20 overflow-hidden"
     >
       <HeroRings />
-      <div className="hero-beam" aria-hidden="true" />
+      <div className="hero-beam-v2" aria-hidden="true" />
       <div className="orb orb-1" />
       <div className="orb orb-2" />
       <div className="orb orb-3" />
@@ -49,7 +49,7 @@ export function HeroSection() {
             >
               {hero.line1}
               <br />
-              <span className="shimmer-text">{hero.line2}</span>
+              <span className="text-display-gradient">{hero.line2}</span>
             </motion.h1>
 
             <motion.p
