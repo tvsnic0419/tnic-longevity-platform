@@ -1,3 +1,5 @@
+'use client';
+
 import Link from 'next/link';
 import { ArrowRight, ClipboardList, LayoutDashboard } from 'lucide-react';
 import { usePlatform } from '@/context/PlatformContext';
