@@ -1,157 +1,74 @@
-'use client';
-
 import Link from 'next/link';
-import { ArrowRight, Scan, BookOpen, LayoutDashboard, ShoppingBag, Bell } from 'lucide-react';
-import { ContextRail } from '@/components/ui/ContextRail';
-import { usePlatform } from '@/context/PlatformContext';
-import { buildShopPresetUrl } from '@/lib/stack-url';
-import type { PresetKey } from '@/lib/presets';
+import { ArrowRight, BookOpen, LayoutDashboard, ShoppingBag } from 'lucide-react';
 
-type AccentKey = 'cyan' | 'rose' | 'emerald' | 'amber';
-
-const basePaths = [
+const paths = [
   {
     icon: BookOpen,
-    title: 'Search the library',
-    desc: 'Hallmarks, compounds, synergies — full-text search with evidence tiers.',
+    title: 'Library',
+    desc: 'Explore hallmarks, compounds, and evidence-backed interventions.',
     href: '/library',
-    cta: 'Open Library',
-    accent: 'cyan' as AccentKey,
-  },
-  {
-    icon: Scan,
-    title: 'Run defense scan',
-    desc: 'Estimate biological age from lifestyle inputs. Sets your OS profile locally.',
-    href: '/tools?tab=healthspan',
-    cta: 'Defense Scan',
-    accent: 'rose' as AccentKey,
   },
   {
     icon: LayoutDashboard,
-    title: 'Launch command center',
-    desc: 'Stack, labs, milestones, hallmark grid — unified dashboard. Data stays local.',
+    title: 'Dashboard',
+    desc: 'Build your stack, track labs, and monitor your protocols.',
     href: '/dashboard',
-    cta: 'Open Dashboard',
-    accent: 'emerald' as AccentKey,
   },
   {
     icon: ShoppingBag,
-    title: 'Verify at Protocol Shop',
-    desc: 'Stack-filtered COA checklists and red flags — TNiC earns $0 from products.',
+    title: 'Shop',
+    desc: 'Verified supplement sourcing and quality assurance.',
     href: '/shop',
-    cta: 'Open Shop',
-    accent: 'amber' as AccentKey,
   },
 ];
 
-const accentConfig: Record<AccentKey, {
-  iconBadge: string;
-  iconText: string;
-  gradFrom: string;
-  ctaText: string;
-  glowHover: string;
-}> = {
-  cyan: {
-    iconBadge: 'icon-badge-cyan',
-    iconText: 'text-accent-cyan',
-    gradFrom: 'from-accent-cyan/[0.08]',
-    ctaText: 'text-accent-cyan',
-    glowHover: 'glow-hover-cyan',
-  },
-  rose: {
-    iconBadge: 'icon-badge-rose',
-    iconText: 'text-accent-rose',
-    gradFrom: 'from-accent-rose/[0.08]',
-    ctaText: 'text-accent-rose',
-    glowHover: 'glow-hover-rose',
-  },
-  emerald: {
-    iconBadge: 'icon-badge-emerald',
-    iconText: 'text-accent-emerald',
-    gradFrom: 'from-accent-emerald/[0.08]',
-    ctaText: 'text-accent-emerald',
-    glowHover: 'glow-hover-emerald',
-  },
-  amber: {
-    iconBadge: 'icon-badge-amber',
-    iconText: 'text-accent-amber',
-    gradFrom: 'from-accent-amber/[0.08]',
-    ctaText: 'text-accent-amber',
-    glowHover: 'glow-hover-amber',
-  },
-};
-
 export function HomepageCTA() {
-  const { quizResult } = usePlatform();
-  const shopHref =
-    quizResult?.preset && quizResult.preset in { starter: 1, nrf2: 1, mito: 1, hybrid: 1 }
-      ? buildShopPresetUrl(quizResult.preset as PresetKey)
-      : '/shop';
-
-  const paths = basePaths.map((p) =>
-    p.title === 'Verify at Protocol Shop' ? { ...p, href: shopHref } : p,
-  );
-
   return (
-    <section className="py-20 md:py-28 relative overflow-hidden section-mesh section-glow-cyan">
-      <div className="absolute inset-0 bg-gradient-to-t from-accent-cyan/8 via-transparent to-accent-violet/6 pointer-events-none" />
-      <div className="relative container-page">
-        <div className="text-center mb-8">
-          <h2 className="heading-section mb-4">Four paths into your OS.</h2>
-          <p className="text-muted-foreground max-w-xl mx-auto">
-            Learn → scan → command center → verify. Every path leads to the same local-first Longevity OS.
+    <section className="py-20 md:py-28 border-t border-border">
+      <div className="container-page max-w-6xl">
+        <div className="text-center mb-12">
+          <h2 className="text-4xl md:text-5xl font-black mb-4">
+            Everything you need
+          </h2>
+          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+            All the tools to understand, track, and optimize your longevity protocol.
           </p>
         </div>
 
-        <ContextRail
-          what="Four conversion paths — library science, defense scan, dashboard OS, and stack-filtered shop verification."
-          why="Different visitors arrive with different intent. TNiC surfaces the right next step without forcing everyone through the same funnel."
-          next={quizResult?.preset ? `Your quiz preset deep-links Shop to ${quizResult.preset} — verify before you buy.` : 'Take the quiz first for preset-aware Shop and Stack Architect handoffs.'}
-          theme="cyan"
-          className="mb-10 max-w-4xl mx-auto"
-        />
-
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-14">
-          {paths.map((path) => {
-            const cfg = accentConfig[path.accent];
-            return (
-              <Link
-                key={path.title}
-                href={path.href}
-                className={`group block card-premium p-6 bg-gradient-to-br ${cfg.gradFrom} to-transparent transition-all duration-300 ${cfg.glowHover} h-full`}
-              >
-                <div className={`w-11 h-11 rounded-xl flex items-center justify-center mb-5 ${cfg.iconBadge}`}>
-                  <path.icon className={`w-5 h-5 ${cfg.iconText}`} aria-hidden="true" />
-                </div>
-                <h3 className="font-bold mb-2 text-sm">{path.title}</h3>
-                <p className="text-xs text-muted-foreground mb-5 leading-relaxed">{path.desc}</p>
-                <span className={`inline-flex items-center gap-2 text-sm font-semibold ${cfg.ctaText} group-hover:gap-3 transition-all`}>
-                  {path.cta}
-                  <ArrowRight className="w-4 h-4" />
-                </span>
-              </Link>
-            );
-          })}
+        <div className="grid sm:grid-cols-3 gap-6 mb-12">
+          {paths.map((path) => (
+            <Link
+              key={path.title}
+              href={path.href}
+              className="group border border-border rounded-lg p-6 hover:border-accent-cyan/50 hover:bg-accent-cyan/5 transition-all"
+            >
+              <path.icon className="w-6 h-6 mb-3 text-accent-cyan" aria-hidden="true" />
+              <h3 className="font-semibold text-lg mb-2 group-hover:text-accent-cyan transition-colors">
+                {path.title}
+              </h3>
+              <p className="text-sm text-muted-foreground mb-4">
+                {path.desc}
+              </p>
+              <div className="inline-flex items-center gap-2 text-accent-cyan text-sm font-semibold group-hover:gap-3 transition-all">
+                Get started
+                <ArrowRight className="w-4 h-4" />
+              </div>
+            </Link>
+          ))}
         </div>
 
-        <div className="card-premium p-8 md:p-12 text-center max-w-3xl mx-auto">
-          <p className="text-label text-accent-violet mb-3">YOUR OS AWAITS</p>
-          <h3 className="text-2xl md:text-3xl font-bold mb-3 tracking-tight">
-            Everything in one place.<br className="hidden sm:block" /> Free. Local. Yours.
+        <div className="border border-border rounded-lg p-8 md:p-12 text-center max-w-3xl mx-auto bg-muted/20">
+          <h3 className="text-3xl font-black mb-3">
+            Free. Local. Yours.
           </h3>
-          <p className="text-sm text-muted-foreground mb-8 max-w-md mx-auto leading-relaxed">
-            Stack architect, lab hub, 12-hallmark library, six evidence tools — all running in your browser with no account required.
+          <p className="text-muted-foreground mb-8 max-w-xl mx-auto">
+            No accounts required. All your health data stays in your browser.
           </p>
-          <div className="flex flex-col sm:flex-row gap-3 justify-center">
-            <Link href="/dashboard" className="focus-ring btn-gradient text-sm">
-              <LayoutDashboard className="w-4 h-4" />
-              Launch Longevity OS
-            </Link>
-            <Link href="/brief" className="focus-ring btn-ghost-premium text-sm text-accent-violet">
-              <Bell className="w-4 h-4" />
-              Protocol Brief
-            </Link>
-          </div>
+          <Link href="/dashboard" className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-accent-cyan text-black font-semibold hover:bg-accent-cyan/90 transition-colors">
+            <LayoutDashboard className="w-5 h-5" />
+            Launch Dashboard
+            <ArrowRight className="w-5 h-5" />
+          </Link>
         </div>
       </div>
     </section>
