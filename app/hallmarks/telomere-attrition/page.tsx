@@ -54,11 +54,11 @@ const INTERVENTIONS = [
 ];
 
 const BIOMARKERS = [
-  { name: 'Leukocyte telomere length (qPCR)', normal: 'Age-adjusted Z-score > −1.0 SD', note: 'LifeLength, Repeat Diagnostics, or TeloYears — compares vs age-matched reference population' },
+  { name: 'Leukocyte telomere length (qPCR)', normal: 'Age-adjusted Z-score &gt; −1.0 SD', note: 'LifeLength, Repeat Diagnostics, or TeloYears — compares vs age-matched reference population' },
   { name: 'Telomerase activity (TRAP assay)', normal: 'Specialist labs only', note: 'Functional measure; elevated post-exercise and MBSR practice; declining with chronic stress' },
-  { name: 'hs-CRP', normal: '< 1.0 mg/L', note: 'Inflammation is the primary extrinsic accelerator of telomere shortening' },
+  { name: 'hs-CRP', normal: '&lt; 1.0 mg/L', note: 'Inflammation is the primary extrinsic accelerator of telomere shortening' },
   { name: 'Cortisol (AM serum or salivary)', normal: '10–20 µg/dL AM; circadian pattern intact', note: 'Chronic elevation predicts telomere attrition in longitudinal cohorts' },
-  { name: 'Omega-3 index (EPA+DHA in RBCs)', normal: '> 8%', note: 'Higher index associated with slower shortening rate; easily modified with supplementation' },
+  { name: 'Omega-3 index (EPA+DHA in RBCs)', normal: '&gt; 8%', note: 'Higher index associated with slower shortening rate; easily modified with supplementation' },
 ];
 
 export default function TelomereAttritionPage() {

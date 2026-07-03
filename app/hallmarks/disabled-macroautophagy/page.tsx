@@ -63,11 +63,11 @@ const INTERVENTIONS = [
 ];
 
 const BIOMARKERS = [
-  { name: 'Fasting insulin', normal: '< 5 µIU/mL', note: 'Most sensitive mTOR suppression proxy; standard lab, ideally alongside fasting glucose' },
+  { name: 'Fasting insulin', normal: '&lt; 5 µIU/mL', note: 'Most sensitive mTOR suppression proxy; standard lab, ideally alongside fasting glucose' },
   { name: 'IGF-1 (fasting serum)', normal: '100–200 ng/mL (age-adjusted)', note: 'mTOR activator and CR-responsive; declines with dietary restriction — optimal ≠ always lowest' },
-  { name: 'HOMA-IR', normal: '< 1.5', note: 'Insulin resistance index = (glucose × insulin) / 405; tracks nutrient sensing capacity' },
-  { name: 'Ketone bodies (β-OHB)', normal: '> 0.3 mM in fasted state (4–8h fast)', note: 'Signal of mTOR suppression and AMPK activation; home ketone meters make this daily-trackable' },
-  { name: 'Triglycerides', normal: '< 100 mg/dL', note: 'Elevated triglycerides = chronic insulin/mTOR overactivation; very sensitive to dietary change' },
+  { name: 'HOMA-IR', normal: '&lt; 1.5', note: 'Insulin resistance index = (glucose × insulin) / 405; tracks nutrient sensing capacity' },
+  { name: 'Ketone bodies (β-OHB)', normal: '&gt; 0.3 mM in fasted state (4–8h fast)', note: 'Signal of mTOR suppression and AMPK activation; home ketone meters make this daily-trackable' },
+  { name: 'Triglycerides', normal: '&lt; 100 mg/dL', note: 'Elevated triglycerides = chronic insulin/mTOR overactivation; very sensitive to dietary change' },
 ];
 
 export default function DisabledMacroautophagyPage() {

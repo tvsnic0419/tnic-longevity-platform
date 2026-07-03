@@ -54,11 +54,11 @@ const INTERVENTIONS = [
 ];
 
 const BIOMARKERS = [
-  { name: 'Protein carbonylation (plasma)', normal: '< 0.5 nmol/mg protein', note: 'Primary oxidative damage marker on proteins; specialist metabolomics labs' },
-  { name: 'GSH/GSSG ratio', normal: '> 10:1 (reduced:oxidized glutathione)', note: 'Tracks cellular antioxidant capacity; SpectraCell or Vibrant Wellness labs' },
+  { name: 'Protein carbonylation (plasma)', normal: '&lt; 0.5 nmol/mg protein', note: 'Primary oxidative damage marker on proteins; specialist metabolomics labs' },
+  { name: 'GSH/GSSG ratio', normal: '&gt; 10:1 (reduced:oxidized glutathione)', note: 'Tracks cellular antioxidant capacity; SpectraCell or Vibrant Wellness labs' },
   { name: 'HSP70 (serum)', normal: 'Research context; baseline + post-intervention', note: 'Chaperone activity proxy; rises after heat exposure; falls chronically with age' },
   { name: 'p62 / SQSTM1 (tissue)', normal: 'Specialist labs only', note: 'Autophagy receptor that shuttles protein aggregates; accumulates when autophagy fails' },
-  { name: 'Urinary 8-OHdG', normal: '< 15 ng/mg creatinine', note: 'Oxidative stress marker; elevated when protein + DNA oxidation is high' },
+  { name: 'Urinary 8-OHdG', normal: '&lt; 15 ng/mg creatinine', note: 'Oxidative stress marker; elevated when protein + DNA oxidation is high' },
 ];
 
 export default function LossOfProteostasisPage() {

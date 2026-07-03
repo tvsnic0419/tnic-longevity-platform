@@ -57,8 +57,8 @@ const BIOMARKERS = [
   { name: 'LC3-II/LC3-I ratio (PBMCs)', normal: 'Higher ratio = more autophagy; research labs only', note: 'Gold standard autophagy flux marker; requires fasting state sampling' },
   { name: 'p62/SQSTM1 (plasma)', normal: 'Lower is better — p62 accumulates when autophagy fails', note: 'Accessible via specialist labs; rises with autophagy impairment' },
   { name: 'Fasting glucose', normal: '70–90 mg/dL', note: 'mTOR is suppressed when glucose is low — fasting glucose tracks nutrient sensing tone' },
-  { name: 'Ketone bodies (β-OHB)', normal: '> 0.5 mM during fasting window', note: 'Marker of active fat oxidation + autophagy induction; measurable with home ketone meter' },
-  { name: 'Fasting insulin', normal: '< 5 µIU/mL', note: 'Low fasting insulin = mTOR suppressed = autophagy uninhibited; most important proxy' },
+  { name: 'Ketone bodies (β-OHB)', normal: '&gt; 0.5 mM during fasting window', note: 'Marker of active fat oxidation + autophagy induction; measurable with home ketone meter' },
+  { name: 'Fasting insulin', normal: '&lt; 5 µIU/mL', note: 'Low fasting insulin = mTOR suppressed = autophagy uninhibited; most important proxy' },
 ];
 
 export default function DisabledAutophagyPage() {

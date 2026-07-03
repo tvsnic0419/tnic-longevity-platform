@@ -56,9 +56,9 @@ const INTERVENTIONS = [
 const BIOMARKERS = [
   { name: 'CD34+ cell count (blood)', normal: '1–4 cells/µL; declining with age', note: 'Hematopoietic progenitor cells; tracks bone marrow stem cell output; CBC differential' },
   { name: 'Grip strength (dynamometry)', normal: '≥ 35 kg men, ≥ 20 kg women; preserve vs decline', note: 'Best functional proxy for muscle stem cell (satellite cell) maintenance; sarcopenia predictor' },
-  { name: 'Wound healing time', normal: 'Skin wounds closing in < 7 days', note: 'Qualitative self-tracking; reflects dermal fibroblast and keratinocyte stem cell activity' },
+  { name: 'Wound healing time', normal: 'Skin wounds closing in &lt; 7 days', note: 'Qualitative self-tracking; reflects dermal fibroblast and keratinocyte stem cell activity' },
   { name: 'IGF-1 (serum, fasting)', normal: '100–250 ng/mL age-adjusted', note: 'Stem cell niche growth factor; low IGF-1 = impaired satellite cell activation' },
-  { name: 'Muscle mass (DEXA or BIA)', normal: 'Skeletal muscle index ≥ 7.0 kg/m² men, ≥ 5.5 kg/m² women', note: 'Annual tracking; decline > 1% per year signals sarcopenia trajectory' },
+  { name: 'Muscle mass (DEXA or BIA)', normal: 'Skeletal muscle index ≥ 7.0 kg/m² men, ≥ 5.5 kg/m² women', note: 'Annual tracking; decline &gt; 1% per year signals sarcopenia trajectory' },
 ];
 
 export default function StemCellExhaustionPage() {

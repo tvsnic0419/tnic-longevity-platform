@@ -54,11 +54,11 @@ const INTERVENTIONS = [
 ];
 
 const BIOMARKERS = [
-  { name: 'Zonulin (serum)', normal: '< 35 ng/mL', note: 'Tight junction regulator; elevated = leaky gut; LabCorp, Quest, or ZRT Lab' },
-  { name: 'Calprotectin (fecal)', normal: '< 50 µg/g', note: 'Neutrophil activation marker in gut; sensitive to intestinal inflammation' },
-  { name: 'Microbiome diversity (Shannon index)', normal: 'Higher is better; > 3.5 Shannon', note: 'Viome, Thorne, or Genova GI Effects; annual baseline + post-intervention' },
-  { name: 'LPS-binding protein (LBP)', normal: '< 7.2 µg/mL', note: 'Tracks bacterial endotoxin translocation from leaky gut; specialist labs' },
-  { name: 'Short-chain fatty acids (fecal)', normal: 'Lab-dependent; butyrate > 10 mmol/kg stool', note: 'Fermentation capacity proxy; Genova or Doctor\'s Data GI panel' },
+  { name: 'Zonulin (serum)', normal: '&lt; 35 ng/mL', note: 'Tight junction regulator; elevated = leaky gut; LabCorp, Quest, or ZRT Lab' },
+  { name: 'Calprotectin (fecal)', normal: '&lt; 50 µg/g', note: 'Neutrophil activation marker in gut; sensitive to intestinal inflammation' },
+  { name: 'Microbiome diversity (Shannon index)', normal: 'Higher is better; &gt; 3.5 Shannon', note: 'Viome, Thorne, or Genova GI Effects; annual baseline + post-intervention' },
+  { name: 'LPS-binding protein (LBP)', normal: '&lt; 7.2 µg/mL', note: 'Tracks bacterial endotoxin translocation from leaky gut; specialist labs' },
+  { name: 'Short-chain fatty acids (fecal)', normal: 'Lab-dependent; butyrate &gt; 10 mmol/kg stool', note: 'Fermentation capacity proxy; Genova or Doctor\'s Data GI panel' },
 ];
 
 export default function DysbiosisPage() {

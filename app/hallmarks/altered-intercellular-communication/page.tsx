@@ -54,9 +54,9 @@ const INTERVENTIONS = [
 ];
 
 const BIOMARKERS = [
-  { name: 'IL-6 (serum)', normal: '< 3.0 pg/mL', note: 'Primary SASP signaling cytokine; rises with age; predicts frailty and mortality' },
-  { name: 'TNF-α (serum)', normal: '< 8.1 pg/mL', note: 'Amplifies NF-κB in target cells; disrupts insulin and leptin signaling' },
-  { name: 'HOMA-IR (fasting glucose × insulin / 405)', normal: '< 1.5', note: 'Insulin resistance index; captures master signaling dysregulator' },
+  { name: 'IL-6 (serum)', normal: '&lt; 3.0 pg/mL', note: 'Primary SASP signaling cytokine; rises with age; predicts frailty and mortality' },
+  { name: 'TNF-α (serum)', normal: '&lt; 8.1 pg/mL', note: 'Amplifies NF-κB in target cells; disrupts insulin and leptin signaling' },
+  { name: 'HOMA-IR (fasting glucose × insulin / 405)', normal: '&lt; 1.5', note: 'Insulin resistance index; captures master signaling dysregulator' },
   { name: 'Cortisol rhythm (salivary 4-point)', normal: 'High AM, declining through day; low PM', note: 'Disrupted pattern = HPA axis dysregulation; common with sleep restriction and chronic stress' },
   { name: 'SHBG (sex hormone binding globulin)', normal: '20–80 nmol/L men; 40–120 nmol/L women', note: 'Low SHBG = high free insulin → further hormone binding suppression → downstream signaling collapse' },
 ];

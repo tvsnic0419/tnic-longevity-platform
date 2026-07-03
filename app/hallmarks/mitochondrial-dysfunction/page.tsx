@@ -65,11 +65,11 @@ const INTERVENTIONS = [
 
 const BIOMARKERS = [
   { name: 'NAD+ (whole blood)', normal: '20–50 µM; higher is better', note: 'Direct ETC fuel proxy; Jinfiniti Intracellular NAD+ test preferred' },
-  { name: 'Lactate / pyruvate ratio', normal: '< 10:1', note: 'Elevated ratio = impaired OxPhos, forced anaerobic shift; specialist labs' },
-  { name: 'GDF-15 (serum)', normal: '< 1200 pg/mL', note: 'Mitokine; rises with mitochondrial stress; tracks aging and metabolic disease' },
-  { name: 'FGF21 (fasting serum)', normal: '< 300 pg/mL', note: 'Mitochondrial stress hormone; chronically elevated = mito dysfunction signal' },
+  { name: 'Lactate / pyruvate ratio', normal: '&lt; 10:1', note: 'Elevated ratio = impaired OxPhos, forced anaerobic shift; specialist labs' },
+  { name: 'GDF-15 (serum)', normal: '&lt; 1200 pg/mL', note: 'Mitokine; rises with mitochondrial stress; tracks aging and metabolic disease' },
+  { name: 'FGF21 (fasting serum)', normal: '&lt; 300 pg/mL', note: 'Mitochondrial stress hormone; chronically elevated = mito dysfunction signal' },
   { name: 'Citrate synthase activity (PBMC)', normal: 'Age-adjusted; specialist labs', note: 'Direct mitochondrial density marker; declines ~30% between ages 30–70' },
-  { name: 'VO2 max (cardiopulmonary testing)', normal: '>= age-matched 75th percentile', note: 'Best non-invasive whole-body mitochondrial function proxy' },
+  { name: 'VO2 max (cardiopulmonary testing)', normal: '>&gt;= age-matched 75th percentile', note: 'Best non-invasive whole-body mitochondrial function proxy' },
 ];
 
 export default function MitochondrialDysfunctionPage() {
@@ -123,7 +123,7 @@ export default function MitochondrialDysfunctionPage() {
                 <p>
                   Mitochondrial decline is driven by three converging failures. First, <strong className="text-foreground">mtDNA mutation accumulation</strong>:
                   mitochondrial DNA (37 genes) has no histone protection and minimal repair capacity. mtDNA mutation rate
-                  is 10–17× higher than nuclear DNA. By age 70, some cell types have mutation rates >20% in respiratory
+                  is 10–17× higher than nuclear DNA. By age 70, some cell types have mutation rates &gt;20% in respiratory
                   chain genes.
                 </p>
                 <p>

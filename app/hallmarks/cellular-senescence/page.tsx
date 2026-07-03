@@ -56,10 +56,10 @@ const INTERVENTIONS = [
 
 const BIOMARKERS = [
   { name: 'p16INK4a (T-cells)', normal: 'Lower is better; age-adjusted', note: 'Best blood-based senescence burden marker; available via Iollo, Elysium Index' },
-  { name: 'IL-6 (serum)', normal: '< 3.0 pg/mL', note: 'Primary SASP cytokine; rises linearly with senescent cell burden' },
-  { name: 'IL-1β (serum)', normal: '< 5.0 pg/mL', note: 'NLRP3 inflammasome product; amplifies SASP paracrine signaling' },
-  { name: 'GDF-15 (serum)', normal: '< 1200 pg/mL', note: 'Mitokine elevated by stressed/senescent mitochondria; correlates with all-cause mortality' },
-  { name: 'hs-CRP', normal: '< 1.0 mg/L (optimal longevity range)', note: 'Downstream of SASP; accessible in any standard lipid panel' },
+  { name: 'IL-6 (serum)', normal: '&lt; 3.0 pg/mL', note: 'Primary SASP cytokine; rises linearly with senescent cell burden' },
+  { name: 'IL-1β (serum)', normal: '&lt; 5.0 pg/mL', note: 'NLRP3 inflammasome product; amplifies SASP paracrine signaling' },
+  { name: 'GDF-15 (serum)', normal: '&lt; 1200 pg/mL', note: 'Mitokine elevated by stressed/senescent mitochondria; correlates with all-cause mortality' },
+  { name: 'hs-CRP', normal: '&lt; 1.0 mg/L (optimal longevity range)', note: 'Downstream of SASP; accessible in any standard lipid panel' },
   { name: 'Caveolin-1 (plasma)', normal: 'Research use only', note: 'Senescence-associated plasma marker under development at Buck Institute' },
 ];
 

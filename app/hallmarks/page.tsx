@@ -32,16 +32,16 @@ const EDITORIAL_SLUGS = new Set([
 ]);
 
 const COVERAGE_COLOR = (pct: number) =>
-  pct >= 80
+  pct >&gt;= 80
     ? 'text-emerald-400'
-    : pct >= 60
+    : pct >&gt;= 60
     ? 'text-amber-400'
     : 'text-rose-400';
 
 const COVERAGE_BG = (pct: number) =>
-  pct >= 80
+  pct >&gt;= 80
     ? 'bg-emerald-500'
-    : pct >= 60
+    : pct >&gt;= 60
     ? 'bg-amber-500'
     : 'bg-rose-500';
 

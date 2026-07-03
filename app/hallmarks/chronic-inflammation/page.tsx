@@ -63,12 +63,12 @@ const INTERVENTIONS = [
 ];
 
 const BIOMARKERS = [
-  { name: 'hs-CRP', normal: '< 1.0 mg/L (optimal longevity); < 3.0 mg/L (low CV risk)', note: 'Most accessible inflammaging marker; included in standard lipid panels; re-test quarterly' },
-  { name: 'IL-6 (serum)', normal: '< 3.0 pg/mL', note: 'Primary driver of CRP production in liver; tracks SASP intensity more directly than CRP' },
-  { name: 'Homocysteine', normal: '< 9 µmol/L', note: 'Pro-inflammatory via endothelial NF-κB activation; reduced by B12, folate, B6, TMG' },
+  { name: 'hs-CRP', normal: '&lt; 1.0 mg/L (optimal longevity); < 3.0 mg/L (low CV risk)', note: 'Most accessible inflammaging marker; included in standard lipid panels; re-test quarterly' },
+  { name: 'IL-6 (serum)', normal: '&lt; 3.0 pg/mL', note: 'Primary driver of CRP production in liver; tracks SASP intensity more directly than CRP' },
+  { name: 'Homocysteine', normal: '&lt; 9 µmol/L', note: 'Pro-inflammatory via endothelial NF-κB activation; reduced by B12, folate, B6, TMG' },
   { name: 'Fibrinogen', normal: '200–350 mg/dL', note: 'Acute phase protein; rises with chronic NF-κB activity; cardiovascular risk amplifier' },
-  { name: 'Omega-3 index (RBC EPA+DHA)', normal: '> 8%', note: 'SPM precursor pool; the single most modifiable anti-inflammatory biomarker in most people' },
-  { name: 'Visceral adipose (DEXA)', normal: 'VAT < 100 cm² (men); < 80 cm² (women)', note: 'Major SASP source; tracks with waist circumference and metabolic health' },
+  { name: 'Omega-3 index (RBC EPA+DHA)', normal: '&gt; 8%', note: 'SPM precursor pool; the single most modifiable anti-inflammatory biomarker in most people' },
+  { name: 'Visceral adipose (DEXA)', normal: 'VAT &lt; 100 cm² (men); &lt; 80 cm² (women)', note: 'Major SASP source; tracks with waist circumference and metabolic health' },
 ];
 
 export default function ChronicInflammationPage() {

@@ -55,10 +55,10 @@ const INTERVENTIONS = [
 ];
 
 const BIOMARKERS = [
-  { name: '8-OHdG (urine or serum)', normal: '< 15 ng/mg creatinine', note: 'Oxidative DNA damage marker — most accessible clinical proxy' },
+  { name: '8-OHdG (urine or serum)', normal: '&lt; 15 ng/mg creatinine', note: 'Oxidative DNA damage marker — most accessible clinical proxy' },
   { name: 'γ-H2AX foci (PBMC)', normal: 'Lab-dependent', note: 'Gold standard for double-strand break quantification; available via specialty labs' },
-  { name: 'Telomere length (leucocyte)', normal: 'Age-adjusted Z-score > −1.0', note: 'Tracks cumulative replication stress; available via LifeLength, Repeat Diagnostics' },
-  { name: 'Micronuclei frequency', normal: '< 1.0 per 1000 cells', note: 'Structural chromosomal instability marker; research labs only' },
+  { name: 'Telomere length (leucocyte)', normal: 'Age-adjusted Z-score &gt; −1.0', note: 'Tracks cumulative replication stress; available via LifeLength, Repeat Diagnostics' },
+  { name: 'Micronuclei frequency', normal: '&lt; 1.0 per 1000 cells', note: 'Structural chromosomal instability marker; research labs only' },
   { name: 'NAD+ (whole blood)', normal: '20–50 µM (declines ~1% per year after 30)', note: 'Tracks PARP repair capacity; Jinfiniti or LabCorp NAD+ panel' },
 ];
 

@@ -56,7 +56,7 @@ const INTERVENTIONS = [
 const BIOMARKERS = [
   { name: 'Horvath DNAmAge (blood)', normal: 'Biological age ≤ chronological age', note: 'TruAge, GrimAge, or Elysium Index — gold standard epigenetic clock; annual retesting' },
   { name: 'GrimAge (mortality predictor)', normal: 'Acceleration ≤ 0 years', note: 'Best predictor of all-cause mortality among all clocks; tracks SASP-linked methylation sites' },
-  { name: 'DunedinPACE', normal: '< 1.0 (pace of aging per year)', note: 'Longitudinal aging rate measure — more sensitive to intervention than single-timepoint clocks' },
+  { name: 'DunedinPACE', normal: '&lt; 1.0 (pace of aging per year)', note: 'Longitudinal aging rate measure — more sensitive to intervention than single-timepoint clocks' },
   { name: 'Plasma AKG levels', normal: 'Research context; declining with age', note: 'Tracks cofactor availability for TET demethylases — specialist metabolomics panels' },
   { name: 'NAD+ (whole blood)', normal: '20–50 µM', note: 'Substrate for SIRT1/6 epigenetic maintenance; Jinfiniti or LabCorp panel' },
 ];
