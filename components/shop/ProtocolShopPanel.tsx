@@ -1,4 +1,9 @@
 'use client';
+/* eslint-disable react-hooks/set-state-in-effect --
+   The mount/URL-driven effect(s) below set state from client-only sources
+   (localStorage, window, or URL search params) or trigger entrance animations.
+   These cannot run during SSR, so the initial setState is intentional and not a
+   value derivable during render. Reviewed 2026-06-21; safe to keep. */
 
 import { Suspense, useEffect, useMemo, useState } from 'react';
 import Link from 'next/link';
@@ -33,6 +38,9 @@ const presetOptions: { key: PresetKey; label: string }[] = [
   { key: 'nrf2', label: 'NRF2 Defense' },
   { key: 'mito', label: 'Mito Renewal' },
   { key: 'hybrid', label: 'Full Hybrid' },
+  { key: 'longevity', label: 'Longevity Pro' },
+  { key: 'metabolic', label: 'Cardio-Metabolic' },
+  { key: 'full', label: 'Full-Spectrum 14' },
 ];
 
 function ProtocolShopPanelInner() {

@@ -15,37 +15,31 @@ export function PrivacyConsentBanner() {
     <div
       role="dialog"
       aria-labelledby="privacy-banner-title"
-      aria-describedby="privacy-banner-desc"
-      className="fixed bottom-0 inset-x-0 z-50 p-4 md:p-6"
+      className="fixed bottom-0 inset-x-0 z-50 px-4 py-2.5"
+      style={{ background: 'rgba(5,12,24,0.92)', backdropFilter: 'blur(12px)', borderTop: '1px solid rgba(52,211,153,0.2)' }}
     >
-      <div className="container-page max-w-3xl mx-auto glass border border-accent-emerald/20 rounded-xl p-4 md:p-5 shadow-2xl">
-        <div className="flex gap-3">
-          <Shield className="w-5 h-5 text-accent-emerald shrink-0 mt-0.5" aria-hidden="true" />
-          <div className="flex-1 min-w-0">
-            <p id="privacy-banner-title" className="text-sm font-semibold text-foreground mb-1">
-              Local-only health data
-            </p>
-            <p id="privacy-banner-desc" className="text-xs text-muted-foreground leading-relaxed">
-              Labs, stacks, and notes stay in your browser — never on TNiC servers. You control export and deletion.{' '}
-              <Link href="/labs" className="text-accent-cyan hover:text-accent-emerald">
-                Privacy panel
-              </Link>
-            </p>
-            <div className="flex flex-wrap gap-2 mt-3">
-              <button
-                onClick={acceptPrivacyConsent}
-                className="focus-ring interactive px-4 py-2 rounded-lg bg-accent-emerald/20 text-accent-emerald text-xs font-semibold border border-accent-emerald/30"
-              >
-                Got it
-              </button>
-              <button
-                onClick={() => setDismissed(true)}
-                className="focus-ring interactive px-4 py-2 rounded-lg text-xs font-semibold text-muted-foreground hover:text-foreground/80"
-              >
-                Dismiss
-              </button>
-            </div>
-          </div>
+      <div className="max-w-5xl mx-auto flex items-center gap-3 flex-wrap">
+        <Shield className="w-4 h-4 text-accent-emerald shrink-0" aria-hidden="true" />
+        <p id="privacy-banner-title" className="text-xs text-muted-foreground flex-1 min-w-0">
+          <span className="font-semibold text-foreground">Your health data stays local</span>
+          {' — '}never on TNiC servers.{' '}
+          <Link href="/labs" className="text-accent-cyan hover:text-accent-emerald underline-offset-2 hover:underline">
+            Privacy panel
+          </Link>
+        </p>
+        <div className="flex gap-2 shrink-0">
+          <button
+            onClick={acceptPrivacyConsent}
+            className="focus-ring px-3 py-1 rounded-md bg-accent-emerald/20 text-accent-emerald text-xs font-semibold border border-accent-emerald/30 hover:bg-accent-emerald/30 transition-colors"
+          >
+            Got it
+          </button>
+          <button
+            onClick={() => setDismissed(true)}
+            className="focus-ring px-3 py-1 rounded-md text-xs text-muted-foreground hover:text-foreground transition-colors"
+          >
+            ✕
+          </button>
         </div>
       </div>
     </div>

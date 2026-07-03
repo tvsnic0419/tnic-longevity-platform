@@ -108,7 +108,7 @@ function TimelineCard({
                 key={cid}
                 className={`text-[10px] px-2 py-0.5 rounded font-semibold ${
                   activeStack.includes(cid)
-                    ? 'bg-accent-violet/20 text-violet-300 border border-accent-violet/40'
+                    ? 'bg-accent-violet/20 text-accent-violet border border-accent-violet/40'
                     : 'bg-muted text-caption line-through'
                 }`}
               >

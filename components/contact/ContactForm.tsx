@@ -67,6 +67,14 @@ export function ContactForm() {
         context={getHubContext('contact')}
       />
 
+      <div className="rounded-xl border border-accent-cyan/20 bg-accent-cyan/5 p-4 mb-4 flex gap-3">
+        <MessageSquare className="w-5 h-5 text-accent-cyan shrink-0 mt-0.5" />
+        <p className="text-sm text-muted-foreground">
+          <strong className="text-foreground">Partnership or affiliate inquiry?</strong>{' '}
+          Select <em>Partnership / lab integration</em> below — Tommy reads these directly and responds within 48 hours.
+        </p>
+      </div>
+
       <div className="rounded-xl border border-accent-amber/25 bg-accent-amber/5 p-4 mb-8 flex gap-3">
         <AlertTriangle className="w-5 h-5 text-accent-amber shrink-0" />
         <p className="text-sm text-muted-foreground">

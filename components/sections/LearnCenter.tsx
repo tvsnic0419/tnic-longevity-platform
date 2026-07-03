@@ -113,6 +113,35 @@ export function LearnCenter({ defaultTab }: { defaultTab?: TabId }) {
                 </div>
               );
             })}
+
+            {/* Supplement guide links */}
+            <div className="mt-6 pt-6 border-t border-border">
+              <p className="text-xs font-mono uppercase tracking-widest text-muted-foreground mb-3">Compound-specific guides</p>
+              <div className="grid sm:grid-cols-2 gap-2">
+                {([
+                  { href: '/longevity-supplements-guide', label: 'Best Supplements 2026', desc: 'Master ranked guide' },
+                  { href: '/nad-supplement-guide', label: 'NAD+ Guide', desc: 'NMN vs NR, dosing, decline curve' },
+                  { href: '/glynac-supplement-guide', label: 'GlyNAC Guide', desc: '9 hallmarks reversed — Sekhar 2021' },
+                  { href: '/spermidine-supplement-guide', label: 'Spermidine Guide', desc: 'ITP data + autophagy mechanism' },
+                  { href: '/berberine-supplement-guide', label: 'Berberine Guide', desc: "Nature's Ozempic — honest review" },
+                  { href: '/taurine-supplement-guide', label: 'Taurine Guide', desc: 'Singh 2023 Science paper' },
+                  { href: '/sulforaphane-supplement-guide', label: 'Sulforaphane Guide', desc: 'NRF2 activation protocol' },
+                  { href: '/supplement-guides', label: 'All Guide Index →', desc: 'Hub for all compound guides' },
+                ] as const).map((g) => (
+                  <a
+                    key={g.href}
+                    href={g.href}
+                    className="group flex items-center justify-between gap-2 p-3 rounded-xl glass glass-hover transition"
+                  >
+                    <div>
+                      <p className="font-medium text-xs text-foreground">{g.label}</p>
+                      <p className="text-xs text-muted-foreground">{g.desc}</p>
+                    </div>
+                    <ArrowRight className="w-3.5 h-3.5 text-muted-foreground shrink-0 opacity-0 group-hover:opacity-100 transition" />
+                  </a>
+                ))}
+              </div>
+            </div>
           </motion.div>
         )}
 

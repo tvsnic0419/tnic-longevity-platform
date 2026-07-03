@@ -6,6 +6,8 @@ import { ArrowRight, Target } from 'lucide-react';
 import { hallmarkLibrary } from '@/lib/hallmarks-library';
 import { HallmarkIcon } from '@/components/library/HallmarkIcon';
 import { EvidenceTag } from '@/components/trust/EvidenceTag';
+import { HallmarksConstellation } from '@/components/ui/HallmarksConstellation';
+import { TiltCard } from '@/components/ui/TiltCard';
 import type { EvidenceTier } from '@/lib/types';
 
 type AccentKey = 'cyan' | 'amber' | 'violet' | 'emerald' | 'rose';
@@ -93,24 +95,43 @@ export function HallmarkProblemTiles() {
       id="hallmark-targets"
       className="py-20 md:py-28 border-b border-border section-mesh section-glow-violet relative overflow-hidden"
     >
+      <div className="aurora-beams" aria-hidden="true" />
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--accent-violet)_0%,_transparent_55%)] opacity-[0.07] pointer-events-none" />
+      <div className="bracket-corner bracket-corner-tl" aria-hidden="true" />
+      <div className="bracket-corner bracket-corner-br" aria-hidden="true" />
 
       <div className="relative max-w-7xl mx-auto px-6">
-        <div className="text-center mb-12 md:mb-16 section-header-mesh">
+        <div className="text-center mb-12 md:mb-16 section-spotlight">
           <div className="inline-flex items-center gap-2 mb-4">
-            <Target className="w-4 h-4 text-accent-violet" />
-            <p className="text-label text-accent-violet">
-              Target what slows with age
-            </p>
+            <span className="section-badge-violet">
+              <Target className="w-3 h-3" aria-hidden="true" />
+              The science of biological aging
+            </span>
           </div>
-          <h2 className="heading-section mb-4">
-            Twelve hallmarks. Twelve entry points.
+          <h2 className="headline-editorial mb-5">
+            Twelve hallmarks.<br />
+            <span className="gradient-text-violet">Evidence-mapped solutions.</span>
           </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
-            Each tile maps a biological problem to elevated MDX modules, top interventions, and lab markers.
-            Pick the hallmark that matches your symptoms — not the supplement ad you saw last.
+          <p className="text-body max-w-2xl mx-auto leading-relaxed mb-6">
+            Modern aging science identifies twelve distinct biological processes that drive cellular decline.
+            Each tile maps one hallmark to its mechanism, top evidence-graded interventions, trackable lab markers,
+            and PMID-cited primary research — so you target the problem, not the marketing.
           </p>
+          <div className="pull-quote max-w-xl mx-auto text-left">
+            Aging is not a single disease. It is twelve converging processes — each addressable,
+            each measurable, each linked to specific compounds with human trial data.
+          </div>
         </div>
+
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="mb-14 md:mb-16 max-w-lg mx-auto"
+        >
+          <HallmarksConstellation />
+        </motion.div>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
           {hallmarkLibrary.map((h, i) => {
@@ -127,6 +148,7 @@ export function HallmarkProblemTiles() {
                 viewport={{ once: true, margin: '-40px' }}
                 transition={{ delay: Math.min(i * 0.04, 0.4) }}
               >
+                <TiltCard className="h-full">
                 <Link
                   href={`/library/${h.slug}`}
                   className={`focus-ring block h-full card-ultra card-ultra-hover p-5 group transition-all duration-300 ${ac.glowHover}`}
@@ -175,6 +197,7 @@ export function HallmarkProblemTiles() {
                     Open module <ArrowRight className="w-3 h-3" />
                   </span>
                 </Link>
+                </TiltCard>
               </motion.div>
             );
           })}

@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { AlertTriangle, Shield, ArrowRight } from 'lucide-react';
 import { hallmarkLibrary } from '@/lib/hallmarks-library';
+import { LongevityGaugeArc } from '@/components/ui/LongevityGaugeArc';
 import type { HallmarkRisk, RiskLevel } from '@/lib/lab-analysis';
 
 const riskStyle: Record<RiskLevel, { bar: string; text: string; bg: string }> = {
@@ -37,18 +38,20 @@ export function HallmarkRiskPanel({ risks, healthspanScore }: HallmarkRiskPanelP
     <div className="space-y-6">
       {/* Healthspan score */}
       <div className="gradient-border p-6 text-center">
-        <p className="text-[10px] font-mono text-accent-rose uppercase tracking-wider mb-1">Lab-Derived Healthspan Score</p>
-        <motion.p
-          key={healthspanScore}
-          initial={{ scale: 0.9 }}
-          animate={{ scale: 1 }}
-          className={`text-5xl font-bold ${
-            healthspanScore >= 75 ? 'text-accent-emerald' : healthspanScore >= 50 ? 'text-accent-amber' : 'text-accent-rose'
-          }`}
-        >
-          {healthspanScore}
-        </motion.p>
-        <p className="text-xs text-muted-foreground mt-2">Based on {risks.reduce((s, r) => s + r.drivingMarkers.length, 0)} marker–hallmark links</p>
+        <div className="flex justify-center">
+          <LongevityGaugeArc
+            score={healthspanScore}
+            color={
+              healthspanScore >= 75 ? 'var(--accent-emerald)'
+              : healthspanScore >= 50 ? 'var(--accent-amber)'
+              : 'var(--accent-rose)'
+            }
+            label="HEALTHSPAN"
+            sublabel={`${risks.reduce((s, r) => s + r.drivingMarkers.length, 0)} marker links`}
+            size={150}
+            immediate
+          />
+        </div>
         {elevated.length > 0 && (
           <p className="text-xs text-accent-amber mt-3 flex items-center justify-center gap-1">
             <AlertTriangle className="w-3.5 h-3.5" />

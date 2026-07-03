@@ -12,14 +12,14 @@ export interface QuizProfile {
 export function getHeroPersonalization(quiz: QuizProfile | null | undefined) {
   if (!quiz?.preset || !(quiz.preset in stackPresets)) {
     return {
-      line1: 'Your longevity OS.',
-      line2: 'Local. Cited. Yours.',
+      line1: 'Compounds compound.',
+      line2: 'Subtract years from your biological age.',
       subcopy:
-        'Six evidence-graded modules — stack architect, biomarker tracker, hallmark library, and longevity tools. Every compound rated Tier A, B, or C from human trials. Your data stays in your browser.',
-      primary: { href: '/quiz', label: 'Start 3-Min Quiz' },
+        'When the right stack hits the right dose at the right time, biological-age clocks move. TNiC grades every protocol against the human-trial evidence — and tells you exactly what to pair, when to take it, and how much.',
+      primary: { href: '/quiz', label: 'Build Your Protocol' },
       secondary: { href: '/dashboard', label: 'Open Longevity OS' },
       contextNext:
-        'Take the 3-min quiz for a mechanism-matched stack preset, or open the OS dashboard to start building and tracking your protocol.',
+        'Take the 3-min quiz to get a mechanism-matched stack preset, or open the OS dashboard to start building, tracking, and optimizing your longevity protocol today.',
     };
   }
 
@@ -47,6 +47,8 @@ const OS_HREF_ORDER: Record<string, string[]> = {
   defense: ['/tools', '/stacks', '/labs', '/library', '/dashboard'],
   energy: ['/stacks', '/labs', '/dashboard', '/library', '/tools'],
   full: ['/dashboard', '/stacks', '/labs', '/library', '/tools'],
+  longevity: ['/stacks', '/elite-8', '/library', '/labs', '/dashboard'],
+  metabolic: ['/stacks', '/labs', '/tools', '/library', '/dashboard'],
 };
 
 export function getOsFunnelOrder(goal?: string): string[] {
@@ -54,10 +56,13 @@ export function getOsFunnelOrder(goal?: string): string[] {
 }
 
 const PRESET_COMPOUNDS: Record<PresetKey, string[]> = {
-  starter: ['glynac', 'sulforaphane', 'rala'],
+  starter: ['glynac', 'sulforaphane', 'nmn'],
   nrf2: ['glynac', 'sulforaphane', 'rala'],
-  mito: ['nmn', 'cakg', 'resveratrol', 'rala'],
-  hybrid: ['glynac', 'sulforaphane', 'nmn', 'cakg', 'resveratrol'],
+  mito: ['nmn', 'cakg', 'resveratrol'],
+  hybrid: ['glynac', 'sulforaphane', 'nmn', 'cakg', 'rala'],
+  longevity: ['urolithina', 'fisetin', 'omega3', 'nmn', 'resveratrol'],
+  metabolic: ['berberine', 'omega3', 'coq10', 'rala'],
+  full: ['glynac', 'sulforaphane', 'nmn', 'cakg', 'rala', 'resveratrol', 'taurine', 'spermidine', 'pterostilbene', 'berberine', 'urolithina', 'fisetin', 'coq10', 'omega3'],
 };
 
 export function getPresetCompoundIds(preset?: string): string[] {

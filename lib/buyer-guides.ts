@@ -266,6 +266,199 @@ export const compoundBuyerGuides: CompoundBuyerGuide[] = [
     sourcingNote:
       'TNiC documents evidence for physician conversations only. The only acceptable source is a licensed prescriber and pharmacy.',
   },
+  {
+    compoundId: 'taurine',
+    title: 'Taurine Buyer Guide',
+    tagline: 'A declining sulfonic amino acid — the sourcing bar is purity and dose',
+    formRequirements: [
+      'Label must say: taurine (free-form amino acid)',
+      'Avoid "taurine blend" — verify 100% taurine, no creatine or BCAA mix',
+      'Vegan certifiable (synthetic from isethionic acid) — verify if critical',
+    ],
+    coaDemands: [
+      { id: 't-id', label: 'Identity test', detail: 'HPLC or amino acid analysis confirming taurine' },
+      { id: 't-purity', label: '≥99% purity', detail: 'No sulfuric acid residuals from synthesis' },
+      { id: 't-heavy-metals', label: 'Heavy metals panel', detail: 'Lead, arsenic, mercury, cadmium — all ≤USP limits' },
+      { id: 't-microbio', label: 'Microbial limits', detail: 'Total aerobic count ≤1000 CFU/g' },
+    ],
+    doseAnchors: [
+      { label: 'Human longevity range', dose: '1–4g daily', note: 'Singh 2023 Science context — human-applicable supplemental range' },
+      { label: 'Entry dose', dose: '1g daily', note: 'Start here and assess tolerance for 2 weeks before increasing' },
+    ],
+    redFlags: [
+      'Dose below 500mg per serving (sub-therapeutic)',
+      'Combined with energy drink ingredients (caffeine, B vitamins at extreme doses)',
+      'No manufacturing country listed (taurine purity varies by source)',
+    ],
+    sourcingNote:
+      'Taurine is cheap and widely available — purity is the only real concern. Prioritize brands with USP verification or NSF certification.',
+  },
+  {
+    compoundId: 'spermidine',
+    title: 'Spermidine Buyer Guide',
+    tagline: 'Standardized wheat germ extract — the only validated source',
+    formRequirements: [
+      'Label must say: spermidine from wheat germ extract (not synthetic)',
+      'Milligram dose per serving must be explicit — "proprietary blend" is unacceptable',
+      'pTeroPure® or Primeadine® standardization preferred',
+    ],
+    coaDemands: [
+      { id: 'sp-id', label: 'Identity (spermidine)', detail: 'HPLC confirmation of spermidine content — not just polyamine blend' },
+      { id: 'sp-dose', label: 'Per-capsule mg confirmed', detail: 'Spermidine content per dose verified to label claim' },
+      { id: 'sp-wheat', label: 'Wheat germ source verified', detail: 'Whole wheat germ vs isolated polyamine extract — both acceptable' },
+      { id: 'sp-gluten', label: 'Gluten residual if celiac', detail: 'Wheat germ extract may retain trace gluten — request gluten test if sensitive' },
+    ],
+    doseAnchors: [
+      { label: 'Madeo 2021 (Cortex)', dose: '0.9mg/day spermidine', pmid: '33932338', note: 'Memory improvement in older adults — wheat germ extract at this dose' },
+      { label: 'Dietary reference', dose: '1–6mg daily', note: 'Range from dietary sources; supplement at the low end is sufficient' },
+    ],
+    redFlags: [
+      'Dose not listed in mg per capsule — "proprietary" is a red flag here',
+      'Labeled as "polyamine complex" without individual compound quantities',
+      'Claims to "contain spermidine" without HPLC verification certificate',
+    ],
+    sourcingNote:
+      'Most Westerners can close their dietary gap with 1–2 tbsp wheat germ daily (~1mg spermidine). Supplement only if dietary consistency is impractical.',
+    relatedCompareSlug: 'nmn-vs-spermidine',
+  },
+  {
+    compoundId: 'pterostilbene',
+    title: 'Pterostilbene Buyer Guide',
+    tagline: 'pTeroPure® is the research-grade standard — verify the form',
+    formRequirements: [
+      'Label must say: pterostilbene (not blueberry extract without mg quantification)',
+      'pTeroPure® (ChromaDex licensed) preferred for standardization',
+      'Avoid "pterostilbene equivalent" without verified chemistry — many blueberry extracts are misrepresented',
+    ],
+    coaDemands: [
+      { id: 'pts-id', label: 'Identity (pterostilbene)', detail: 'HPLC confirming trans-pterostilbene — the active form' },
+      { id: 'pts-dose', label: 'Dose per capsule confirmed', detail: '50–100mg pterostilbene verified (not estimate from berry extract)' },
+      { id: 'pts-res', label: 'Not combined with resveratrol above 50mg', detail: 'High-dose resveratrol + pterostilbene may raise LDL in some individuals — keep resveratrol ≤250mg when combining' },
+    ],
+    doseAnchors: [
+      { label: '2014 human blood pressure RCT', dose: '100mg/day', pmid: '24103935', note: 'Dose used in first human intervention — blood pressure reduction confirmed' },
+      { label: 'Typical protocol range', dose: '50–150mg daily', note: 'Most adults start at 50mg; 100mg matches the one published RCT' },
+    ],
+    redFlags: [
+      'Listed as "blueberry extract standardized to X% stilbenes" without explicit pterostilbene mg — unreliable dosing',
+      'Combined with very high-dose resveratrol (>500mg) — LDL elevation risk',
+      'No third-party COA available for request',
+    ],
+    sourcingNote:
+      'Pterostilbene pairs with resveratrol in the SIRT1 stack. Prioritize pTeroPure®-licensed products for verified chemistry.',
+    relatedCompareSlug: 'resveratrol-vs-pterostilbene',
+  },
+  {
+    compoundId: 'berberine',
+    title: 'Berberine HCl Buyer Guide',
+    tagline: 'Hydrochloride salt, pure chemistry — avoid proprietary blends',
+    formRequirements: [
+      'Label must say: berberine HCl (hydrochloride salt — the form used in all major RCTs)',
+      'Dihydroberberine (DHB) is an acceptable alternative with 5× higher bioavailability at lower doses',
+      'Avoid "berberine complex" or "berberine phytosome" without mg disclosure',
+    ],
+    coaDemands: [
+      { id: 'bbr-id', label: 'Identity (berberine HCl)', detail: 'HPLC confirming berberine hydrochloride — not generic alkaloid mixture' },
+      { id: 'bbr-purity', label: '≥97% berberine HCl', detail: 'Common berberine products dilute with other alkaloids — verify purity' },
+      { id: 'bbr-metals', label: 'Heavy metals panel', detail: 'Berberine is often sourced from Chinese herbs — heavy metals verification essential' },
+      { id: 'bbr-micro', label: 'Microbial limits', detail: 'Soil-grown botanicals require full microbial panel' },
+    ],
+    doseAnchors: [
+      { label: 'Zhang 2008 metformin-equivalent RCT', dose: '500mg TID (1,500mg/day)', pmid: '18396172', note: 'Three-times-daily dosing with meals — most studied protocol' },
+      { label: 'Meta-analysis (27 RCTs)', dose: '500–1,500mg/day', pmid: '26507383', note: 'Full dose range across studies — all TID with meals' },
+    ],
+    redFlags: [
+      'Single 500mg daily dose — TID dosing is required for plasma level maintenance',
+      'Berberine sourced without country of origin listed (heavy metal risk from unverified sources)',
+      'Taken with CYP3A4 substrates (cyclosporine, some statins) without physician review',
+    ],
+    sourcingNote:
+      'Pharmaceutical-grade berberine HCl is widely available from clinical supplement brands. Request COA showing heavy metal screen — this is the key differentiator.',
+    relatedCompareSlug: 'berberine-vs-metformin',
+  },
+  {
+    compoundId: 'urolithina',
+    title: 'Urolithin A (Mitopure) Buyer Guide',
+    tagline: 'Only Mitopure has Phase 2 human RCT backing — standardization matters',
+    formRequirements: [
+      'Label must say: urolithin A (specific molecule — not ellagitannin or pomegranate extract)',
+      'Mitopure® by Amazentis/Timeline Nutrition is the only form with Phase 2 RCT data',
+      'Standardized to specific urolithin A content — not estimated from pomegranate precursors',
+    ],
+    coaDemands: [
+      { id: 'ua-id', label: 'Identity (urolithin A)', detail: 'HPLC confirming urolithin A — not urolithin B or ellagic acid' },
+      { id: 'ua-dose', label: '500mg per serving verified', detail: 'Phase 2 RCT dose was exactly 500mg — verify per-capsule content' },
+      { id: 'ua-purity', label: '≥95% urolithin A', detail: 'Mitopure is >98% pure — other brands should meet at minimum 95%' },
+    ],
+    doseAnchors: [
+      { label: 'Ryu 2022 Phase 2 RCT', dose: '500mg/day', pmid: '35391504', note: '4-month RCT in adults ≥65 — muscle function, mitochondrial gene expression improved' },
+      { label: 'Andreux 2019 Phase 1', dose: '250–2,000mg tested', pmid: '31230029', note: '500mg was the optimal dose — dose-ranging confirmed' },
+    ],
+    redFlags: [
+      'Pomegranate extract instead of purified urolithin A — gut conversion highly variable (~30–40% of adults cannot convert)',
+      'Dose below 500mg (sub-RCT-equivalent)',
+      'No certificate of analysis available for the specific batch',
+    ],
+    sourcingNote:
+      'Timeline Nutrition (Mitopure) is the only brand with direct Phase 2 human trial data. Generic urolithin A is acceptable if HPLC-verified ≥95% purity and 500mg dose.',
+    relatedCompareSlug: 'urolithin-a-vs-coq10',
+  },
+  {
+    compoundId: 'coq10',
+    title: 'CoQ10 Buyer Guide',
+    tagline: 'Ubiquinol (reduced form) — not ubiquinone in adults over 40',
+    formRequirements: [
+      'Label must say: ubiquinol (not ubiquinone or "CoQ10" without form specification)',
+      'Ubiquinone is acceptable for under-40s but ubiquinol preferred for >40 due to declining conversion capacity',
+      'KANEKA QH® is the pharmaceutical-grade ubiquinol used in clinical trials',
+    ],
+    coaDemands: [
+      { id: 'coq-id', label: 'Identity (ubiquinol or CoQ10)', detail: 'HPLC confirming correct form — ubiquinol peak vs ubiquinone peak are distinguishable' },
+      { id: 'coq-stability', label: 'Oxidation stability test', detail: 'Ubiquinol oxidizes to ubiquinone in storage — request oxidation test on shelf-stable sample' },
+      { id: 'coq-dose', label: '100–200mg verified', detail: 'Per-capsule content confirmed — label accuracy issues are common in CoQ10 products' },
+    ],
+    doseAnchors: [
+      { label: 'Q-SYMBIO trial (heart failure)', dose: '300mg/day CoQ10', pmid: '24359983', note: 'Reduced MACE in heart failure patients at 300mg over 2 years' },
+      { label: 'Standard protocol dose', dose: '100–200mg ubiquinol', note: 'Statin users: 100mg immediately; increase to 200mg if myalgia persists' },
+    ],
+    redFlags: [
+      'Ubiquinone sold as "superior CoQ10" in adults over 40 — the conversion argument',
+      'No oil-based capsule (CoQ10 is fat-soluble — dry powder tabs have poor absorption)',
+      'Dose below 60mg (sub-therapeutic for clinical benefit)',
+      'Warfarin users without physician coordination — CoQ10 may reduce warfarin effect',
+    ],
+    sourcingNote:
+      'KANEKA QH® is the gold standard — ask the brand if they use KANEKA-sourced ubiquinol. Oil-filled softgels outperform dry powder capsules regardless of brand.',
+    relatedCompareSlug: 'urolithin-a-vs-coq10',
+  },
+  {
+    compoundId: 'omega3',
+    title: 'Omega-3 Buyer Guide',
+    tagline: 'rTG form, IFOS certified, oxidation tested — three non-negotiables',
+    formRequirements: [
+      'Label must say: re-esterified triglyceride (rTG) or specify triglyceride form',
+      'Ethyl ester (EE) form is less bioavailable and more prone to oxidation — avoid unless no rTG available',
+      'EPA + DHA mg per serving must be explicit — total fish oil mg is meaningless',
+    ],
+    coaDemands: [
+      { id: 'om-ifos', label: 'IFOS 5-star certification', detail: 'International Fish Oil Standards — independent testing for oxidation, purity, and label accuracy' },
+      { id: 'om-tots', label: 'TOTOX score ≤19.5', detail: 'Total oxidation measure (TOTOX = 2×peroxide value + anisidine value) — oxidized fish oil is pro-inflammatory' },
+      { id: 'om-epadha', label: 'EPA + DHA per softgel confirmed', detail: 'At least 1g combined EPA+DHA per serving; REDUCE-IT used 4g/day icosapentaenoic acid' },
+      { id: 'om-contam', label: 'PCBs and heavy metals ≤EU limits', detail: 'Cold-water fish concentrate toxins — request full contamination panel' },
+    ],
+    doseAnchors: [
+      { label: 'REDUCE-IT trial', dose: '4g EPA/day (prescription Vascepa)', pmid: '30145934', note: '25% reduction in cardiovascular events — high-dose EPA only, not combined EPA+DHA' },
+      { label: 'General longevity protocol', dose: '2–4g EPA+DHA daily', note: 'Target omega-3 index ≥8% in red blood cells — test at baseline and 12 weeks' },
+    ],
+    redFlags: [
+      'TOTOX score >19.5 or not disclosed — oxidized omega-3 is net pro-inflammatory',
+      'Ethyl ester form without disclosure — lower bioavailability, higher oxidation risk',
+      'Total "fish oil" mg without EPA/DHA breakdown — meaningless dosing claim',
+      'No IFOS certification or equivalent third-party oxidation testing',
+    ],
+    sourcingNote:
+      'Check your omega-3 index (OmegaQuant fingerprick test) before and after 12 weeks to confirm absorption. rTG form + IFOS 5-star is the minimum bar.',
+  },
 ];
 
 export function getBuyerGuide(compoundId: string): CompoundBuyerGuide | undefined {

@@ -48,7 +48,7 @@ export function ProductPickCard({ pick, compact, className }: ProductPickCardPro
       } ${className ?? ''}`}
     >
       <a
-        href={pick.purchaseUrl}
+        href={`/api/go/${pick.compoundId}`}
         target="_blank"
         rel="noopener noreferrer sponsored"
         className="flex gap-4 group"
@@ -77,7 +77,7 @@ export function ProductPickCard({ pick, compact, className }: ProductPickCardPro
 
       {pick.companionPurchase && (
         <a
-          href={pick.companionPurchase.purchaseUrl}
+          href={`/api/go/${pick.compoundId}?companion=true`}
           target="_blank"
           rel="noopener noreferrer sponsored"
           className="mt-3 flex items-center gap-2 text-xs text-accent-amber hover:text-accent-amber/80 border-t border-border/50 pt-3"

@@ -1,12 +1,14 @@
 'use client';
 
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-import { ArrowRight, Layers, FlaskConical, Activity, Download } from 'lucide-react';
+import { usePathname, useSearchParams } from 'next/navigation';
+import { ArrowRight, ChevronRight, Layers, FlaskConical, Activity, Download, MapPin } from 'lucide-react';
 import { EXPORT_KIT_EVENT } from './ExportKitModal';
 import { usePlatform } from '@/context/PlatformContext';
 import { analyzeStack } from '@/lib/stack-analysis';
 import { HallmarkCoverageRing } from './HallmarkCoverageRing';
+import { accentForRoute, getRouteContext } from '@/lib/route-context';
+import { themes } from '@/lib/design-system';
 import { cn } from '@/lib/utils';
 
 function daysSince(dateStr: string): number {
@@ -43,7 +45,13 @@ function getNextAction(input: {
 }
 
 export function ContextBar() {
-  const pathname = usePathname();
+  const pathname = usePathname() ?? '/';
+  const searchParams = useSearchParams();
+  const tab = searchParams.get('tab');
+  const route = getRouteContext(pathname, tab);
+  const accent = accentForRoute(route.hub);
+  const theme = themes[accent];
+
   const { selected, selectedCompounds, labs, profile, score, defenseProfile } = usePlatform();
   const analysis = analyzeStack(selected);
 
@@ -62,8 +70,13 @@ export function ContextBar() {
     scanned: profile.scanned,
     labsCount: labs.length,
     latestLabDate,
-    pathname: pathname ?? '/',
+    pathname,
   });
+
+  if (!route.hub && route.breadcrumbs.length === 0) return null;
+
+  const crumbs = route.breadcrumbs;
+  const hubNext = route.hub?.next;
 
   return (
     <aside
@@ -71,8 +84,51 @@ export function ContextBar() {
         'sticky top-14 md:top-16 z-40 border-b border-border',
         'bg-background/95 backdrop-blur-md supports-[backdrop-filter]:bg-background/85',
       )}
-      aria-label="Longevity OS status"
+      aria-label="Hub context and OS status"
     >
+      {(crumbs.length > 1 || hubNext) && (
+        <div className="border-b border-border/50 bg-muted/20">
+          <div className="container-page flex flex-col gap-1.5 py-2 sm:flex-row sm:items-center sm:gap-4">
+            {crumbs.length > 1 && (
+              <nav aria-label="Breadcrumb" className="flex items-center gap-1 min-w-0 text-xs">
+                <MapPin className={cn('w-3.5 h-3.5 shrink-0', theme.text)} aria-hidden="true" />
+                <ol className="flex items-center gap-1 min-w-0 flex-wrap">
+                  {crumbs.map((crumb, i) => {
+                    const isLast = i === crumbs.length - 1;
+                    return (
+                      <li key={crumb.href} className="flex items-center gap-1 min-w-0">
+                        {i > 0 && (
+                          <ChevronRight className="w-3 h-3 text-muted-foreground/60 shrink-0" aria-hidden="true" />
+                        )}
+                        {isLast ? (
+                          <span className="font-semibold text-foreground truncate max-w-[180px] sm:max-w-xs">
+                            {crumb.label}
+                          </span>
+                        ) : (
+                          <Link
+                            href={crumb.href}
+                            className="focus-ring text-muted-foreground hover:text-foreground truncate max-w-[100px] sm:max-w-none rounded"
+                          >
+                            {crumb.label}
+                          </Link>
+                        )}
+                      </li>
+                    );
+                  })}
+                </ol>
+              </nav>
+            )}
+
+            {hubNext && (
+              <p className="text-xs text-muted-foreground sm:ml-auto min-w-0 sm:max-w-[55%] lg:max-w-[48%] leading-relaxed">
+                <span className={cn('font-semibold mr-1.5', theme.text)}>Next here:</span>
+                <span className="line-clamp-2 sm:line-clamp-1">{hubNext}</span>
+              </p>
+            )}
+          </div>
+        </div>
+      )}
+
       <div className="container-page flex flex-wrap items-center gap-x-4 gap-y-2 py-2.5 text-xs">
         <HallmarkCoverageRing covered={analysis.hallmarkCount} />
 

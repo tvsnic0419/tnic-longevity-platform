@@ -1,4 +1,9 @@
 'use client';
+/* eslint-disable react-hooks/set-state-in-effect --
+   The mount/URL-driven effect(s) below set state from client-only sources
+   (localStorage, window, or URL search params) or trigger entrance animations.
+   These cannot run during SSR, so the initial setState is intentional and not a
+   value derivable during render. Reviewed 2026-06-21; safe to keep. */
 
 import { useEffect, useRef, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
@@ -6,7 +11,7 @@ import { useSearchParams } from 'next/navigation';
 export const LABS_PARTNER_TAB_EVENT = 'tnic:labs-partner-tab';
 import { Plus, Upload, FileText, ClipboardPaste, CheckCircle2, AlertCircle } from 'lucide-react';
 import { biomarkers } from '@/lib/data';
-import { LABS_CSV_TEMPLATE, parseLabsCsv } from '@/lib/labs';
+import { LABS_CSV_TEMPLATE, parseLabsCsv, getLabStatus, parseOptimalRange } from '@/lib/labs';
 import { usePlatform } from '@/context/PlatformContext';
 import { PartnerImportPanel } from './PartnerImportPanel';
 
@@ -166,10 +171,52 @@ export function BiomarkerInput() {
               />
             </div>
           </div>
-          <p className="text-[10px] text-caption">
-            Optimal: {biomarkers.find((b) => b.id === markerId)?.optimal}{' '}
-            {biomarkers.find((b) => b.id === markerId)?.unit}
-          </p>
+          {(() => {
+            const bm = biomarkers.find((b) => b.id === markerId);
+            const num = parseFloat(value);
+            const status = !isNaN(num) ? getLabStatus(markerId, num) : null;
+            const range = bm ? parseOptimalRange(bm.optimal) : null;
+            const statusColor =
+              status === 'optimal' ? 'var(--accent-emerald)'
+              : status === 'watch' ? 'var(--accent-amber)'
+              : status === 'critical' ? 'var(--accent-rose)'
+              : 'var(--muted-foreground)';
+            const pct = range && !isNaN(num)
+              ? Math.min(100, Math.max(0, ((num - range.min) / (range.max - range.min)) * 100))
+              : null;
+            return (
+              <div className="space-y-2">
+                <div className="flex items-center justify-between">
+                  <span className="text-[10px] text-caption">
+                    Optimal: <span className="font-mono">{bm?.optimal} {bm?.unit}</span>
+                  </span>
+                  {status && (
+                    <span
+                      className="text-[9px] font-bold font-mono px-2 py-0.5 rounded-full"
+                      style={{
+                        color: statusColor,
+                        background: `color-mix(in srgb, ${statusColor} 12%, transparent)`,
+                        border: `1px solid color-mix(in srgb, ${statusColor} 25%, transparent)`,
+                      }}
+                    >
+                      {status.toUpperCase()}
+                    </span>
+                  )}
+                </div>
+                {pct !== null && (
+                  <div className="h-1 rounded-full bg-muted/40 overflow-hidden">
+                    <div
+                      className="h-full rounded-full transition-all duration-500"
+                      style={{ width: `${pct}%`, background: statusColor }}
+                    />
+                  </div>
+                )}
+                {bm?.critical && (
+                  <p className="text-[9px] text-caption/60">Critical threshold: {bm.critical} {bm.unit}</p>
+                )}
+              </div>
+            );
+          })()}
           <button
             onClick={addSingle}
             className="w-full flex items-center justify-center gap-2 bg-accent-rose text-black py-3 rounded-xl font-semibold text-sm hover:bg-accent-cyan transition-all"

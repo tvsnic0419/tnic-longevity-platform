@@ -16,6 +16,8 @@ export const quizSteps = [
       { id: 'learn', label: 'Understand the science first', icon: 'book' as const },
       { id: 'defense', label: 'Strengthen antioxidant defenses', icon: 'shield' as const },
       { id: 'energy', label: 'Restore energy & NAD+', icon: 'zap' as const },
+      { id: 'longevity', label: 'Target senescent cells & healthspan', icon: 'layers' as const },
+      { id: 'metabolic', label: 'Improve metabolic & cardiovascular health', icon: 'shield' as const },
       { id: 'full', label: 'Build a complete protocol', icon: 'layers' as const },
     ],
   },
@@ -50,13 +52,17 @@ export function getQuizResult(answers: QuizAnswers) {
   const preset =
     answers.goal === 'energy' ? 'mito'
       : answers.goal === 'defense' ? 'nrf2'
-        : answers.goal === 'full' ? 'hybrid'
-          : 'starter';
+        : answers.goal === 'longevity' ? 'longevity'
+          : answers.goal === 'metabolic' ? 'metabolic'
+            : answers.goal === 'full' ? 'hybrid'
+              : 'starter';
 
   const paths = {
     learn: { title: 'Search the library', href: '/library', cta: 'Open Library' },
     defense: { title: 'Run your Defense Scan', href: '/tools?tab=healthspan', cta: 'Defense Scan' },
     energy: { title: 'Explore mitochondrial pathways', href: '/library?q=mitochondrial', cta: 'View Science' },
+    longevity: { title: 'Open Longevity Pro in Stack Architect', href: '/stacks', cta: 'Open Stack Architect' },
+    metabolic: { title: 'Open Cardio-Metabolic in Stack Architect', href: '/stacks', cta: 'Open Stack Architect' },
     full: { title: 'Open your Personal Dashboard', href: '/dashboard', cta: 'Go to Dashboard' },
   };
 
@@ -66,11 +72,15 @@ export function getQuizResult(answers: QuizAnswers) {
   const insight =
     answers.goal === 'learn'
       ? "Good starting point. TNiC maps every compound to a specific hallmark mechanism, evidence tier, and human trial before it enters the library — you'll know exactly what each one targets and why before you spend a dollar."
-      : answers.age === '60+'
-        ? 'At 60+, NAD+ has typically fallen 40–60% from peak (Cell Metab, 2018). Dual-pathway coverage — NRF2 defense restoration plus mitochondrial substrate support — produces the highest modeled defense index at this stage. Your preset stacks both.'
-        : answers.experience === 'new'
-          ? 'Starting with GlyNAC is the evidence-first move: 24-week human trials showed restored glutathione, improved mitochondrial function, and reduced oxidative stress in older adults (J Gerontol A, 2023, PMID 36656670). Tier A for a reason.'
-          : 'Your profile aligns with the Hybrid preset — 5 Tier-A/B compounds spanning NRF2 activation, mitochondrial substrate restoration, and sirtuin pathway support. The broadest evidence-graded coverage TNiC offers. Load it in Stack Architect and adjust synergy scoring from there.';
+      : answers.goal === 'longevity'
+        ? 'Your profile maps to Longevity Pro — urolithin A (Phase 2 mitophagy RCT), fisetin (Mayo Clinic senolytic pilot), and omega-3 (REDUCE-IT, SPM resolution axis). Targets the senescent cell accumulation and cellular cleanup hallmarks directly. Load it and adjust synergy scoring from there.'
+        : answers.goal === 'metabolic'
+          ? 'Your profile maps to Cardio-Metabolic — berberine (head-to-head vs metformin, PMID 18396172), omega-3 (REDUCE-IT 25% CV event reduction), and CoQ10 (17-RCT meta-analysis, hs-CRP reduction). AMPK, lipid, and ETC stack — Tier A across all three.'
+          : answers.age === '60+'
+            ? 'At 60+, NAD+ has typically fallen 40–60% from peak (Cell Metab, 2018). Dual-pathway coverage — NRF2 defense restoration plus mitochondrial substrate support — produces the highest modeled defense index at this stage. Your preset stacks both.'
+            : answers.experience === 'new'
+              ? 'Starting with GlyNAC is the evidence-first move: 24-week human trials showed restored glutathione, improved mitochondrial function, and reduced oxidative stress in older adults (J Gerontol A, 2023, PMID 36656670). Tier A for a reason.'
+              : 'Your profile aligns with the Hybrid preset — 5 Tier-A/B compounds spanning NRF2 activation, mitochondrial substrate restoration, and sirtuin pathway support. The broadest evidence-graded coverage TNiC offers. Load it in Stack Architect and adjust synergy scoring from there.';
 
   return { preset, stack, primary, insight };
 }

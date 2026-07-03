@@ -74,7 +74,7 @@ export function EliteStackCard({ stack, expanded: defaultExpanded = false }: Eli
 
         <div className="flex flex-wrap gap-2 mt-3">
           {compoundNames.map((name) => (
-            <span key={name} className="text-[10px] font-mono bg-accent-violet/10 text-violet-300 px-2 py-0.5 rounded-full">
+            <span key={name} className="text-[10px] font-mono bg-accent-violet/10 text-accent-violet px-2 py-0.5 rounded-full">
               {name}
             </span>
           ))}
@@ -122,7 +122,7 @@ export function EliteStackCard({ stack, expanded: defaultExpanded = false }: Eli
                           <h4 className="font-semibold text-sm">{compound?.name ?? b.compoundId}</h4>
                           <span className="text-[10px] font-mono text-muted-foreground">{compound?.dose}</span>
                         </div>
-                        <p className="text-xs text-violet-300 mb-1">{b.role}</p>
+                        <p className="text-xs text-accent-violet mb-1">{b.role}</p>
                         <p className="text-xs text-muted-foreground">{b.mechanism}</p>
                       </div>
                     );

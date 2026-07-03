@@ -1,7 +1,8 @@
 'use client';
 
 import { useCallback, useEffect, useState } from 'react';
-import { ArrowRight, Sparkles, Target, Zap } from 'lucide-react';
+import { ArrowRight, Sparkles, Target, Zap, X } from 'lucide-react';
+import { usePathname } from 'next/navigation';
 import { usePlatform } from '@/context/PlatformContext';
 import { stackPresets, type PresetKey } from '@/lib/presets';
 import {
@@ -12,6 +13,8 @@ import {
 import { Button } from '@/components/ui/Button';
 import { Slider } from '@/components/ui/Slider';
 import { cn } from '@/lib/utils';
+
+const SESSION_DISMISSED_KEY = 'tnic_onboarding_dismissed';
 
 const goals: { key: PresetKey; icon: typeof Target; accent: string }[] = [
   { key: 'starter', icon: Sparkles, accent: 'border-accent-emerald' },
@@ -25,6 +28,7 @@ interface OnboardingModalProps {
 }
 
 export function OnboardingModal({ onComplete }: OnboardingModalProps) {
+  const pathname = usePathname();
   const { applyPreset, setProfile, addMilestone } = usePlatform();
   const [open, setOpen] = useState(false);
   const [step, setStep] = useState(0);
@@ -33,10 +37,18 @@ export function OnboardingModal({ onComplete }: OnboardingModalProps) {
   const [sleep, setSleep] = useState(60);
 
   useEffect(() => {
-    if (!isOnboardingComplete()) {
-      const t = setTimeout(() => setOpen(true), 600);
-      return () => clearTimeout(t);
-    }
+    // Only trigger on homepage — never block /library, /stack, /labs, etc.
+    if (pathname !== '/') return;
+    if (isOnboardingComplete()) return;
+    if (sessionStorage.getItem(SESSION_DISMISSED_KEY)) return;
+    // Delay so the hero is visible first
+    const t = setTimeout(() => setOpen(true), 2000);
+    return () => clearTimeout(t);
+  }, [pathname]);
+
+  const dismiss = useCallback(() => {
+    sessionStorage.setItem(SESSION_DISMISSED_KEY, '1');
+    setOpen(false);
   }, []);
 
   const finish = useCallback(() => {
@@ -60,7 +72,11 @@ export function OnboardingModal({ onComplete }: OnboardingModalProps) {
 
   return (
     <div className="fixed inset-0 z-[110] flex items-center justify-center p-4">
-      <div className="absolute inset-0 bg-background/90 backdrop-blur-md" aria-hidden="true" />
+      <div
+        className="absolute inset-0 bg-background/60 backdrop-blur-sm"
+        aria-hidden="true"
+        onClick={dismiss}
+      />
 
       <div
         role="dialog"
@@ -69,11 +85,23 @@ export function OnboardingModal({ onComplete }: OnboardingModalProps) {
         className="relative w-full max-w-md glass rounded-2xl border border-border shadow-2xl overflow-hidden"
       >
         <div className="border-b border-border px-5 py-4">
-          <p className="text-label text-accent-emerald">Welcome</p>
-          <h2 className="text-xl font-bold mt-1">Initialize your Longevity OS</h2>
-          <p className="text-body-sm text-muted-foreground mt-1">
-            60-second setup — pick a goal, tune basics, land on your dashboard.
-          </p>
+          <div className="flex items-start justify-between gap-3">
+            <div>
+              <p className="text-label text-accent-emerald">Welcome</p>
+              <h2 className="text-xl font-bold mt-1">Initialize your Longevity OS</h2>
+              <p className="text-body-sm text-muted-foreground mt-1">
+                60-second setup — pick a goal, tune basics, land on your dashboard.
+              </p>
+            </div>
+            <button
+              type="button"
+              onClick={dismiss}
+              aria-label="Skip setup, explore the site"
+              className="shrink-0 mt-0.5 p-1 rounded-lg text-muted-foreground hover:text-foreground hover:bg-muted/50 transition-colors"
+            >
+              <X className="w-4 h-4" />
+            </button>
+          </div>
         </div>
 
         <div className="px-5 py-5 space-y-5">
@@ -123,16 +151,25 @@ export function OnboardingModal({ onComplete }: OnboardingModalProps) {
         </div>
 
         <div className="border-t border-border px-5 py-3 flex items-center justify-between gap-3">
-          <div className="flex gap-1.5" aria-hidden="true">
-            {[0, 1].map((i) => (
-              <span
-                key={i}
-                className={cn(
-                  'h-1.5 w-6 rounded-full',
-                  i === step ? 'bg-accent-emerald' : 'bg-border',
-                )}
-              />
-            ))}
+          <div className="flex items-center gap-3">
+            <div className="flex gap-1.5" aria-hidden="true">
+              {[0, 1].map((i) => (
+                <span
+                  key={i}
+                  className={cn(
+                    'h-1.5 w-6 rounded-full',
+                    i === step ? 'bg-accent-emerald' : 'bg-border',
+                  )}
+                />
+              ))}
+            </div>
+            <button
+              type="button"
+              onClick={dismiss}
+              className="text-xs text-muted-foreground hover:text-foreground transition-colors"
+            >
+              Explore first →
+            </button>
           </div>
           <div className="flex gap-2">
             {step > 0 && (

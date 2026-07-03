@@ -148,6 +148,7 @@ export interface HallmarkLibraryEntry {
   tagline: string;
   summary: string;
   mechanism: string;
+  keyMolecules?: string[];
   whyItMatters: string;
   visual: 'dna' | 'telomere' | 'epigenetic' | 'protein' | 'autophagy' | 'mito' | 'senescence' | 'stem' | 'signaling' | 'inflammation' | 'gut' | 'nutrient';
   coverage: number;

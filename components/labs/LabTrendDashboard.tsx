@@ -84,18 +84,52 @@ export function LabTrendDashboard({ snapshots }: LabTrendDashboardProps) {
       {/* Detailed chart */}
       {activeSnapshot && activeBiomarker && (
         <div className="gradient-border p-6">
-          <div className="flex flex-wrap items-start justify-between gap-4 mb-4">
-            <div>
-              <h3 className="text-lg font-bold">{activeBiomarker.name}</h3>
-              <p className="text-xs text-muted-foreground">
-                Optimal: {activeBiomarker.optimal} {activeBiomarker.unit} · Critical: {activeBiomarker.critical}
-              </p>
-            </div>
-            <div className="text-right">
-              <p className="text-3xl font-bold font-mono">{activeSnapshot.value}</p>
-              <p className="text-[10px] text-caption">{activeSnapshot.readingCount} readings</p>
-            </div>
-          </div>
+          {(() => {
+            const sorted = chartEntries.sort((a, b) => a.date.localeCompare(b.date));
+            const prev = sorted.length >= 2 ? sorted[sorted.length - 2] : null;
+            const delta = prev ? activeSnapshot.value - prev.value : null;
+            const deltaSign = delta !== null ? (delta > 0 ? '+' : '') : '';
+            const statusColorVar =
+              activeSnapshot.status === 'optimal' ? 'var(--accent-emerald)'
+              : activeSnapshot.status === 'watch' ? 'var(--accent-amber)'
+              : 'var(--accent-rose)';
+            return (
+              <div className="flex flex-wrap items-start justify-between gap-4 mb-4">
+                <div>
+                  <h3 className="text-lg font-bold">{activeBiomarker.name}</h3>
+                  <p className="text-xs text-muted-foreground mt-0.5">
+                    Optimal: {activeBiomarker.optimal} {activeBiomarker.unit} · Critical: {activeBiomarker.critical}
+                  </p>
+                </div>
+                <div className="text-right">
+                  <div className="flex items-center gap-2 justify-end mb-1">
+                    <p className="text-3xl font-bold font-mono">{activeSnapshot.value}</p>
+                    <span
+                      className="text-[10px] font-bold font-mono px-2 py-0.5 rounded-full"
+                      style={{
+                        color: statusColorVar,
+                        background: `color-mix(in srgb, ${statusColorVar} 12%, transparent)`,
+                        border: `1px solid color-mix(in srgb, ${statusColorVar} 25%, transparent)`,
+                      }}
+                    >
+                      {activeSnapshot.status}
+                    </span>
+                  </div>
+                  <div className="flex items-center gap-2 justify-end">
+                    <p className="text-[10px] text-caption">{activeSnapshot.readingCount} readings</p>
+                    {delta !== null && (
+                      <p
+                        className="text-[10px] font-mono font-semibold"
+                        style={{ color: delta === 0 ? 'var(--muted-foreground)' : delta > 0 ? 'var(--accent-emerald)' : 'var(--accent-rose)' }}
+                      >
+                        {deltaSign}{delta.toFixed(1)} vs prev
+                      </p>
+                    )}
+                  </div>
+                </div>
+              </div>
+            );
+          })()}
 
           {chartEntries.length >= 2 ? (
             <>

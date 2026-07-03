@@ -83,7 +83,7 @@ export function LibraryHighlights() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.05 }}
-                  className="group block rounded-2xl p-5 border border-border/60 card-premium bg-gradient-to-br from-accent-violet/[0.07] to-transparent glow-hover-violet transition-all duration-300"
+                  className="group block rounded-2xl p-5 border border-border/60 bg-gradient-to-br from-accent-violet/[0.07] to-transparent backdrop-blur-sm glow-hover-violet transition-all duration-300"
                 >
                   <div className="flex justify-between items-start mb-3">
                     <span className="text-[10px] font-mono font-semibold text-accent-violet bg-accent-violet/10 border border-accent-violet/20 px-2 py-0.5 rounded-lg">{stack.compoundCount} compounds</span>
@@ -128,7 +128,7 @@ export function LibraryHighlights() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.05 }}
-                  className="group block rounded-2xl p-5 border border-border/60 card-premium bg-gradient-to-br from-accent-emerald/[0.06] to-transparent glow-hover-emerald transition-all duration-300 flex gap-4"
+                  className="group block rounded-2xl p-5 border border-border/60 bg-gradient-to-br from-accent-emerald/[0.06] to-transparent backdrop-blur-sm glow-hover-emerald transition-all duration-300 flex gap-4"
                 >
                   <div className="flex-1 min-w-0">
                     <div className="flex flex-wrap items-center gap-2 mb-2">

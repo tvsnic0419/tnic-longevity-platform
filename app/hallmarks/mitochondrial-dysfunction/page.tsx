@@ -123,7 +123,7 @@ export default function MitochondrialDysfunctionPage() {
                 <p>
                   Mitochondrial decline is driven by three converging failures. First, <strong className="text-foreground">mtDNA mutation accumulation</strong>:
                   mitochondrial DNA (37 genes) has no histone protection and minimal repair capacity. mtDNA mutation rate
-                  is 10–17× higher than nuclear DNA. By age 70, some cell types have mutation rates >20% in respiratory
+                  is 10–17× higher than nuclear DNA. By age 70, some cell types have mutation rates &gt;20% in respiratory
                   chain genes.
                 </p>
                 <p>

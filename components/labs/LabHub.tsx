@@ -1,4 +1,9 @@
 'use client';
+/* eslint-disable react-hooks/set-state-in-effect --
+   The mount/URL-driven effect(s) below set state from client-only sources
+   (localStorage, window, or URL search params) or trigger entrance animations.
+   These cannot run during SSR, so the initial setState is intentional and not a
+   value derivable during render. Reviewed 2026-06-21; safe to keep. */
 
 import { useMemo, useState, useEffect } from 'react';
 import { useSearchParams } from 'next/navigation';
@@ -96,23 +101,39 @@ export function LabHub() {
 
       <UserFlowGuide currentStep={tabs.findIndex((t) => t.id === tab) + 1} />
 
-      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
-        <TabBar tabs={tabs} active={tab} onChange={setTab} theme="rose" ariaLabel="Lab hub sections" />
-        {labs.length > 0 && (
-          <div className="flex flex-wrap gap-2 shrink-0 self-start sm:self-center">
-            <Button variant="secondary" icon={Download} onClick={downloadCsv}>
-              Export CSV
-            </Button>
-            <Button variant="secondary" icon={FileJson} onClick={downloadPartnerJson}>
-              Partner JSON
-            </Button>
+      {(() => {
+        const elevatedRisks = analysis.hallmarkRisks.filter(
+          (r) => r.riskLevel === 'high' || r.riskLevel === 'elevated',
+        ).length;
+        const badgedTabs = tabs.map((t) => ({
+          ...t,
+          badge:
+            t.id === 'risk' && elevatedRisks > 0
+              ? `${elevatedRisks} ↑`
+              : t.id === 'insights' && analysis.recommendations.length > 0
+                ? `${analysis.recommendations.length}`
+                : undefined,
+        }));
+        return (
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
+            <TabBar tabs={badgedTabs} active={tab} onChange={setTab} theme="rose" ariaLabel="Lab hub sections" />
+            {labs.length > 0 && (
+              <div className="flex flex-wrap gap-2 shrink-0 self-start sm:self-center">
+                <Button variant="secondary" icon={Download} onClick={downloadCsv}>
+                  Export CSV
+                </Button>
+                <Button variant="secondary" icon={FileJson} onClick={downloadPartnerJson}>
+                  Partner JSON
+                </Button>
+              </div>
+            )}
           </div>
-        )}
-      </div>
+        );
+      })()}
 
       {analysis.topConcern && (
         <div className="card-base px-4 py-3 mb-6 border-accent-amber/20 text-body-sm" role="status">
-          <strong className="text-amber-300">Top concern:</strong> {analysis.topConcern}
+          <strong className="text-accent-amber">Top concern:</strong> {analysis.topConcern}
           {analysis.topWin && <span className="text-muted-foreground"> · Win: {analysis.topWin}</span>}
         </div>
       )}

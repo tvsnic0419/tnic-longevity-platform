@@ -88,6 +88,6 @@ ${related}
 Read online: [${url}](${url})  
 OG preview: ${ogImage}
 
-*Educational only — not medical advice. TNiC earns $0 from product recommendations.*
+*Educational only — not medical advice. TNiC may earn a commission on affiliate product links at no extra cost to you.*
 `;
 }

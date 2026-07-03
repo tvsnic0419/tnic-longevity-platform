@@ -1,6 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import { CountUp } from '@/components/ui/CountUp';
 
 interface StatItem {
   label: string;
@@ -34,7 +35,15 @@ export function StatStrip({ stats, ariaLabel = 'Key metrics', variant = 'default
           transition={{ delay: i * 0.08, duration: 0.4 }}
           className={cardClass}
         >
-          <p className={`${valueClass} ${stat.color ?? ''}`}>{stat.value}</p>
+          <p className={`${valueClass} ${stat.color ?? ''}`}>
+            {typeof stat.value === 'number' ? (
+              <CountUp value={stat.value} />
+            ) : /^\d+$/.test(String(stat.value)) ? (
+              <CountUp value={parseInt(String(stat.value), 10)} />
+            ) : (
+              stat.value
+            )}
+          </p>
           <p className="text-label mt-1.5">{stat.label}</p>
           {stat.sublabel && (
             <p className="text-caption mt-0.5">{stat.sublabel}</p>

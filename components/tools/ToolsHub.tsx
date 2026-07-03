@@ -1,4 +1,9 @@
 'use client';
+/* eslint-disable react-hooks/set-state-in-effect --
+   The mount/URL-driven effect(s) below set state from client-only sources
+   (localStorage, window, or URL search params) or trigger entrance animations.
+   These cannot run during SSR, so the initial setState is intentional and not a
+   value derivable during render. Reviewed 2026-06-21; safe to keep. */
 
 import dynamic from 'next/dynamic';
 import { useCallback, useEffect, useState } from 'react';
@@ -57,6 +62,15 @@ const tabIcons = {
   impact: BarChart3,
   healthspan: TrendingUp,
 } as const;
+
+const toolAccents: Record<ToolId, string> = {
+  simulator:  'var(--accent-violet)',
+  network:    'var(--accent-cyan)',
+  protocol:   'var(--accent-emerald)',
+  biomarker:  'var(--accent-amber)',
+  impact:     'var(--accent-rose)',
+  healthspan: 'var(--accent-emerald)',
+};
 
 const tabs = toolsRegistry.map((t) => ({
   id: t.id,
@@ -128,6 +142,55 @@ export function ToolsHub() {
             </span>
           </div>
         </Link>
+
+        {/* Visual tool picker grid */}
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-3 mb-8">
+          {toolsRegistry.map((t) => {
+            const Icon = tabIcons[t.id];
+            const accent = toolAccents[t.id];
+            const isActive = active === t.id;
+            return (
+              <button
+                key={t.id}
+                type="button"
+                onClick={() => onTabChange(t.id)}
+                className={`focus-ring group text-left rounded-xl p-4 border transition-all duration-200 ${
+                  isActive
+                    ? 'card-premium border-opacity-60 shadow-lg'
+                    : 'glass glass-hover border-border/40'
+                }`}
+                style={isActive ? { borderColor: `color-mix(in srgb, ${accent} 40%, transparent)` } : {}}
+              >
+                <div className="flex items-start justify-between gap-2 mb-3">
+                  <div
+                    className="w-9 h-9 rounded-xl flex items-center justify-center shrink-0"
+                    style={{ background: `color-mix(in srgb, ${accent} 14%, transparent)` }}
+                  >
+                    <Icon
+                      className="w-4.5 h-4.5"
+                      style={{ color: accent }}
+                      aria-hidden="true"
+                    />
+                  </div>
+                  {t.badge && (
+                    <span
+                      className="text-[9px] font-semibold uppercase tracking-wider px-1.5 py-0.5 rounded-full border"
+                      style={{ color: accent, borderColor: `color-mix(in srgb, ${accent} 30%, transparent)`, background: `color-mix(in srgb, ${accent} 10%, transparent)` }}
+                    >
+                      {t.badge}
+                    </span>
+                  )}
+                </div>
+                <p className="font-semibold text-sm leading-tight" style={isActive ? { color: accent } : {}}>
+                  {t.label}
+                </p>
+                <p className="text-[11px] text-muted-foreground mt-0.5 leading-snug line-clamp-2">
+                  {t.shortLabel}
+                </p>
+              </button>
+            );
+          })}
+        </div>
 
         <div className="mb-8">
           <EvidenceTagLegend />

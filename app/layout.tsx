@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
+import { Toaster } from 'sonner';
 import { JsonLd } from '@/components/JsonLd';
 import { SkipLink } from '@/components/SkipLink';
 import ErrorBoundary from '@/components/ErrorBoundary';
@@ -58,6 +59,18 @@ export default function RootLayout({
             <div className="page-canvas">{children}</div>
           </PlatformProviderWrapper>
         </ErrorBoundary>
+        <Toaster
+          position="bottom-right"
+          theme="dark"
+          toastOptions={{
+            style: {
+              background: 'rgba(17, 24, 39, 0.95)',
+              border: '1px solid rgba(255,255,255,0.08)',
+              color: '#f8fafc',
+              backdropFilter: 'blur(20px)',
+            },
+          }}
+        />
       </body>
     </html>
   );

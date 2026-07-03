@@ -25,7 +25,7 @@ export const palette = {
 
 export const themes: Record<
   ThemeAccent,
-  { text: string; bg: string; bgSolid: string; border: string; glow: string; dot: string; cssVar: string }
+  { text: string; bg: string; bgSolid: string; border: string; glow: string; dot: string; cssVar: string; sectionBadge: string }
 > = {
   cyan: {
     text: 'text-accent-cyan',
@@ -35,6 +35,7 @@ export const themes: Record<
     glow: 'section-glow-cyan',
     dot: 'bg-accent-cyan',
     cssVar: 'var(--accent-cyan)',
+    sectionBadge: 'section-badge-cyan',
   },
   emerald: {
     text: 'text-accent-emerald',
@@ -44,6 +45,7 @@ export const themes: Record<
     glow: 'section-glow-emerald',
     dot: 'bg-accent-emerald',
     cssVar: 'var(--accent-emerald)',
+    sectionBadge: 'section-badge-emerald',
   },
   amber: {
     text: 'text-accent-amber',
@@ -53,6 +55,7 @@ export const themes: Record<
     glow: 'section-glow-amber',
     dot: 'bg-accent-amber',
     cssVar: 'var(--accent-amber)',
+    sectionBadge: 'section-badge-amber',
   },
   violet: {
     text: 'text-accent-violet',
@@ -62,6 +65,7 @@ export const themes: Record<
     glow: 'section-glow-violet',
     dot: 'bg-accent-violet',
     cssVar: 'var(--accent-violet)',
+    sectionBadge: 'section-badge-violet',
   },
   rose: {
     text: 'text-accent-rose',
@@ -71,6 +75,7 @@ export const themes: Record<
     glow: 'section-glow-rose',
     dot: 'bg-accent-rose',
     cssVar: 'var(--accent-rose)',
+    sectionBadge: 'section-badge-rose',
   },
 };
 

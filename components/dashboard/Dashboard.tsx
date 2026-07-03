@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { ArrowRight, Activity, FlaskConical, Layers, LayoutDashboard } from 'lucide-react';
+import { LongevityGaugeArc } from '@/components/ui/LongevityGaugeArc';
 import { usePlatform } from '@/context/PlatformContext';
 import { analyzeStack } from '@/lib/stack-analysis';
 import { runBiomarkerDashboard } from '@/lib/tools/biomarker-dashboard';
@@ -83,6 +84,8 @@ export function Dashboard() {
     defense: 'Cellular defense',
     energy: 'Mitochondrial energy',
     full: 'Full longevity optimization',
+    longevity: 'Senolytic & healthspan focus',
+    metabolic: 'Cardio-metabolic health',
   };
 
   return (
@@ -138,19 +141,24 @@ export function Dashboard() {
               )}
             </div>
 
-            <div className="grid grid-cols-2 gap-3 pt-2 border-t border-border">
-              <div className="glass rounded-xl p-3">
-                <Layers className="w-4 h-4 text-accent-violet mb-1" aria-hidden="true" />
-                <p className="text-caption text-muted-foreground">Synergy</p>
-                <p className="text-xl font-bold font-mono text-accent-violet">{score}</p>
+            <div className="pt-2 border-t border-border">
+              <div className="max-w-[180px] mx-auto">
+                <LongevityGaugeArc
+                  score={score}
+                  color="var(--accent-violet)"
+                  label="SYNERGY"
+                  sublabel={`${analysis.hallmarkCount}/12 hallmarks`}
+                  size={150}
+                  immediate
+                />
               </div>
-              <div className="glass rounded-xl p-3">
-                <Activity className="w-4 h-4 text-accent-rose mb-1" aria-hidden="true" />
-                <p className="text-caption text-muted-foreground">Bio age</p>
-                <p className="text-xl font-bold font-mono text-accent-rose">
-                  {profile.scanned ? defenseProfile.biologicalAge : '—'}
-                </p>
-              </div>
+              {profile.scanned && (
+                <div className="flex items-center justify-center gap-2 mt-2 glass rounded-xl px-3 py-2">
+                  <Activity className="w-3.5 h-3.5 text-accent-rose shrink-0" aria-hidden="true" />
+                  <p className="text-caption text-muted-foreground">Bio age</p>
+                  <p className="font-bold font-mono text-accent-rose">{defenseProfile.biologicalAge}</p>
+                </div>
+              )}
             </div>
 
             <div className="flex flex-col gap-2">

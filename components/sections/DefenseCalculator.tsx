@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import { ArrowRight, Scan } from 'lucide-react';
 import { SectionShell } from '@/components/SectionShell';
+import { LongevityGaugeArc } from '@/components/ui/LongevityGaugeArc';
 import { compounds } from '@/lib/data';
 import { usePlatform } from '@/context/PlatformContext';
 import type { PresetKey } from '@/lib/presets';
@@ -153,13 +154,21 @@ export function DefenseCalculator() {
                 </div>
 
                 <div className="flex items-center justify-between mb-4">
-                  <div>
-                    <p className="text-xs text-muted-foreground">Defense Index</p>
-                    <p className="text-4xl font-bold stat-glow text-accent-rose">{defenseProfile.defenseScore}</p>
-                  </div>
+                  <LongevityGaugeArc
+                    score={defenseProfile.defenseScore}
+                    color={
+                      defenseProfile.defenseScore >= 70 ? 'var(--accent-emerald)'
+                      : defenseProfile.defenseScore >= 45 ? 'var(--accent-amber)'
+                      : 'var(--accent-rose)'
+                    }
+                    label="DEFENSE INDEX"
+                    sublabel={recLabel[defenseProfile.recommendation]}
+                    size={130}
+                    immediate
+                  />
                   <div className="text-right">
-                    <p className="text-xs text-muted-foreground">Recommended</p>
-                    <p className={`font-bold ${recColor[defenseProfile.recommendation]}`}>
+                    <p className="text-xs text-muted-foreground mb-1">Recommended</p>
+                    <p className={`font-bold text-sm ${recColor[defenseProfile.recommendation]}`}>
                       {recLabel[defenseProfile.recommendation]}
                     </p>
                   </div>

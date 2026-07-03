@@ -1,4 +1,9 @@
 'use client';
+/* eslint-disable react-hooks/set-state-in-effect --
+   The mount/URL-driven effect(s) below set state from client-only sources
+   (localStorage, window, or URL search params) or trigger entrance animations.
+   These cannot run during SSR, so the initial setState is intentional and not a
+   value derivable during render. Reviewed 2026-06-21; safe to keep. */
 
 import { Suspense, useCallback, useEffect, useState } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
@@ -63,14 +68,15 @@ function LabPartnerOAuthFlowInner() {
       .then((data: { partners?: ConnectablePartner[] }) => {
         const partners = data.partners ?? [];
         setConnectable(partners);
-        if (partners.length > 0 && !partners.find((p) => p.id === selectedPartner)) {
-          setSelectedPartner(partners[0].id);
-        }
+        // Use functional form to read latest selectedPartner without it being a dep
+        setSelectedPartner((prev) =>
+          partners.length > 0 && !partners.find((p) => p.id === prev) ? partners[0].id : prev,
+        );
       })
       .catch(() => {
         setConnectable([{ id: DEMO_PARTNER_ID, name: 'TNiC Demo Lab', status: 'demo' }]);
       });
-  }, [selectedPartner]);
+  }, []);
 
   useEffect(() => {
     try {

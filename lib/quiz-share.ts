@@ -9,6 +9,9 @@ export const PRESET_OG_ACCENTS: Record<PresetKey, string> = {
   nrf2: '#22d3ee',
   mito: '#a78bfa',
   hybrid: '#f472b6',
+  longevity: '#fb923c',
+  metabolic: '#4ade80',
+  full: '#818cf8',
 };
 
 export const PRESET_KEYS = Object.keys(stackPresets) as PresetKey[];

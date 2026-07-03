@@ -112,6 +112,54 @@ export function TrustHub() {
       >
         {tab === 'overview' && (
           <div className="space-y-8 max-w-4xl">
+            {/* Citation breakdown visual */}
+            {(() => {
+              const typeCounts = citationRegistry.reduce<Record<string, number>>((acc, c) => {
+                acc[c.type] = (acc[c.type] ?? 0) + 1;
+                return acc;
+              }, {});
+              const total = citationRegistry.length;
+              const typeColors: Record<string, string> = {
+                'clinical':     'var(--accent-emerald)',
+                'meta-analysis':'var(--accent-cyan)',
+                'review':       'var(--accent-violet)',
+                'guideline':    'var(--accent-amber)',
+                'preclinical':  'var(--accent-rose)',
+              };
+              const typeLabels: Record<string, string> = {
+                'clinical': 'Clinical RCT', 'meta-analysis': 'Meta-analysis',
+                'review': 'Review', 'guideline': 'Guideline', 'preclinical': 'Preclinical',
+              };
+              return (
+                <div className="card-elevated border border-accent-emerald/25 rounded-2xl p-6">
+                  <div className="flex items-center justify-between mb-4">
+                    <p className="text-label text-accent-emerald">Citation type breakdown</p>
+                    <span className="font-mono text-2xl font-black text-accent-emerald">{total}</span>
+                  </div>
+                  <div className="flex h-3 rounded-full overflow-hidden gap-0.5 mb-4">
+                    {Object.entries(typeCounts).map(([type, count]) => (
+                      <div
+                        key={type}
+                        style={{ flex: count, background: typeColors[type] ?? 'var(--accent-cyan)', opacity: 0.85 }}
+                        title={`${typeLabels[type] ?? type}: ${count}`}
+                      />
+                    ))}
+                  </div>
+                  <div className="flex flex-wrap gap-x-5 gap-y-2">
+                    {Object.entries(typeCounts).map(([type, count]) => (
+                      <span key={type} className="flex items-center gap-1.5 text-xs">
+                        <span className="w-2 h-2 rounded-full shrink-0" style={{ background: typeColors[type] ?? 'var(--accent-cyan)' }} />
+                        <span className="text-muted-foreground">{typeLabels[type] ?? type}</span>
+                        <span className="font-mono font-semibold" style={{ color: typeColors[type] }}>{count}</span>
+                      </span>
+                    ))}
+                  </div>
+                  <p className="text-caption mt-4 pt-4 border-t border-border/40 text-muted-foreground/50">
+                    All citations are peer-reviewed. Tiers A/B/C assigned by literature strength and re-evaluated quarterly.
+                  </p>
+                </div>
+              );
+            })()}
             <EvidenceTagLegend />
             <div className="space-y-4">
               {transparencyPledge.map((item) => (

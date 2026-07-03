@@ -13,6 +13,8 @@ const GOAL_LABEL: Record<string, string> = {
   defense: 'Cellular defense',
   energy: 'Mitochondrial energy',
   full: 'Full longevity optimization',
+  longevity: 'Senolytic & healthspan focus',
+  metabolic: 'Cardio-metabolic health',
 };
 
 const COMPOUND_MODULE: Record<string, string> = {
@@ -25,6 +27,11 @@ const COMPOUND_MODULE: Record<string, string> = {
   taurine: '/library/compounds/taurine',
   spermidine: '/library/compounds/spermidine',
   pterostilbene: '/library/compounds/pterostilbene',
+  berberine: '/library/compounds/berberine',
+  urolithina: '/library/compounds/urolithina',
+  fisetin: '/library/compounds/fisetin',
+  coq10: '/library/compounds/coq10',
+  omega3: '/library/compounds/omega3',
 };
 
 interface ActionItem {

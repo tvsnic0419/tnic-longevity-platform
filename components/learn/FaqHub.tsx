@@ -31,7 +31,7 @@ export function FaqHub() {
         icon={HelpCircle}
         eyebrow="Learn"
         title="Frequently Asked Questions"
-        description="Twenty-five honest answers about TNiC protocols, safety, evidence tiers, and how we differ from supplement stores."
+        description="Thirty-three expert answers about TNiC protocols, compound science, safety, evidence tiers, data privacy, and how we differ from supplement stores."
         align="left"
         context={getHubContext('faq')}
       />

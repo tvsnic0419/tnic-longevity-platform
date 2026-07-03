@@ -5,6 +5,7 @@ import type {
   SourceCitation,
   UpdateHistoryEntry,
 } from './types';
+import { researchFeed } from './data';
 
 /** Evidence tier definitions for tagging system */
 export const evidenceTagDefinitions: Record<
@@ -133,7 +134,17 @@ export const citationFramework = {
 };
 
 /** Canonical citation registry */
-export const citationRegistry: SourceCitation[] = [
+const curatedCitations: SourceCitation[] = [
+  {
+    id: 'c-taurine-2023',
+    title: 'Taurine deficiency as a driver of aging',
+    authors: 'Singh P et al.',
+    journal: 'Science',
+    year: 2023,
+    pmid: '37289930',
+    type: 'preclinical',
+    summary: 'Multi-species study: taurine declines ~80% with age; supplementation extended median lifespan 10–12% in mice with broad healthspan gains. Human data is associative — not yet an interventional RCT.',
+  },
   {
     id: 'c-glynac-2023',
     title: 'Improvement of mitochondrial function in older adults after GlyNAC',
@@ -346,6 +357,25 @@ export const citationRegistry: SourceCitation[] = [
   },
 ];
 
+/**
+ * Every study surfaced in the research feed is registered as a citation. Hand-curated
+ * entries above take precedence; any feed study not already curated is derived here
+ * from its own metadata so the registry stays complete as the feed grows.
+ */
+const feedCitations: SourceCitation[] = researchFeed
+  .filter((r) => r.pmid && !curatedCitations.some((c) => c.pmid === r.pmid))
+  .map((r) => ({
+    id: `rf-${r.pmid}`,
+    title: r.title,
+    journal: r.source,
+    year: Number((r.date.match(/\d{4}/) ?? ['0'])[0]),
+    pmid: r.pmid,
+    type: (r.impact === 'preclinical' ? 'preclinical' : 'clinical') as SourceCitation['type'],
+    summary: r.summary,
+  }));
+
+export const citationRegistry: SourceCitation[] = [...curatedCitations, ...feedCitations];
+
 export const methodologySections = [
   {
     id: 'compound-selection',
@@ -383,7 +413,7 @@ export const methodologySections = [
     title: 'Conflict of Interest Policy',
     steps: [
       { step: '01', title: 'No Pay-for-Placement', desc: 'Brands cannot purchase inclusion or tier upgrades.' },
-      { step: '02', title: 'Zero Commission', desc: 'TNiC earns $0 from product links. Manufacturer-direct picks only — never affiliate CTAs on evidence surfaces.' },
+      { step: '02', title: 'Transparent Affiliate', desc: 'TNiC may earn a commission on verified picks via affiliate links — disclosed here and at point of purchase. Commission never influences product selection, evidence tiers, or buyer-guide criteria.' },
       { step: '03', title: 'No Proprietary Products', desc: 'TNiC does not manufacture supplements. Independent curation only.' },
     ],
   },
@@ -432,9 +462,38 @@ export const disclaimers: DisclaimerBlock[] = [
     body: 'Stack selections, lab entries, and personal notes are stored in your browser\'s localStorage. TNiC does not transmit this data to servers. Clearing browser data deletes your entries. Export regularly for backup.',
     appliesTo: ['Lab Hub', 'Personal Dashboard', 'Hallmark Notes'],
   },
+  {
+    id: 'transport-security',
+    title: 'HTTPS & Transport Security',
+    severity: 'info',
+    body: 'tnic.help is served exclusively over HTTPS with HSTS preload (max-age 2 years, includeSubDomains). HTTP and www.tnic.help permanently redirect to the apex domain. Vercel provisions and auto-renews TLS certificates. API routes that accept secrets (cron, webhooks) require HTTPS in production.',
+    appliesTo: ['All pages', 'API routes', 'Protocol Brief subscribe'],
+  },
 ];
 
 export const updateHistory: UpdateHistoryEntry[] = [
+  {
+    date: '2026-06-20',
+    version: '1.37.1',
+    title: 'Sprint 37.1 — SSL & transport security hardening',
+    category: 'safety',
+    changes: [
+      'Middleware enforces HTTPS + apex canonical host in production (308 redirects)',
+      'HSTS preload header unified in next.config + vercel.json; self-heal monitors HTTP→HTTPS',
+      'Trust Center transport-security disclaimer documents TLS, HSTS, and certificate policy',
+    ],
+  },
+  {
+    date: '2026-06-20',
+    version: '1.37.0',
+    title: 'Sprint 37 — Material visual transcend + hub context strip',
+    category: 'feature',
+    changes: [
+      'ContextBar breadcrumb trail + hub-specific “Next here” on every OS subpage — closes nav orientation gap',
+      'Homepage CTA finale: gradient-border card, glow Launch OS, Browse Library secondary (eliminates Brief CTA fatigue)',
+      'Library highlight cards gain backdrop-blur depth; route-context module powers palette hub detection',
+    ],
+  },
   {
     date: '2026-06-20',
     version: '1.36.0',

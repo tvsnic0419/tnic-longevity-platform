@@ -70,7 +70,7 @@ export const seoRoutes = {
     buildPageMetadata({
       title: 'Protocol Shop — Verify Before You Buy',
       description:
-        'Stack-filtered supplement verification checklists: COA requirements, clinical trial dose ranges, red flags to reject, and form-specific bioavailability data. TNiC earns $0 from product placement.',
+        'Stack-filtered supplement verification checklists: COA requirements, clinical trial dose ranges, red flags to reject, and form-specific bioavailability data. Affiliate links disclosed — commission never influences listings.',
       path: '/shop',
       keywords: ['supplement buyer guide', 'protocol shop', 'NMN COA', 'supplement verification'],
     }),
@@ -79,7 +79,7 @@ export const seoRoutes = {
     buildPageMetadata({
       title: 'Recommended Products — Verified Supplement Picks',
       description:
-        'One evidence-aligned product per compound, linked directly to the manufacturer. TNiC earns $0 from sales — pure buyer intelligence, zero conflict.',
+        'One evidence-aligned product per compound. TNiC may earn a commission on purchases via affiliate links — no extra cost to you, and commission never influences product selection.',
       path: '/products',
       keywords: [
         'recommended longevity supplements',
@@ -118,7 +118,7 @@ export const seoRoutes = {
     buildPageMetadata({
       title: 'Stack Architect — Build Evidence-Graded Longevity Protocols',
       description:
-        'Interactive stack builder: real-time synergy scoring, hallmark coverage map, contraindication checks, and three preset protocols — NRF2 Defense, Mitochondrial Restoration, and Full Hybrid.',
+        'Interactive stack builder: real-time synergy scoring, hallmark coverage map, contraindication checks, and seven preset protocols — Starter, NRF2 Defense, Mito-NAD+, Full Hybrid, Longevity Pro, Cardio-Metabolic, and Full-Spectrum 14.',
       path: '/stacks',
       keywords: ['longevity stack', 'GlyNAC protocol', 'NRF2 stack', 'supplement synergy', 'mitochondrial stack', 'NMN stack'],
     }),
@@ -209,5 +209,25 @@ export const seoRoutes = {
       description: input.summary,
       path: input.path,
       keywords: [input.title, input.categoryLabel, 'longevity evidence'],
+    }),
+
+  longevityGuide: () =>
+    buildPageMetadata({
+      title: 'Best Longevity Supplements 2026 — Evidence-Ranked Guide',
+      description:
+        'Ranked by clinical evidence, epigenetic clock data, and biological mechanism: the 8 longevity supplements with the strongest human trial footprints. NMN, GlyNAC, Rapamycin, Spermidine, Taurine, and more — with dosing, synergies, and Tier A/B grading.',
+      path: '/longevity-supplements-guide',
+      keywords: [
+        'best longevity supplements',
+        'anti-aging supplements 2026',
+        'longevity supplement stack',
+        'NMN supplement guide',
+        'GlyNAC dosing',
+        'rapamycin longevity',
+        'epigenetic clock supplements',
+        'evidence-based anti-aging',
+        'healthspan supplements ranked',
+        'top longevity compounds',
+      ],
     }),
 } as const;

@@ -1,79 +1,57 @@
+'use client';
+
+import { Suspense } from 'react';
 import dynamic from 'next/dynamic';
-import { Nav } from '@/components/Nav';
-import { ScrollProgress } from '@/components/ScrollProgress';
-import { Footer } from '@/components/Footer';
-import { ToolsDock } from '@/components/ToolsDock';
-import { HeroSection } from '@/components/sections/HeroSection';
-import { HomepagePersonalizedRail } from '@/components/sections/HomepagePersonalizedRail';
-import { HomepageTrustStrip } from '@/components/sections/HomepageTrustStrip';
-import { HomepageOSFunnel } from '@/components/sections/HomepageOSFunnel';
-import { SiteGuide } from '@/components/SiteGuide';
-import { HallmarkProblemTiles } from '@/components/sections/HallmarkProblemTiles';
-import { TrustBanner } from '@/components/TrustBanner';
-import { seoRoutes } from '@/lib/seo-routes';
+import { Hero } from '@/components/Hero';
 
-// Lower-fold sections — lazy loaded so they don't inflate the initial bundle
-const EmailCapture = dynamic(() =>
-  import('@/components/sections/EmailCapture').then((m) => ({ default: m.EmailCapture }))
-);
-const LibraryHighlights = dynamic(() =>
-  import('@/components/sections/LibraryHighlights').then((m) => ({ default: m.LibraryHighlights }))
-);
-const HomepageCompareRow = dynamic(() =>
-  import('@/components/sections/HomepageCompareRow').then((m) => ({ default: m.HomepageCompareRow }))
-);
-const ResearchIntel = dynamic(() =>
-  import('@/components/sections/ResearchIntel').then((m) => ({ default: m.ResearchIntel }))
-);
-const HomepageBriefRail = dynamic(() =>
-  import('@/components/sections/HomepageBriefRail').then((m) => ({ default: m.HomepageBriefRail }))
-);
-const CompetitiveEdge = dynamic(() =>
-  import('@/components/sections/CompetitiveEdge').then((m) => ({ default: m.CompetitiveEdge }))
-);
-const HomepageProductRail = dynamic(() =>
-  import('@/components/sections/HomepageProductRail').then((m) => ({ default: m.HomepageProductRail }))
-);
-const HomepageTrust = dynamic(() =>
-  import('@/components/sections/HomepageTrust').then((m) => ({ default: m.HomepageTrust }))
-);
-const HomepageCTA = dynamic(() =>
-  import('@/components/sections/HomepageCTA').then((m) => ({ default: m.HomepageCTA }))
-);
-const NextUpSection = dynamic(() =>
-  import('@/components/sections/NextUpSection').then((m) => ({ default: m.NextUpSection }))
-);
+// Lazy loaded components for better performance
+const HowItWorks = dynamic(() => import('@/components/ui/HowItWorks').then(mod => ({ default: mod.HowItWorks })), {
+  loading: () => <div className="h-96 animate-pulse bg-white/5 rounded-2xl mx-auto max-w-6xl" />,
+  ssr: false
+});
 
-export const metadata = seoRoutes.home();
+const PlatformTicker = dynamic(() => import('@/components/ui/PlatformTicker').then(mod => ({ default: mod.PlatformTicker })), { ssr: false });
+const PremiumManifestoSection = dynamic(() => import('@/components/sections/PremiumManifestoSection').then(m => ({ default: m.PremiumManifestoSection })), { ssr: false });
+const StackImpactPreview = dynamic(() => import('@/components/sections/StackImpactPreview').then(m => ({ default: m.StackImpactPreview })), { ssr: false });
+const ClockImpactSection = dynamic(() => import('@/components/sections/ClockImpactSection').then(m => ({ default: m.ClockImpactSection })), { ssr: false });
+const NinetyDayCycle = dynamic(() => import('@/components/sections/NinetyDayCycle').then(m => ({ default: m.NinetyDayCycle })), { ssr: false });
+const HomepagePersonalizedRail = dynamic(() => import('@/components/sections/HomepagePersonalizedRail').then(m => ({ default: m.HomepagePersonalizedRail })), { ssr: false });
+const PlatformPreview = dynamic(() => import('@/components/sections/PlatformPreview').then(m => ({ default: m.PlatformPreview })), { ssr: false });
+const HomepageOSFunnel = dynamic(() => import('@/components/sections/HomepageOSFunnel').then(m => ({ default: m.HomepageOSFunnel })), { ssr: false });
+const HallmarkProblemTiles = dynamic(() => import('@/components/sections/HallmarkProblemTiles').then(m => ({ default: m.HallmarkProblemTiles })), { ssr: false });
+const LibraryHighlights = dynamic(() => import('@/components/sections/LibraryHighlights').then(m => ({ default: m.LibraryHighlights })), { ssr: false });
+const ResearchIntel = dynamic(() => import('@/components/sections/ResearchIntel').then(m => ({ default: m.ResearchIntel })), { ssr: false });
+const CompetitiveEdge = dynamic(() => import('@/components/sections/CompetitiveEdge').then(m => ({ default: m.CompetitiveEdge })), { ssr: false });
+const SiteGuide = dynamic(() => import('@/components/SiteGuide').then(mod => ({ default: mod.SiteGuide })), { ssr: false });
+const TrustBanner = dynamic(() => import('@/components/TrustBanner').then(mod => ({ default: mod.TrustBanner })), { ssr: false });
+const HomepageCTA = dynamic(() => import('@/components/sections/HomepageCTA').then(m => ({ default: m.HomepageCTA })), { ssr: false });
 
 export default function HomePage() {
   return (
-    <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
-      <ScrollProgress />
-      <Nav />
-      <main id="main-content" tabIndex={-1}>
-        {/* Above-fold — statically imported for fastest LCP */}
-        <HeroSection />
-        <HomepagePersonalizedRail />
-        <HomepageTrustStrip />
-        <HomepageOSFunnel />
-        <SiteGuide />
-        <HallmarkProblemTiles />
-        <TrustBanner />
-        {/* Below-fold — dynamically imported to reduce initial bundle */}
-        <EmailCapture />
-        <LibraryHighlights />
-        <HomepageCompareRow />
-        <ResearchIntel />
-        <HomepageBriefRail />
-        <CompetitiveEdge />
-        <HomepageProductRail />
-        <HomepageTrust />
-        <HomepageCTA />
-        <NextUpSection />
-      </main>
-      <ToolsDock />
-      <Footer />
-    </div>
+    <>
+      <Hero />
+      
+      {/* Critical above-the-fold content */}
+      <Suspense fallback={<div className="h-96 animate-pulse bg-white/5 rounded-2xl mx-auto max-w-6xl" />}>
+        <HowItWorks />
+      </Suspense>
+
+      {/* Lazy loaded below-the-fold sections */}
+      <PlatformTicker />
+      <PremiumManifestoSection />
+      <StackImpactPreview />
+      <ClockImpactSection />
+      <NinetyDayCycle />
+      <HomepagePersonalizedRail />
+      <PlatformPreview />
+      <HomepageOSFunnel />
+      <HallmarkProblemTiles />
+      <LibraryHighlights />
+      <ResearchIntel />
+      <CompetitiveEdge />
+      <SiteGuide />
+      <TrustBanner />
+      <HomepageCTA />
+    </>
   );
 }

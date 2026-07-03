@@ -7,7 +7,6 @@ import { evidenceComparisons } from '@/lib/comparisons';
 import { EvidenceTag } from '@/components/trust/EvidenceTag';
 import { CompareShareCard } from '@/components/library/CompareShareCard';
 import { PageHeader } from '@/components/ui/PageHeader';
-import { getHubContext } from '@/lib/hub-context';
 
 const categoryIcon = {
   compound: Pill,
@@ -17,7 +16,7 @@ const categoryIcon = {
 
 export function CompareHub() {
   return (
-    <section className="py-12 md:py-16">
+    <section className="py-6 md:py-8">
       <PageHeader
         icon={Scale}
         eyebrow="Library · Evidence Tools"
@@ -25,10 +24,9 @@ export function CompareHub() {
         description="Neutral head-to-head tables — NMN vs NR, stack vs stack, form vs form. Every row anchored to PMID literature or honest mechanistic gaps. No shop bias."
         theme="cyan"
         align="left"
-        context={getHubContext('compare')}
       />
 
-      <div className="grid md:grid-cols-2 gap-4 mt-10">
+      <div className="grid md:grid-cols-2 gap-4 mt-6">
         {evidenceComparisons.map((comp, i) => {
           const Icon = categoryIcon[comp.category];
           return (

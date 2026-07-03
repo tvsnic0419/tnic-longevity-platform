@@ -3,29 +3,30 @@
 import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
-import { ArrowRight, ClipboardList, Dna, Menu, Search, ShoppingBag, X } from 'lucide-react';
+import { usePathname } from 'next/navigation';
+import { ArrowRight, ClipboardList, Menu, Search, ShoppingBag, X } from 'lucide-react';
 import { navLinks } from '@/lib/data';
 import { SiteSearch } from '@/components/SiteSearch';
 import { COMMAND_PALETTE_EVENT } from '@/components/os/CommandPalette';
 import { ThemeToggle } from '@/components/theme/ThemeToggle';
+import { Logo } from '@/components/ui/Logo';
 
 export function Nav() {
+  const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
 
+  const isLinkActive = (href: string) => {
+    if (href === '/') return pathname === '/';
+    return pathname === href || pathname.startsWith(`${href}/`);
+  };
+
   useEffect(() => {
-    let rafId: number;
-    const onScroll = () => {
-      cancelAnimationFrame(rafId);
-      rafId = requestAnimationFrame(() => setScrolled(window.scrollY > 24));
-    };
+    const onScroll = () => setScrolled(window.scrollY > 24);
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
-    return () => {
-      window.removeEventListener('scroll', onScroll);
-      cancelAnimationFrame(rafId);
-    };
+    return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
   useEffect(() => {
@@ -49,35 +50,31 @@ export function Nav() {
         className={`absolute inset-0 nav-glass ${scrolled ? 'nav-glass-scrolled' : ''}`}
       />
       <div className="relative container-page py-3 md:py-4 flex justify-between items-center gap-4">
-        <Link href="/" className="focus-ring interactive flex items-center gap-2.5 rounded-lg shrink-0 group">
-          <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-accent-cyan via-accent-emerald to-accent-cyan flex items-center justify-center logo-glow transition-transform group-hover:scale-105">
-            <Dna className="w-5 h-5 text-primary-foreground" aria-hidden="true" />
-          </div>
-          <span className="text-xl font-bold tracking-tight text-foreground">
+        <Link href="/" className="focus-ring interactive flex items-center gap-3 rounded-lg shrink-0 group">
+          <Logo variant="emblem" size="nav" className="group-hover:scale-105 transition-transform" />
+          <span className="text-xl font-bold tracking-tight" style={{ color: '#ffffff' }}>
             TN<span className="shimmer-text">i</span>C
           </span>
         </Link>
 
         <div className="hidden lg:flex gap-0.5 xl:gap-1">
-          {navLinks.map((link) =>
-            isExternal(link.href) ? (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="focus-ring interactive px-3.5 py-2 rounded-xl text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-accent-cyan/10 transition-all"
-              >
+          {navLinks.map((link) => {
+            const active = isLinkActive(link.href);
+            const cls = `focus-ring interactive px-3.5 py-2 rounded-xl text-sm font-medium transition-all ${
+              active
+                ? 'text-accent-cyan bg-accent-cyan/12 shadow-[0_0_20px_-4px_rgba(34,211,238,0.35)]'
+                : 'text-muted-foreground hover:text-foreground hover:bg-accent-cyan/10'
+            }`;
+            return isExternal(link.href) ? (
+              <Link key={link.href} href={link.href} className={cls} aria-current={active ? 'page' : undefined}>
                 {link.label}
               </Link>
             ) : (
-              <a
-                key={link.href}
-                href={link.href}
-                className="focus-ring interactive px-3.5 py-2 rounded-xl text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-accent-cyan/10 transition-all"
-              >
+              <a key={link.href} href={link.href} className={cls}>
                 {link.label}
               </a>
-            ),
-          )}
+            );
+          })}
         </div>
 
         <div className="hidden md:flex items-center gap-2 shrink-0">
@@ -151,7 +148,6 @@ export function Nav() {
                 ) : (
                   <a
                     key={link.href}
-                    href={link.href}
                     onClick={() => setMobileOpen(false)}
                     className="focus-ring interactive flex justify-between items-center text-foreground hover:text-accent-cyan py-3.5 min-h-[var(--space-touch)] text-base font-medium border-b border-border/50 last:border-0"
                   >

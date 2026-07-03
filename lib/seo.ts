@@ -289,3 +289,119 @@ export function serializeJsonLd(...schemas: object[]) {
     { key: i, schema }
   ));
 }
+
+export function buildHowToSchema({
+  name,
+  description,
+  path,
+  steps,
+  totalTime,
+}: {
+  name: string;
+  description: string;
+  path: string;
+  steps: { name: string; text: string }[];
+  totalTime?: string;
+}) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'HowTo',
+    name,
+    description,
+    url: `${SITE.url}${path}`,
+    ...(totalTime && { totalTime }),
+    step: steps.map((s, i) => ({
+      '@type': 'HowToStep',
+      position: i + 1,
+      name: s.name,
+      text: s.text,
+    })),
+    tool: [
+      { '@type': 'HowToTool', name: 'Stack Architect (TNiC)' },
+      { '@type': 'HowToTool', name: 'Longevity OS Dashboard' },
+    ],
+    supply: [
+      { '@type': 'HowToSupply', name: 'PubMed account (free)' },
+      { '@type': 'HowToSupply', name: 'Baseline lab results (recommended)' },
+    ],
+  };
+}
+
+export function buildProductListSchema(
+  products: Array<{
+    name: string;
+    description: string;
+    brand: string;
+    url: string;
+    evidenceTier?: string;
+  }>,
+) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    name: 'Evidence-Verified Longevity Supplements',
+    description: 'One recommended product per evidence-graded compound. Zero pay-for-placement. Every link goes to the manufacturer.',
+    url: `${SITE.url}/products`,
+    itemListElement: products.map((p, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      item: {
+        '@type': 'Product',
+        name: p.name,
+        description: p.description,
+        brand: { '@type': 'Brand', name: p.brand },
+        url: p.url,
+        ...(p.evidenceTier && {
+          additionalProperty: {
+            '@type': 'PropertyValue',
+            name: 'Evidence Tier',
+            value: p.evidenceTier,
+          },
+        }),
+        offers: { '@type': 'Offer', availability: 'https://schema.org/InStock' },
+      },
+    })),
+  };
+}
+
+export function buildGuidePageSchema({
+  title,
+  description,
+  path,
+  keywords = [],
+  faqs = [],
+}: {
+  title: string;
+  description: string;
+  path: string;
+  keywords?: string[];
+  faqs?: { question: string; answer: string }[];
+}) {
+  const schemas: object[] = [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'Article',
+      headline: title,
+      description,
+      url: `${SITE.url}${path}`,
+      author: { '@type': 'Organization', name: SITE.name, url: SITE.url },
+      publisher: { '@type': 'Organization', name: SITE.name, url: SITE.url },
+      dateModified: new Date().toISOString().split('T')[0],
+      keywords: [...LONGEVITY_KEYWORDS, ...keywords].join(', '),
+      isAccessibleForFree: true,
+      educationalUse: 'Longevity education — not medical advice',
+    },
+  ];
+  if (faqs.length > 0) {
+    schemas.push({
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: faqs.map((f) => ({
+        '@type': 'Question',
+        name: f.question,
+        acceptedAnswer: { '@type': 'Answer', text: f.answer },
+      })),
+    });
+  }
+  return schemas;
+}

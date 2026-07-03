@@ -18,6 +18,9 @@ const featureMatrix = [
   { feature: 'Zero Lab Cost Entry', tnic: true, blueprint: false, donotage: true, insidetracker: false, lifespan: true },
   { feature: 'Daily Protocol Timeline', tnic: true, blueprint: true, donotage: true, insidetracker: false, lifespan: false },
   { feature: 'Evidence Tier Grading', tnic: true, blueprint: false, donotage: false, insidetracker: false, lifespan: false },
+  { feature: 'Local-First Data Privacy', tnic: true, blueprint: false, donotage: false, insidetracker: false, lifespan: false },
+  { feature: 'Quiz-Based Personalization', tnic: true, blueprint: false, donotage: false, insidetracker: true, lifespan: false },
+  { feature: 'Compound Interaction Checker', tnic: true, blueprint: false, donotage: false, insidetracker: false, lifespan: false },
 ];
 
 export function CompetitiveEdge() {

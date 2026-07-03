@@ -9,6 +9,7 @@ import {
   Download,
   BadgeCheck,
 } from 'lucide-react';
+import { TiltCard } from '@/components/ui/TiltCard';
 
 const badges = [
   { icon: BadgeCheck, label: 'Tier A/B/C graded',  desc: 'Human trial honesty',      href: '/trust/methodology', accent: 'emerald' },
@@ -34,10 +35,10 @@ export function HomepageTrustStrip() {
           {badges.map((badge) => {
             const ac = accentClasses[badge.accent];
             return (
+              <TiltCard key={badge.label}>
               <Link
-                key={badge.label}
                 href={badge.href}
-                className={`focus-ring card-ultra card-ultra-hover rounded-xl p-4 text-center transition-all group block ${ac.hoverBg}`}
+                className={`focus-ring card-ultra card-ultra-hover rounded-xl p-4 text-center transition-all group block h-full ${ac.hoverBg}`}
               >
                 <badge.icon
                   className={`w-5 h-5 ${ac.icon} mx-auto mb-2 group-hover:scale-110 transition-transform`}
@@ -46,6 +47,7 @@ export function HomepageTrustStrip() {
                 <p className={`text-xs font-semibold leading-tight transition-colors ${ac.hover}`}>{badge.label}</p>
                 <p className="text-caption font-mono mt-1">{badge.desc}</p>
               </Link>
+              </TiltCard>
             );
           })}
         </div>

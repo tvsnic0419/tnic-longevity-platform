@@ -24,18 +24,16 @@ const hubLinks = [
 ];
 
 const resourceLinks = [
+  { href: '/elite-8', label: 'Elite 8 Compounds', icon: Rocket },
+  { href: '/products', label: 'Products', icon: BookOpen },
   { href: '/shop', label: 'Protocol Shop', icon: BookOpen },
-  { href: '/brief', label: 'Protocol Brief', icon: BookOpen },
-  { href: '/labs#lab-partner-oauth', label: 'Lab Partner OAuth', icon: FlaskConical },
-  { href: '/contact', label: 'Contact', icon: HelpCircle },
-  { href: '/library/compare', label: 'Comparisons', icon: BookOpen },
-  { href: '/#hallmark-targets', label: 'Hallmark Targets', icon: Dna },
-  { href: '/#next-up', label: "What's Next", icon: Rocket },
   { href: '/faq', label: 'FAQ', icon: HelpCircle },
+  { href: '/about', label: 'About / Founder', icon: HelpCircle },
+  { href: '/club', label: '150-Year Club', icon: Rocket },
   { href: '/trust', label: 'Trust & Transparency', icon: Shield },
   { href: '/trust/methodology', label: 'Methodology', icon: BookOpen },
   { href: '/trust/disclaimers', label: 'Disclaimers', icon: BookOpen },
-  { href: '/trust/updates', label: 'Update History', icon: BookOpen },
+  { href: '/contact', label: 'Contact', icon: HelpCircle },
   { href: '/site-map', label: 'Site Map', icon: BookOpen },
 ];
 
@@ -44,6 +42,16 @@ export function Footer() {
     <footer className="relative py-14 md:py-20 footer-aurora border-t border-border/50" role="contentinfo">
       <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-accent-cyan/50 to-transparent" />
       <div className="container-page">
+        <div className="mb-12 md:mb-16 text-center border-b border-border/40 pb-10 md:pb-14">
+          <p className="footer-manifesto max-w-3xl mx-auto mb-4">
+            Independent longevity intelligence — built on evidence, designed for privacy, free for everyone.
+          </p>
+          <p className="text-body-sm max-w-xl mx-auto">
+            No venture funding to satisfy. No supplement margin to protect. No data to sell.
+            Just the science of human aging, made actionable.
+          </p>
+        </div>
+
         <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-10 mb-10">
           <div className="sm:col-span-2 lg:col-span-1">
             <Link href="/" className="focus-ring inline-flex items-center gap-2.5 mb-4 rounded-lg group">

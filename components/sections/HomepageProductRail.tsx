@@ -21,8 +21,8 @@ export function HomepageProductRail() {
             <p className="text-label text-accent-amber mb-3">VERIFIED PICKS</p>
             <h2 className="heading-section">Evidence-aligned products</h2>
             <p className="text-muted-foreground mt-3 max-w-xl text-sm">
-              One best-in-class manufacturer link per compound — TNiC earns $0. Cross-check every pick
-              with Protocol Shop COA checklists before you buy.
+              One best-in-class pick per compound. TNiC may earn a commission — it never influences
+              which products are listed. Cross-check every pick with Protocol Shop COA checklists before you buy.
             </p>
           </div>
           <Link

@@ -79,7 +79,7 @@ export function QuizResultPanel({ result, answers, onRetake }: QuizResultPanelPr
             return c ? (
               <span
                 key={id}
-                className="text-[10px] bg-accent-violet/10 text-violet-300 px-2 py-0.5 rounded font-semibold"
+                className="text-[10px] bg-accent-violet/10 text-accent-violet px-2 py-0.5 rounded font-semibold"
               >
                 {c.name}
               </span>
@@ -120,7 +120,7 @@ export function QuizResultPanel({ result, answers, onRetake }: QuizResultPanelPr
               <div>
                 <p className="text-sm font-semibold">Shop verified picks</p>
                 <p className="text-xs text-muted-foreground mt-0.5">
-                  COA checklist filtered to <strong>{result.stack.label}</strong> — TNiC earns $0 from products
+                  COA checklist filtered to <strong>{result.stack.label}</strong> — affiliate links disclosed, commission never influences listings
                 </p>
               </div>
             </div>

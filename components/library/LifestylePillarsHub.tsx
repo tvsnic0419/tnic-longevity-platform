@@ -41,7 +41,7 @@ export function LifestylePillarsHub() {
     <section
       id="lifestyle-pillars"
       aria-labelledby="lifestyle-heading"
-      className="py-16 md:py-20 border-b border-border section-mesh section-glow-amber"
+      className="py-8 md:py-12 border-b border-border section-mesh section-glow-amber"
     >
       <div className="container-page">
         <div className="text-center mb-8 section-header-mesh">

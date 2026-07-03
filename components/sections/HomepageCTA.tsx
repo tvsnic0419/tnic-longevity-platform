@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { ArrowRight, Scan, BookOpen, LayoutDashboard, ShoppingBag, Bell } from 'lucide-react';
+import { ArrowRight, Scan, BookOpen, LayoutDashboard, ShoppingBag } from 'lucide-react';
 import { ContextRail } from '@/components/ui/ContextRail';
 import { usePlatform } from '@/context/PlatformContext';
 import { buildShopPresetUrl } from '@/lib/stack-url';
@@ -37,7 +37,7 @@ const basePaths = [
   {
     icon: ShoppingBag,
     title: 'Verify at Protocol Shop',
-    desc: 'Stack-filtered COA checklists and red flags — TNiC earns $0 from products.',
+    desc: 'Stack-filtered COA checklists and red flags — affiliate links disclosed, commission never influences listings.',
     href: '/shop',
     cta: 'Open Shop',
     accent: 'amber' as AccentKey,
@@ -118,7 +118,7 @@ export function HomepageCTA() {
               <Link
                 key={path.title}
                 href={path.href}
-                className={`group block card-premium p-6 bg-gradient-to-br ${cfg.gradFrom} to-transparent transition-all duration-300 ${cfg.glowHover} h-full`}
+                className={`group block rounded-2xl p-6 border border-border/60 bg-gradient-to-br ${cfg.gradFrom} to-transparent backdrop-blur-sm transition-all duration-300 ${cfg.glowHover} h-full`}
               >
                 <div className={`w-11 h-11 rounded-xl flex items-center justify-center mb-5 ${cfg.iconBadge}`}>
                   <path.icon className={`w-5 h-5 ${cfg.iconText}`} aria-hidden="true" />
@@ -134,7 +134,7 @@ export function HomepageCTA() {
           })}
         </div>
 
-        <div className="card-premium p-8 md:p-12 text-center max-w-3xl mx-auto">
+        <div className="gradient-border p-8 md:p-12 text-center max-w-3xl mx-auto">
           <p className="text-label text-accent-violet mb-3">YOUR OS AWAITS</p>
           <h3 className="text-2xl md:text-3xl font-bold mb-3 tracking-tight">
             Everything in one place.<br className="hidden sm:block" /> Free. Local. Yours.
@@ -143,13 +143,19 @@ export function HomepageCTA() {
             Stack architect, lab hub, 12-hallmark library, six evidence tools — all running in your browser with no account required.
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
-            <Link href="/dashboard" className="focus-ring btn-gradient text-sm">
+            <Link
+              href="/dashboard"
+              className="focus-ring glow-hover-emerald bg-gradient-to-r from-accent-cyan to-accent-emerald text-black px-8 py-3.5 rounded-xl font-semibold text-sm text-center flex items-center justify-center gap-2 transition-all"
+            >
               <LayoutDashboard className="w-4 h-4" />
               Launch Longevity OS
             </Link>
-            <Link href="/brief" className="focus-ring btn-ghost-premium text-sm text-accent-violet">
-              <Bell className="w-4 h-4" />
-              Protocol Brief
+            <Link
+              href="/library"
+              className="focus-ring glass glow-hover-violet px-8 py-3.5 rounded-xl font-semibold text-sm text-accent-violet flex items-center justify-center gap-2 transition-all"
+            >
+              <BookOpen className="w-4 h-4" />
+              Browse Library <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
         </div>

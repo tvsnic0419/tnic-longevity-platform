@@ -191,7 +191,7 @@ const hubPages: PaletteItem[] = [
     kind: 'page',
     title: "What's next",
     subtitle: 'Functional improvements roadmap',
-    href: '/#next-up',
+    href: '/trust/updates#next-up',
     keywords: ['roadmap', 'next', 'upcoming', 'planned', 'shipped', 'changelog', 'improvements'],
   },
   {

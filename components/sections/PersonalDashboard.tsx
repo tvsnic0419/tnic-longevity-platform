@@ -1,6 +1,7 @@
 'use client';
 
-import { useState, useRef, useMemo } from 'react';
+import { useState, useRef } from 'react';
+import Link from 'next/link';
 import { motion } from 'framer-motion';
 import {
   LayoutDashboard,
@@ -13,6 +14,7 @@ import {
   ArrowRight,
 } from 'lucide-react';
 import { SectionShell } from '@/components/SectionShell';
+import { ShareScorecard } from '@/components/scorecard/ShareScorecard';
 import { usePlatform } from '@/context/PlatformContext';
 import { biomarkers, gettingStartedSteps } from '@/lib/data';
 import { getLabStatus } from '@/lib/labs';
@@ -70,7 +72,7 @@ export function PersonalDashboard() {
     setTimeout(() => setImportMsg(null), 4000);
   };
 
-  const stats = useMemo(() => [
+  const stats = [
     {
       label: 'Synergy Score',
       value: `${score}`,
@@ -105,7 +107,7 @@ export function PersonalDashboard() {
       color: 'text-accent-emerald',
       href: '#learn',
     },
-  ], [score, selected.length, profile.scanned, profile.age, defenseProfile.biologicalAge, defenseProfile.ageDelta, labs, labOptimal, checklistDone, checklistTotal]);
+  ];
 
   return (
     <SectionShell
@@ -114,7 +116,7 @@ export function PersonalDashboard() {
       theme="emerald"
       badge="Personal Command Center"
       title="Your Longevity Operating System"
-      subtitle="Stack, labs, bio age, and journey — unified in one dashboard. Everything stays in your browser unless you export it."
+      subtitle="Stack, labs, bio age, and journey — unified in one dashboard, scored by the mechanistic engine."
       className="bg-gradient-to-b from-accent-emerald/5 to-transparent border-y border-border"
     >
       <div className="mb-8 flex flex-wrap items-center justify-between gap-4">
@@ -154,7 +156,7 @@ export function PersonalDashboard() {
             <p className="text-[10px] font-mono text-accent-emerald uppercase">Active Stack</p>
           </div>
           {selectedCompounds.length === 0 ? (
-            <p className="text-sm text-muted-foreground">No compounds selected. <a href="#stacks" className="text-accent-emerald hover:underline">Build your stack</a></p>
+            <p className="text-sm text-muted-foreground">No compounds selected. <Link href="#stacks" className="text-accent-emerald hover:underline">Build your stack</Link></p>
           ) : (
             <div className="grid sm:grid-cols-2 gap-3">
               {selectedCompounds.map((c) => (
@@ -235,6 +237,8 @@ export function PersonalDashboard() {
           </div>
         </div>
       </div>
+
+      <ShareScorecard />
 
       {labs.length > 0 && (
         <div className="mt-6 glass rounded-2xl p-5">

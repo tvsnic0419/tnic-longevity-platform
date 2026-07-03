@@ -1,8 +1,14 @@
 'use client';
+/* eslint-disable react-hooks/set-state-in-effect --
+   The mount/URL-driven effect(s) below set state from client-only sources
+   (localStorage, window, or URL search params) or trigger entrance animations.
+   These cannot run during SSR, so the initial setState is intentional and not a
+   value derivable during render. Reviewed 2026-06-21; safe to keep. */
 
 import { useEffect, useMemo, useState } from 'react';
 import Link from 'next/link';
 import { ShieldAlert, Trophy } from 'lucide-react';
+import { LongevityGaugeArc } from '@/components/ui/LongevityGaugeArc';
 import {
   CLOCK_CONFIDENCE_LABELS,
   ELITE_8_COMPOUNDS,
@@ -221,15 +227,35 @@ function CompoundCard({
 
           {product.isRx && <RxDisclaimer />}
 
-          {product.libraryHref && (
-            <Link
-              href={product.libraryHref}
-              onClick={(e) => e.stopPropagation()}
-              className="inline-block mt-4 text-xs font-semibold text-accent-violet hover:underline"
-            >
-              Read evidence module →
-            </Link>
-          )}
+          <div className="mt-4 flex flex-wrap items-center gap-4">
+            {product.libraryHref && (
+              <Link
+                href={product.libraryHref}
+                onClick={(e) => e.stopPropagation()}
+                className="text-xs font-semibold text-accent-violet hover:underline"
+              >
+                Read evidence module →
+              </Link>
+            )}
+            {!product.isRx && (
+              <Link
+                href={`/stacks`}
+                onClick={(e) => e.stopPropagation()}
+                className="text-xs font-semibold text-accent-amber hover:underline"
+              >
+                Build a stack with {product.name} →
+              </Link>
+            )}
+            {product.evidenceTier === 'A' && !product.isRx && (
+              <Link
+                href={`/library/compare`}
+                onClick={(e) => e.stopPropagation()}
+                className="text-xs font-semibold text-accent-cyan hover:underline"
+              >
+                Head-to-head comparisons →
+              </Link>
+            )}
+          </div>
         </div>
       )}
     </button>
@@ -485,18 +511,32 @@ export function Elite8Hub() {
                   setTab('ranking');
                   setExpanded(p.id);
                 }}
-                className="focus-ring card-premium border border-border/50 rounded-xl p-5 text-left hover:border-accent-emerald/40 transition"
+                className="focus-ring card-premium border border-border/50 rounded-xl p-5 text-center hover:border-accent-emerald/40 transition group"
               >
-                <div className="flex justify-between items-start">
-                  <span className="font-mono text-3xl font-black" style={{ color: p.color }}>
-                    {i + 1}
+                <div className="flex items-center justify-between mb-1">
+                  <span
+                    className="font-mono text-xs font-black tracking-widest opacity-50"
+                    style={{ color: p.color }}
+                  >
+                    #{i + 1}
                   </span>
-                  <span className="font-mono text-2xl font-black" style={{ color: p.color }}>
-                    {p.score.toFixed(1)}
+                  <span
+                    className="inline-flex px-2 py-0.5 rounded-full text-[9px] font-semibold tracking-wider uppercase border"
+                    style={{ borderColor: `${p.color}44`, color: p.color, background: `${p.color}18` }}
+                  >
+                    {p.category}
                   </span>
                 </div>
-                <p className="mt-3 font-semibold text-lg">{p.name}</p>
-                <p className="text-xs text-muted-foreground">{p.category}</p>
+                <div className="mx-auto w-28">
+                  <LongevityGaugeArc
+                    score={p.score}
+                    color={p.color}
+                    label="LQ SCORE"
+                    size={112}
+                    immediate
+                  />
+                </div>
+                <p className="mt-2 font-semibold text-base leading-snug group-hover:text-foreground transition">{p.name}</p>
               </button>
             ))}
           </div>

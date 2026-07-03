@@ -70,7 +70,7 @@ export const hubContexts: Record<
   },
   shop: {
     theme: 'amber',
-    what: 'Stack-filtered buyer verification — COA demands, dose anchors, form requirements, and red flags. TNiC earns $0 from products.',
+    what: 'Stack-filtered buyer verification — COA demands, dose anchors, form requirements, and red flags. Affiliate links disclosed; commission never influences what is listed.',
     why: 'Most longevity sites are affiliate stores in disguise. This is an intelligence checklist, not a catalog — verify before you buy.',
     next: 'Share /shop?stack= with your preset URL, export the checklist, and cross-check against compound deep-dives in the library.',
   },

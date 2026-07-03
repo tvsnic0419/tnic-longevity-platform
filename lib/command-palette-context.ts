@@ -1,7 +1,6 @@
 import { compounds } from './data';
 import { getHubContext, hubContexts, type HubContext } from './hub-context';
-
-type HubKey = keyof typeof hubContexts;
+import { resolveHubKey, type HubKey } from './route-context';
 import {
   paletteIndex,
   paletteKindLabels,
@@ -21,24 +20,6 @@ export interface PaletteResults {
   flat: PaletteItem[];
   hubHint?: HubContext;
 }
-
-const HUB_PATH_MAP: Record<string, HubKey> = {
-  '/dashboard': 'dashboard',
-  '/stacks': 'stacks',
-  '/labs': 'labs',
-  '/tools': 'tools',
-  '/shop': 'shop',
-  '/products': 'products',
-  '/elite-8': 'tools',
-  '/brief': 'brief',
-  '/learn': 'learn',
-  '/faq': 'learn',
-  '/quiz': 'quiz',
-  '/library/compare': 'compare',
-  '/library': 'library',
-  '/trust': 'trust',
-  '/contact': 'contact',
-};
 
 function item(
   id: string,
@@ -60,16 +41,6 @@ function item(
     keywords: opts.keywords ?? [title.toLowerCase()],
     actionId: opts.actionId,
   };
-}
-
-function resolveHubKey(pathname: string): HubKey | null {
-  const entries = Object.entries(HUB_PATH_MAP).sort((a, b) => b[0].length - a[0].length);
-  for (const [prefix, key] of entries) {
-    if (pathname === prefix || pathname.startsWith(`${prefix}/`)) {
-      return key;
-    }
-  }
-  return null;
 }
 
 function getPageContextItems(pathname: string): PaletteItem[] {

@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { ArrowLeft, BookOpen } from 'lucide-react';
+import { ArrowLeft, BookOpen, Network } from 'lucide-react';
 import Link from 'next/link';
 import type { HallmarkLibraryEntry } from '@/lib/types';
 import { HallmarkVisual } from './HallmarkVisual';
@@ -10,6 +10,8 @@ import { HallmarkNotesPanel } from './HallmarkNotesPanel';
 import { MdxRenderer } from './MdxRenderer';
 import { ContextRail } from '@/components/ui/ContextRail';
 import { getHallmarkContext } from '@/lib/hub-context';
+import { SystemsSynthesisView } from './SystemsSynthesisView';
+import { HALLMARK_VISUALS } from '@/components/illustrations/HallmarkVisuals';
 
 export function HallmarkDetail({
   hallmark,
@@ -18,6 +20,8 @@ export function HallmarkDetail({
   hallmark: HallmarkLibraryEntry;
   mdxBody: string | null;
 }) {
+  const MechanismVisual = HALLMARK_VISUALS[hallmark.id];
+
   return (
     <div className="min-h-screen bg-background text-foreground pt-6 md:pt-8 pb-20">
       <div className="max-w-7xl mx-auto px-6">
@@ -35,6 +39,14 @@ export function HallmarkDetail({
               coverage={hallmark.coverage}
               number={hallmark.number}
             />
+            {MechanismVisual && (
+              <div className="glass rounded-xl overflow-hidden">
+                <p className="text-[9px] font-mono text-muted-foreground uppercase tracking-wider px-4 pt-3 pb-1">
+                  Mechanism Diagram
+                </p>
+                <MechanismVisual className="w-full" />
+              </div>
+            )}
             <HallmarkNotesPanel hallmark={hallmark} />
           </div>
 
@@ -49,6 +61,19 @@ export function HallmarkDetail({
               <div className="glass rounded-xl p-5 mb-4">
                 <p className="text-[10px] font-mono text-accent-violet uppercase mb-2">Mechanism</p>
                 <p className="text-sm text-foreground/80 leading-relaxed">{hallmark.mechanism}</p>
+                {hallmark.keyMolecules && hallmark.keyMolecules.length > 0 && (
+                  <div className="flex flex-wrap gap-1.5 mt-3 pt-3 border-t border-border/30">
+                    <span className="text-[9px] font-mono text-muted-foreground uppercase tracking-wider self-center mr-1">Key targets:</span>
+                    {hallmark.keyMolecules.map((mol) => (
+                      <span
+                        key={mol}
+                        className="font-mono text-[10px] px-2 py-0.5 rounded-md bg-accent-violet/10 text-accent-violet border border-accent-violet/25 select-all"
+                      >
+                        {mol}
+                      </span>
+                    ))}
+                  </div>
+                )}
               </div>
               <div className="glass rounded-xl p-5">
                 <p className="text-[10px] font-mono text-accent-amber uppercase mb-2">Why it matters</p>
@@ -76,6 +101,25 @@ export function HallmarkDetail({
                 interventions={hallmark.interventions}
                 hallmarkTitle={hallmark.title}
               />
+            </div>
+
+            {/* Systems Synthesis */}
+            <div>
+              <div className="flex items-center justify-between gap-3 mb-4">
+                <div className="flex items-center gap-2">
+                  <Network className="w-4 h-4 text-accent-violet" />
+                  <p className="text-[10px] font-mono text-accent-violet uppercase tracking-wider">
+                    System Effects — cross-hallmark synthesis
+                  </p>
+                </div>
+                <Link
+                  href="/library/systems"
+                  className="text-xs font-semibold text-accent-violet hover:text-accent-violet/80 transition shrink-0"
+                >
+                  Full Systems Map →
+                </Link>
+              </div>
+              <SystemsSynthesisView hallmarkId={hallmark.id} />
             </div>
           </div>
         </div>

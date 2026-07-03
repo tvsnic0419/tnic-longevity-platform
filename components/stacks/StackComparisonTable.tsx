@@ -150,7 +150,7 @@ export function StackComparisonTable() {
                 <td className="px-4 py-3">
                   <div className="flex flex-wrap gap-1 max-w-[200px]">
                     {stack.compoundIds.map((id) => (
-                      <span key={id} className="text-[9px] font-mono bg-accent-violet/10 text-violet-300 px-1.5 py-0.5 rounded">
+                      <span key={id} className="text-[9px] font-mono bg-accent-violet/10 text-accent-violet px-1.5 py-0.5 rounded">
                         {compounds.find((c) => c.id === id)?.name.split(' ')[0] ?? id}
                       </span>
                     ))}
