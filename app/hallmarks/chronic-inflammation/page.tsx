@@ -92,7 +92,7 @@ export default function ChronicInflammationPage() {
               Chronic<br /><span className="text-rose-400">Inflammation</span>
             </h1>
             <p className="text-xl text-muted-foreground leading-relaxed max-w-2xl mb-8">
-              "Inflammaging" — the slow-burning systemic inflammation that accumulates with age — predicts cardiovascular
+              “Inflammaging” — the slow-burning systemic inflammation that accumulates with age — predicts cardiovascular
               events, cancer risk, and cognitive decline more reliably than almost any other single biomarker.
             </p>
             <div className="flex flex-wrap gap-3">

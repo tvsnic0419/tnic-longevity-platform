@@ -605,7 +605,7 @@ export function StackImpactPreview() {
           }}
         >
           Estimates are mechanism-derived projections from the published human-trial primary endpoints
-          cited above. The "without stack" trajectory reflects observed 90-day biological-age
+          cited above. The “without stack” trajectory reflects observed 90-day biological-age
           accumulation rates in the control arms of the same trials. Individual results depend on
           baseline health, adherence, and bioavailability. This is educational content —
           not a medical claim or individualised advice.

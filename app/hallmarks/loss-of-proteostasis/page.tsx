@@ -82,7 +82,7 @@ export default function LossOfProteostasisPage() {
               Loss of<br /><span className="text-amber-400">Proteostasis</span>
             </h1>
             <p className="text-xl text-muted-foreground leading-relaxed max-w-2xl mb-8">
-              Misfolded proteins are the substrate of Alzheimer's, Parkinson's, and ALS. The proteostasis
+              Misfolded proteins are the substrate of Alzheimer’s, Parkinson’s, and ALS. The proteostasis
               network — chaperones, proteasome, autophagy — keeps proteins folded correctly. With age, it fails.
             </p>
             <div className="flex flex-wrap gap-3">
@@ -116,7 +116,7 @@ export default function LossOfProteostasisPage() {
               <div className="space-y-4">
                 <p>
                   The consequence is <strong className="text-foreground">protein aggregate accumulation</strong>: amyloid-β and
-                  tau in neurons (Alzheimer's), α-synuclein in dopaminergic neurons (Parkinson's), TDP-43 in
+                  tau in neurons (Alzheimer’s), α-synuclein in dopaminergic neurons (Parkinson’s), TDP-43 in
                   motor neurons (ALS), and Lewy bodies across multiple cell types. These aggregates are not
                   merely passive markers of disease — they actively inhibit proteasome function, spread via
                   prion-like mechanisms, and drive neuroinflammation.

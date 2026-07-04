@@ -3,7 +3,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
-export const DisabledMacroautophagyVisual: React.FC<any> = ({
+export const DisabledMacroautophagyVisual: React.FC<{ className?: string; showLabels?: boolean; accentColor?: string }> = ({
   className = '',
   showLabels = true,
 }) => {

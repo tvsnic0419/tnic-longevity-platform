@@ -3,7 +3,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
-export const ChronicInflammationVisual: React.FC<any> = ({
+export const ChronicInflammationVisual: React.FC<{ className?: string; showLabels?: boolean; accentColor?: string }> = ({
   className = '',
   accentColor = '#f472b6',
   showLabels = true,

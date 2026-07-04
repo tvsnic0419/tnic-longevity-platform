@@ -135,7 +135,7 @@ export default function DisabledMacroautophagyPage() {
                   (suppress via amino acid depletion), <strong className="text-foreground">resveratrol</strong> (AMPK/SIRT1),
                   <strong className="text-foreground"> NMN</strong> (sirtuin counterbalance to mTOR), and
                   <strong className="text-foreground"> low refined carbohydrate diet</strong> (insulin/IGF-1 reduction).
-                  Combined, these approximate ~40% of rapamycin's mTOR inhibition without immunosuppressive risk.
+                  Combined, these approximate ~40% of rapamycin’s mTOR inhibition without immunosuppressive risk.
                 </p>
               </div>
             </div>

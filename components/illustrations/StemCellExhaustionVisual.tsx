@@ -3,7 +3,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
-export const StemCellExhaustionVisual: React.FC<any> = ({
+export const StemCellExhaustionVisual: React.FC<{ className?: string; showLabels?: boolean; accentColor?: string }> = ({
   className = '',
   showLabels = true,
 }) => {

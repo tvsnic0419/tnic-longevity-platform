@@ -65,7 +65,7 @@ export function PremiumManifestoSection() {
 
           <h2 className="headline-editorial mb-6">
             Supplements work when<br />
-            <span className="gradient-sweep-text">they're stacked correctly.</span>
+            <span className="gradient-sweep-text">they’re stacked correctly.</span>
           </h2>
 
           <p className="manifesto-text max-w-2xl">

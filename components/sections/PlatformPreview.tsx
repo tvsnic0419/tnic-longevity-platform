@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import { LayoutDashboard, Layers, FlaskConical, Check } from 'lucide-react';
 
@@ -392,12 +393,12 @@ export function PlatformPreview() {
             Stack pre-loaded, hallmarks mapped, biomarker templates ready.
           </p>
           <div className="flex items-center gap-4 flex-wrap justify-center">
-            <a href="/#starter-quiz" className="btn-gradient text-sm">
+            <Link href="/#starter-quiz" className="btn-gradient text-sm">
               Build Your Protocol
-            </a>
-            <a href="/dashboard" className="btn-ghost-premium text-sm">
+            </Link>
+            <Link href="/dashboard" className="btn-ghost-premium text-sm">
               Open Dashboard
-            </a>
+            </Link>
           </div>
         </div>
       </div>

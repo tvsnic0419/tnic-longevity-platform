@@ -82,8 +82,8 @@ export default function EpigeneticAlterationsPage() {
               Epigenetic<br /><span className="text-cyan-400">Alterations</span>
             </h1>
             <p className="text-xl text-muted-foreground leading-relaxed max-w-2xl mb-8">
-              Your DNA sequence doesn't change — but which genes are active does. Methylation patterns drift with age,
-              silencing youthful genes and reactivating pro-aging ones. Horvath's clock reads this drift to the year.
+              Your DNA sequence doesn’t change — but which genes are active does. Methylation patterns drift with age,
+              silencing youthful genes and reactivating pro-aging ones. Horvath’s clock reads this drift to the year.
             </p>
             <div className="flex flex-wrap gap-3">
               <Link href="/stacks" className="inline-flex items-center gap-2 bg-cyan-500 text-black px-5 py-3 rounded-xl text-sm font-bold hover:bg-cyan-400 transition-colors">Build My Stack <ArrowRight className="w-4 h-4" /></Link>
@@ -95,7 +95,7 @@ export default function EpigeneticAlterationsPage() {
         <section className="py-20 border-t border-border/50">
           <div className="container-page max-w-4xl">
             <p className="text-xs text-cyan-400 uppercase tracking-widest font-medium mb-4">The Mechanism</p>
-            <h2 className="text-3xl font-black tracking-tight text-foreground mb-6">The epigenetic clock — and why it's partially reversible</h2>
+            <h2 className="text-3xl font-black tracking-tight text-foreground mb-6">The epigenetic clock — and why it’s partially reversible</h2>
             <div className="grid md:grid-cols-2 gap-8 text-muted-foreground leading-relaxed">
               <div className="space-y-4">
                 <p>
@@ -114,14 +114,14 @@ export default function EpigeneticAlterationsPage() {
               </div>
               <div className="space-y-4">
                 <p>
-                  Steve Horvath's 2013 discovery (Genome Biology) identified 353 CpG sites whose methylation state
+                  Steve Horvath’s 2013 discovery (Genome Biology) identified 353 CpG sites whose methylation state
                   predicts age with a median error of 3.6 years across all tissues. Subsequent clocks (GrimAge, DunedinPACE)
                   refined this to predict mortality and pace of aging respectively.
                 </p>
                 <p>
                   The most important finding: <strong className="text-foreground">epigenetic age is partially reversible.</strong>
                   Yamanaka factor reprogramming (Oct4, Sox2, Klf4) resets methylation to embryonic patterns in mice —
-                  restoring vision and cognition. The Horvath/Sinclair "Information Theory of Aging" frames this as
+                  restoring vision and cognition. The Horvath/Sinclair “Information Theory of Aging” frames this as
                   recoverable signal, not irreversible entropy. AKG supplementation in humans already shows 8-year
                   epigenetic age reduction in a controlled trial.
                 </p>

@@ -3,7 +3,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
-export const DeregulatedNutrientSensingVisual: React.FC<any> = ({
+export const DeregulatedNutrientSensingVisual: React.FC<{ className?: string; showLabels?: boolean; accentColor?: string }> = ({
   className = '',
   showLabels = true,
 }) => {

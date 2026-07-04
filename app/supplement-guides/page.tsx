@@ -321,7 +321,7 @@ export default function SupplementGuidesPage() {
               <p className="text-label mb-2">Head-to-head</p>
               <h2 className="heading-section mb-3">Supplement Comparisons</h2>
               <p className="text-body-sm text-muted-foreground max-w-xl">
-                Can't decide between two options? Our structured comparison pages score each compound
+                Can’t decide between two options? Our structured comparison pages score each compound
                 on 6–10 dimensions with evidence-tier ratings.
               </p>
             </div>

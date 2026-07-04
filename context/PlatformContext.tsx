@@ -118,6 +118,9 @@ export function PlatformProvider({ children }: { children: ReactNode }) {
   const [prevLabsCount, setPrevLabsCount] = useState(0);
   const [quizResult, setQuizResultState] = useState<QuizRecord | null>(null);
 
+  // One-time hydration from URL + client-only storage after mount; neither is available
+  // during SSR, so the initial client render must match the server before these apply.
+  /* eslint-disable react-hooks/set-state-in-effect */
   useEffect(() => {
     const fromUrl = readStackFromUrl();
     const mode = getPrivacyMode();
@@ -145,6 +148,7 @@ export function PlatformProvider({ children }: { children: ReactNode }) {
     if (quizRaw) setQuizResultState(quizRaw);
     setHydrated(true);
   }, []);
+  /* eslint-enable react-hooks/set-state-in-effect */
 
   const persistMilestones = useCallback(
     (next: UserMilestone[]) => {

@@ -267,7 +267,7 @@ function StepMetabolic({
       <div>
         <p className="text-2xl font-bold text-foreground mb-1">Metabolic markers</p>
         <p className="text-sm text-muted-foreground">
-          Your most recent blood panel. Skip any you don't have — we'll estimate from BMI.
+          Your most recent blood panel. Skip any you don’t have — we’ll estimate from BMI.
         </p>
       </div>
 
@@ -288,7 +288,7 @@ function StepMetabolic({
         <input type="checkbox" checked={data.skipped}
           onChange={(e) => onChange({ skipped: e.target.checked })}
           className="w-4 h-4 rounded accent-emerald-500" />
-        <span className="text-sm text-muted-foreground">I don't have lab values — use BMI only</span>
+        <span className="text-sm text-muted-foreground">I don’t have lab values — use BMI only</span>
       </label>
 
       <div className="rounded-xl bg-emerald-500/5 border border-emerald-500/20 p-4 text-xs text-muted-foreground leading-relaxed">

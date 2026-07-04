@@ -82,7 +82,7 @@ export default function StemCellExhaustionPage() {
               Stem Cell<br /><span className="text-rose-400">Exhaustion</span>
             </h1>
             <p className="text-xl text-muted-foreground leading-relaxed max-w-2xl mb-8">
-              Stem cells are your body's repair crews. By age 70, muscle stem cell numbers drop 50% and bone marrow
+              Stem cells are your body’s repair crews. By age 70, muscle stem cell numbers drop 50% and bone marrow
               output narrows. Wounds heal slower, muscle wastes, and immunity narrows to a smaller repertoire.
             </p>
             <div className="flex flex-wrap gap-3">
@@ -125,7 +125,7 @@ export default function StemCellExhaustionPage() {
                   The most tractable intervention: <strong className="text-foreground">mechanical loading activates satellite
                   cells</strong> (muscle stem cells) directly, bypassing niche dependence. Resistance training is the
                   only Tier A intervention with robust human RCT evidence for stem cell activation in aging muscle —
-                  and it's free.
+                  and it’s free.
                 </p>
               </div>
             </div>

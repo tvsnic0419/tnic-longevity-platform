@@ -3,7 +3,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
-export const AlteredIntercellularCommunicationVisual: React.FC<any> = ({
+export const AlteredIntercellularCommunicationVisual: React.FC<{ className?: string; showLabels?: boolean; accentColor?: string }> = ({
   className = '',
   showLabels = true,
 }) => {

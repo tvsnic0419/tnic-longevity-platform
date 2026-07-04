@@ -89,7 +89,7 @@ export default function GenomicInstabilityPage() {
               <span className="text-cyan-400">Instability</span>
             </h1>
             <p className="text-xl text-muted-foreground leading-relaxed max-w-2xl mb-8">
-              Your DNA suffers ~10,000 lesions per cell per day. Young cells repair most of them. Aging cells don't —
+              Your DNA suffers ~10,000 lesions per cell per day. Young cells repair most of them. Aging cells don’t —
               and the accumulation of unrepaired damage is arguably the most upstream driver of every other hallmark.
             </p>
             <div className="flex flex-wrap gap-3">
@@ -117,7 +117,7 @@ export default function GenomicInstabilityPage() {
                   nucleotide excision repair (NER), and homologous recombination (HR).
                 </p>
                 <p>
-                  The critical failure mode of aging is not increased damage rate — it's <strong className="text-foreground">declining repair capacity</strong>.
+                  The critical failure mode of aging is not increased damage rate — it’s <strong className="text-foreground">declining repair capacity</strong>.
                   PARP1 and SIRT1, the sentinel repair enzymes, both consume NAD+ as substrate. As NAD+ falls ~50% between
                   age 20 and 60, repair throughput collapses. Misrepaired breaks → chromosomal rearrangements → oncogenic
                   mutations → senescent cells → systemic inflammation.
@@ -133,7 +133,7 @@ export default function GenomicInstabilityPage() {
                 <p>
                   The third axis is <strong className="text-foreground">epigenomic instability</strong>: oxidative damage to histones and aberrant DNMT3a
                   activity scramble methylation patterns, silencing tumor suppressors and activating oncogenes without
-                  changing the sequence. This is the substrate of Horvath's epigenetic clock — the ratio of maintained
+                  changing the sequence. This is the substrate of Horvath’s epigenetic clock — the ratio of maintained
                   vs. drifted CpG sites directly tracks biological age.
                 </p>
               </div>
@@ -190,7 +190,7 @@ export default function GenomicInstabilityPage() {
             </div>
             <h2 className="text-3xl font-black tracking-tight text-foreground mb-2">What actually works</h2>
             <p className="text-muted-foreground mb-8">
-              Tier A = human RCT evidence. Tier B = at least one human trial + strong mechanistic data. We don't list Tier C here.
+              Tier A = human RCT evidence. Tier B = at least one human trial + strong mechanistic data. We don’t list Tier C here.
             </p>
             <div className="space-y-5">
               {INTERVENTIONS.map((iv) => (

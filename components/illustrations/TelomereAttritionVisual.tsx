@@ -3,7 +3,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
-export const TelomereAttritionVisual: React.FC<any> = ({
+export const TelomereAttritionVisual: React.FC<{ className?: string; showLabels?: boolean; accentColor?: string }> = ({
   className = '',
   showLabels = true,
 }) => {

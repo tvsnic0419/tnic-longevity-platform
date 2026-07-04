@@ -3,7 +3,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
-export const LossOfProteostasisVisual: React.FC<any> = ({
+export const LossOfProteostasisVisual: React.FC<{ className?: string; showLabels?: boolean; accentColor?: string }> = ({
   className = '',
   accentColor = '#67f6ff',
   showLabels = true,

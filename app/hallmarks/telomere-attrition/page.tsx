@@ -103,7 +103,7 @@ export default function TelomereAttritionPage() {
             <div className="grid md:grid-cols-2 gap-8 text-muted-foreground leading-relaxed">
               <div className="space-y-4">
                 <p>
-                  DNA polymerase cannot replicate the 3' end of the lagging strand — the "end replication problem."
+                  DNA polymerase cannot replicate the 3’ end of the lagging strand — the “end replication problem.”
                   Each replication cycle truncates telomeres by 50–200 bp. Telomerase, a reverse transcriptase
                   enzyme, extends them in germ cells and stem cells — but is silenced in most somatic tissue.
                   The result: <strong className="text-foreground">a finite replication counter built into every cell.</strong>

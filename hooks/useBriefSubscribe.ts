@@ -17,6 +17,8 @@ export function useBriefSubscribe(initialEmail = '') {
   const [deliveryMode, setDeliveryMode] = useState<BriefDeliveryMode | null>(null);
   const [welcomeSent, setWelcomeSent] = useState(false);
 
+  // Hydrate from client-only storage after mount; localStorage is unavailable during SSR.
+  /* eslint-disable react-hooks/set-state-in-effect */
   useEffect(() => {
     const record = getBriefSubscription();
     if (record) {
@@ -24,6 +26,7 @@ export function useBriefSubscribe(initialEmail = '') {
       setEmail(record.email);
     }
   }, []);
+  /* eslint-enable react-hooks/set-state-in-effect */
 
   const applyResult = useCallback((result: BriefSubscribeResponse) => {
     if (result.ok) {

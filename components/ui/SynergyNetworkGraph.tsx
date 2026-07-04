@@ -115,6 +115,8 @@ export function SynergyNetworkGraph() {
   const uid = useId().replace(/:/g, 's');
   const svgRef = useRef<SVGSVGElement>(null);
 
+  // Mount guard so SSR and first client render match; the flag can only flip client-side.
+  // eslint-disable-next-line react-hooks/set-state-in-effect
   useEffect(() => { setMounted(true); }, []);
 
   const nodeMap = Object.fromEntries(NODES.map(n => [n.id, n]));

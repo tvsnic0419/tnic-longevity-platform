@@ -99,7 +99,7 @@ export default function MitochondrialDysfunctionPage() {
               <span className="text-amber-400">Dysfunction</span>
             </h1>
             <p className="text-xl text-muted-foreground leading-relaxed max-w-2xl mb-8">
-              Mitochondria are your cells' power plants. By age 70, OxPhos efficiency drops ~30%, NAD+ falls ~50%,
+              Mitochondria are your cells’ power plants. By age 70, OxPhos efficiency drops ~30%, NAD+ falls ~50%,
               and mitochondrial ROS leaks accelerate damage across every hallmark of aging. Fixing this is foundational.
             </p>
             <div className="flex flex-wrap gap-3">

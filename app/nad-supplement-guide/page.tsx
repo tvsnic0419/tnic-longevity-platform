@@ -193,7 +193,7 @@ export default function NadSupplementGuidePage() {
           <p className="text-lg text-muted-foreground leading-relaxed mb-8 max-w-2xl">
             NAD+ declines ~50% by age 60. Restoring it activates sirtuins, accelerates DNA repair,
             and supports mitochondrial energy production — but only if you choose the right precursor
-            at the right dose. Here's what the human trials actually show.
+            at the right dose. Here’s what the human trials actually show.
           </p>
           <div className="flex flex-wrap gap-4 mb-10">
             <Link

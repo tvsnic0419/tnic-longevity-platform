@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { motion } from 'framer-motion';
+import Link from 'next/link';
 
 interface SynergyNetworkTeaserProps {
   className?: string;
@@ -71,9 +71,9 @@ export const SynergyNetworkTeaser: React.FC<SynergyNetworkTeaserProps> = ({ clas
           <span className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-[var(--accent-violet)]" /> SIRT1/PGC-1α</span>
           <span className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-[var(--accent-emerald)]" /> Mitochondrial</span>
         </div>
-        <a href="/library" className="text-[var(--accent-cyan)] hover:underline flex items-center gap-1 group">
+        <Link href="/library" className="text-[var(--accent-cyan)] hover:underline flex items-center gap-1 group">
           Explore full network <span className="group-hover:translate-x-0.5 transition">→</span>
-        </a>
+        </Link>
       </div>
     </div>
   );

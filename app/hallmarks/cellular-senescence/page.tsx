@@ -127,7 +127,7 @@ export default function CellularSenescencePage() {
                   The <strong className="text-foreground">Senescence-Associated Secretory Phenotype (SASP)</strong> is what makes
                   senescent cells dangerous neighbors. They secrete IL-6, IL-1β, TNF-α, MMP-3, MMP-9, and dozens
                   of other pro-inflammatory factors — converting surrounding healthy cells to senescence in a
-                  paracrine cascade known as the "bystander effect."
+                  paracrine cascade known as the “bystander effect.”
                 </p>
                 <p>
                   SASP drives: tissue fibrosis (via TGF-β), cancer microenvironment formation (via MMP-mediated ECM breakdown),
