@@ -14,7 +14,6 @@ export const GenomicInstabilityVisual: React.FC<GenomicInstabilityVisualProps> =
   className = '',
   accentColor = '#67f6ff',
   showLabels = true,
-  interactive = true,
 }) => {
   return (
     <div className={`relative tnic-glass rounded-2xl p-5 overflow-hidden ${className}`}>

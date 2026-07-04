@@ -1,7 +1,7 @@
 'use client';
 
 import { useMemo, useState } from 'react';
-import { Download, Copy, FileText, Image, CheckCircle2 } from 'lucide-react';
+import { Copy, FileText, Image as ImageIcon, CheckCircle2 } from 'lucide-react';
 import { usePlatform } from '@/context/PlatformContext';
 import { analyzeStack } from '@/lib/stack-analysis';
 import { runBiomarkerDashboard } from '@/lib/tools/biomarker-dashboard';
@@ -104,7 +104,7 @@ export function DashboardStatusExport() {
           onClick={() => downloadDashboardStatusPng(snapshot)}
           className="focus-ring inline-flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs font-semibold glass hover:border-accent-emerald/30 transition"
         >
-          <Image className="w-3.5 h-3.5" />
+          <ImageIcon className="w-3.5 h-3.5" />
           PNG snapshot
         </button>
       </div>

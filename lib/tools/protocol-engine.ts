@@ -1,5 +1,4 @@
 import { biomarkers, compounds, calculateDefenseProfile } from '../data';
-import { hallmarkLibrary } from '../hallmarks-library';
 import { getLabStatus, type LabEntry } from '../labs';
 import { stackPresets } from '../presets';
 import type { EvidenceTier } from '../types';

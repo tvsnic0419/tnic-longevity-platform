@@ -17,7 +17,6 @@ export const EpigeneticAlterationsVisual: React.FC<EpigeneticAlterationsVisualPr
   className = '',
   accentColor = '#c084fc',
   showLabels = true,
-  interactive = true,
 }) => {
   return (
     <div className={`relative tnic-glass rounded-2xl p-5 overflow-hidden ${className}`}>

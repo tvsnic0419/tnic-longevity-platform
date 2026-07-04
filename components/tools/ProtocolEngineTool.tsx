@@ -1,7 +1,7 @@
 'use client';
 
 import { useMemo } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import {
   BarChart,
   Bar,
@@ -18,7 +18,6 @@ import { useToolsStore } from '@/stores/toolsStore';
 import {
   runProtocolEngine,
   protocolGoalOptions,
-  type ProtocolGoal,
 } from '@/lib/tools/protocol-engine';
 import { EvidenceTag } from '@/components/trust/EvidenceTag';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/Card';

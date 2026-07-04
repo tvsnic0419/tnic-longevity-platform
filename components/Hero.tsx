@@ -2,14 +2,11 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { motion } from 'framer-motion';
 import { ClipboardList, LayoutDashboard, ArrowRight, Sparkles } from 'lucide-react';
 import { usePlatform } from '@/context/PlatformContext';
 import { getHeroPersonalization } from '@/lib/homepage-personalization';
-import { StatStrip } from '@/components/ui/StatStrip';
 import { ContextRail } from '@/components/ui/ContextRail';
 import { HeroNetworkCanvas } from '@/components/ui/HeroNetworkCanvas';
-import { HeroAgingTicker } from '@/components/ui/HeroAgingTicker';
 import { StarterQuiz } from '@/components/sections/StarterQuiz';
 
 export function Hero() {

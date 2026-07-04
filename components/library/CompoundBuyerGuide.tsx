@@ -6,7 +6,6 @@ import {
   AlertOctagon,
   FlaskConical,
   Scale,
-  ArrowRight,
   CheckCircle2,
 } from 'lucide-react';
 import type { CompoundBuyerGuide as BuyerGuide } from '@/lib/buyer-guides';

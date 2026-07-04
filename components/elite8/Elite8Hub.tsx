@@ -11,7 +11,6 @@ import { ShieldAlert, Trophy } from 'lucide-react';
 import { LongevityGaugeArc } from '@/components/ui/LongevityGaugeArc';
 import {
   CLOCK_CONFIDENCE_LABELS,
-  ELITE_8_COMPOUNDS,
   LQ_DIMENSIONS,
   LQ_WEIGHTS,
   type LQDimensionKey,

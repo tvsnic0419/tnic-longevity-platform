@@ -3,7 +3,7 @@ import { hallmarkLibrary } from './hallmarks-library';
 import { libraryModules, getModulePath, libraryCategoryMeta } from './library-modules';
 import { evidenceComparisons } from './comparisons';
 import { getAllBriefIssues } from './brief-research-sync';
-import { lifestylePillars, lifestylePillarOrder } from './lifestyle-pillars';
+import { lifestylePillars } from './lifestyle-pillars';
 
 export type LibrarySearchKind = 'hallmark' | 'module' | 'compound' | 'compare' | 'brief';
 

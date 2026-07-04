@@ -6,7 +6,6 @@ import { EvidenceCompareTable } from '@/components/library/EvidenceCompareTable'
 import { StructuredData } from '@/components/seo/StructuredData';
 import { PageHeader } from '@/components/ui/PageHeader';
 import {
-  evidenceComparisons,
   getAllComparisonSlugs,
   getComparison,
 } from '@/lib/comparisons';

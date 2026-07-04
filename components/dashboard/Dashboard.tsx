@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { ArrowRight, Activity, FlaskConical, Layers, LayoutDashboard } from 'lucide-react';
+import { ArrowRight, Activity, FlaskConical, LayoutDashboard } from 'lucide-react';
 import { LongevityGaugeArc } from '@/components/ui/LongevityGaugeArc';
 import { usePlatform } from '@/context/PlatformContext';
 import { analyzeStack } from '@/lib/stack-analysis';

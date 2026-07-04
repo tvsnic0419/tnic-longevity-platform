@@ -145,7 +145,6 @@ export const EpigeneticAlterationsVisual: React.FC<HallmarkVisualProps> = ({
 export const ProteostasisVisual: React.FC<HallmarkVisualProps> = ({
   className = '',
   size = 320,
-  accentColor = 'violet',
 }) => {
   const accent = '#a78bfa';
   return (

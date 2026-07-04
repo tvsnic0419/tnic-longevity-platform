@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useMemo } from 'react';
+import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   ArrowRight, ArrowLeft, FlaskConical, Flame, Zap, Moon, RotateCcw,
@@ -69,7 +69,7 @@ function NumberInput({
 
 // ── Progress bar ─────────────────────────────────────────────────────────
 
-function WizardProgress({ step, total }: { step: number; total: number }) {
+function WizardProgress({ step }: { step: number }) {
   const steps = ['Profile', 'Metabolic', 'Inflammation', 'Lifestyle', 'Results'];
   return (
     <div className="mb-8">
@@ -552,11 +552,10 @@ export function BioAgeWizard() {
     setStep(0);
   }
 
-  const TOTAL_STEPS = 4; // 0-3 input, 4 = results
 
   return (
     <div className="max-w-2xl mx-auto">
-      <WizardProgress step={step} total={TOTAL_STEPS} />
+      <WizardProgress step={step} />
 
       <div className="rounded-2xl border border-border/60 bg-card/50 overflow-hidden">
         <div className="px-6 py-5 border-b border-border/50 bg-gradient-to-r from-emerald-500/8 to-transparent">

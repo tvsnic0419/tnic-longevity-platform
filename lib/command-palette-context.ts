@@ -1,6 +1,6 @@
 import { compounds } from './data';
-import { getHubContext, hubContexts, type HubContext } from './hub-context';
-import { resolveHubKey, type HubKey } from './route-context';
+import { getHubContext, type HubContext } from './hub-context';
+import { resolveHubKey } from './route-context';
 import {
   paletteIndex,
   paletteKindLabels,

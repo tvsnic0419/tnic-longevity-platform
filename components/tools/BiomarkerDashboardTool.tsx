@@ -9,7 +9,6 @@ import {
   Tooltip,
   ResponsiveContainer,
   Legend,
-  ReferenceLine,
   Area,
   ComposedChart,
 } from 'recharts';

@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { ArrowRight, Target, BookOpen, BarChart3, CheckCircle } from 'lucide-react';
+import { ArrowRight, Target, CheckCircle } from 'lucide-react';
 import { RecommendedNextSteps } from '@/components/ui/RecommendedNextSteps';
 
 interface PostQuizResultProps {

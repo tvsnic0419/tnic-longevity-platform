@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 import { ArrowRight, FlaskConical, Clock, ShieldCheck, Zap, ExternalLink, Lock } from 'lucide-react';
-import { getScoredCompounds, calcLQScore, LQ_DIMENSIONS, CLOCK_CONFIDENCE_LABELS, type ScoredLQCompound } from '@/lib/elite-8-data';
+import { getScoredCompounds, LQ_DIMENSIONS, CLOCK_CONFIDENCE_LABELS, type ScoredLQCompound } from '@/lib/elite-8-data';
 
 const TIER_STYLE: Record<string, string> = {
   A: 'text-accent-emerald bg-accent-emerald/10 border-accent-emerald/30',
@@ -62,7 +62,7 @@ function CompoundCard({
   isActive: boolean;
   onClick: () => void;
 }) {
-  const { color, name, full, category, evidenceTier, isRx, clock, clockConfidence, mechanism, score, libraryHref } = compound;
+  const { color, name, category, evidenceTier, isRx, clock, clockConfidence, mechanism, score, libraryHref } = compound;
 
   const scoreDisplay = formatScore(score);
   const scoreNum = parseFloat(scoreDisplay);

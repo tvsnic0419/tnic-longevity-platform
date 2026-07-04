@@ -9,7 +9,7 @@ import { chromium } from 'playwright';
 import { mkdirSync } from 'node:fs';
 import { homedir } from 'node:os';
 import { join } from 'node:path';
-import { addDnsTxt, upsertVercelEnv, SITE_URL } from './lib/vercel.mjs';
+import { addDnsTxt, upsertVercelEnv } from './lib/vercel.mjs';
 import { PRIORITY_INDEX_URLS } from './lib/seo-constants.mjs';
 
 const TIMEOUT = 120_000;
@@ -204,7 +204,7 @@ async function requestIndexingApi(token, url) {
   console.log(`Inspected ${url}: ${verdict}`);
 }
 
-async function fallbackHtmlVerification(page, token) {
+async function fallbackHtmlVerification(page) {
   await page.goto('https://www.google.com/webmasters/verification/verification', {
     waitUntil: 'domcontentloaded',
     timeout: TIMEOUT,
@@ -273,7 +273,7 @@ async function main() {
       await verifyDomainDns(token);
     } catch (err) {
       console.warn(`DNS API verify failed (${err.message}) — trying UI fallback…`);
-      const html = await fallbackHtmlVerification(page, token);
+      const html = await fallbackHtmlVerification(page);
       if (!html) throw err;
     }
 

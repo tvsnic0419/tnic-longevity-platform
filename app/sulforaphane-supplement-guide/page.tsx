@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { ArrowRight, FlaskConical, ExternalLink, CheckCircle2, AlertTriangle, Zap, ShieldCheck, TrendingUp } from 'lucide-react';
+import { ArrowRight, ExternalLink, CheckCircle2, AlertTriangle, ShieldCheck } from 'lucide-react';
 import { SubPageLayout } from '@/components/layouts/SubPageLayout';
 import { StructuredData } from '@/components/seo/StructuredData';
 import { buildPageMetadata, buildBreadcrumbSchema, buildHowToSchema } from '@/lib/seo';

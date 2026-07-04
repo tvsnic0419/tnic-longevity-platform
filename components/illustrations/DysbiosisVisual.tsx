@@ -17,7 +17,6 @@ export const DysbiosisVisual: React.FC<DysbiosisVisualProps> = ({
   className = '',
   accentColor = '#fbbf24',
   showLabels = true,
-  interactive = true,
 }) => {
   return (
     <div className={`relative tnic-glass rounded-2xl p-5 overflow-hidden ${className}`}>

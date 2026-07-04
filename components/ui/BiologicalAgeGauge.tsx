@@ -79,7 +79,6 @@ export function BiologicalAgeGauge({
 
   const minAge = chronoAge - 12;
   const maxAge = chronoAge + 18;
-  const bioProgress = ageToProgress(bioAge, minAge, maxAge);
   const chronoProgress = ageToProgress(chronoAge, minAge, maxAge);
 
   const [animatedBio, setAnimatedBio] = useState(scanned ? bioAge : chronoAge);
