@@ -1490,6 +1490,9 @@ body::after {
 
 /* ── Gradient sweep text (more dramatic than shimmer-text) ── */
 .gradient-sweep-text {
+  /* Inherited text-shadow (e.g. from .headline-editorial) paints through the
+     transparent background-clipped glyphs as a garbled ghost copy of the text. */
+  text-shadow: none;
   background: linear-gradient(
     90deg,
     var(--color-text-primary) 0%,
