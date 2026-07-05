@@ -1,6 +1,6 @@
 'use client';
 
-import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
+import { motion, useMotionValue, useScroll, useSpring, useTransform } from 'framer-motion';
 import Link from 'next/link';
 import {
   ArrowRight,
@@ -11,6 +11,7 @@ import {
   TrendingDown,
   Zap,
 } from 'lucide-react';
+import { useRef } from 'react';
 import { StarterQuiz } from '@/components/sections/StarterQuiz';
 import { StatStrip } from '@/components/ui/StatStrip';
 import { ContextRail } from '@/components/ui/ContextRail';
@@ -28,6 +29,13 @@ const DATA_CHIPS = [
 export function HeroSection() {
   const { quizResult } = usePlatform();
   const hero = getHeroPersonalization(quizResult);
+  const sectionRef = useRef<HTMLElement>(null);
+
+  /* Scroll parallax for ambient orbs */
+  const { scrollYProgress } = useScroll({ target: sectionRef, offset: ['start start', 'end start'] });
+  const orb1Y = useTransform(scrollYProgress, [0, 1], ['0%', '-40%']);
+  const orb2Y = useTransform(scrollYProgress, [0, 1], ['0%', '-25%']);
+  const orb3Y = useTransform(scrollYProgress, [0, 1], ['0%', '-55%']);
 
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
@@ -37,13 +45,14 @@ export function HeroSection() {
   return (
     <section
       id="hero"
+      ref={sectionRef}
       className="relative hero-mesh hero-cinematic noise scan-overlay min-h-[94vh] flex items-center pt-24 md:pt-28 pb-16 md:pb-24 overflow-hidden"
     >
       <HeroRings />
       <div className="hero-beam" aria-hidden="true" />
-      <div className="orb orb-1" />
-      <div className="orb orb-2" />
-      <div className="orb orb-3" />
+      <motion.div className="orb orb-1" style={{ y: orb1Y }} aria-hidden="true" />
+      <motion.div className="orb orb-2" style={{ y: orb2Y }} aria-hidden="true" />
+      <motion.div className="orb orb-3" style={{ y: orb3Y }} aria-hidden="true" />
       <div className="absolute inset-0 grid-overlay" />
 
       <div className="relative container-page w-full">

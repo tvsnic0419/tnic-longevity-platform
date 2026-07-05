@@ -9,6 +9,7 @@ import { HomepageTrustStrip } from '@/components/sections/HomepageTrustStrip';
 import { HomepageOSFunnel } from '@/components/sections/HomepageOSFunnel';
 import { SiteGuide } from '@/components/SiteGuide';
 import { HallmarkProblemTiles } from '@/components/sections/HallmarkProblemTiles';
+import { SynergyConstellation } from '@/components/sections/SynergyConstellation';
 import { TrustBanner } from '@/components/TrustBanner';
 import { seoRoutes } from '@/lib/seo-routes';
 
@@ -59,6 +60,7 @@ export default function HomePage() {
         <HomepageOSFunnel />
         <SiteGuide />
         <HallmarkProblemTiles />
+        <SynergyConstellation />
         <TrustBanner />
         {/* Below-fold — dynamically imported to reduce initial bundle */}
         <EmailCapture />
