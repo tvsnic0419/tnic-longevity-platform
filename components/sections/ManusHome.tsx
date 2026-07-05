@@ -99,26 +99,38 @@ const FEATURES = [
   },
 ];
 
+type CaptureOutcome = 'idle' | 'submitting' | 'captured' | 'uncaptured' | 'error';
+
 function EmailCapture() {
   const [email, setEmail] = useState('');
-  const [done, setDone] = useState(false);
+  const [outcome, setOutcome] = useState<CaptureOutcome>('idle');
 
   async function submit(e: React.FormEvent) {
     e.preventDefault();
     if (!email.trim()) return;
-    setDone(true);
+    setOutcome('submitting');
     try {
-      await fetch('/api/brief/subscribe', {
+      const res = await fetch('/api/brief/subscribe', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, source: 'prognostication-waitlist' }),
       });
+      const data: { ok?: boolean; mode?: string } = await res.json().catch(() => ({}));
+      // Only 'resend' and 'webhook' modes durably persist the address; the
+      // 'feed' fallback (no email backend configured) doesn't store anything,
+      // so it must not tell the visitor we'll notify them — that's a promise
+      // this deployment currently has no way to keep.
+      if (data.ok && (data.mode === 'resend' || data.mode === 'webhook')) {
+        setOutcome('captured');
+      } else {
+        setOutcome('uncaptured');
+      }
     } catch {
-      /* waitlist is best-effort; the confirmation still shows */
+      setOutcome('error');
     }
   }
 
-  if (done) {
+  if (outcome === 'captured') {
     return (
       <p className="text-sm font-medium" style={{ color: 'var(--m-green)' }}>
         You&apos;re on the list — we&apos;ll email you once at launch.
@@ -126,34 +138,60 @@ function EmailCapture() {
     );
   }
 
+  if (outcome === 'uncaptured') {
+    return (
+      <p className="text-sm" style={{ color: 'var(--m-muted)' }}>
+        Email notifications aren&apos;t wired up yet — track launch updates via the{' '}
+        <a href="/brief/feed.xml" className="underline hover:no-underline" style={{ color: 'var(--m-cyan)' }}>
+          RSS feed
+        </a>{' '}
+        instead.
+      </p>
+    );
+  }
+
+  if (outcome === 'error') {
+    return (
+      <p className="text-sm" style={{ color: 'var(--m-muted)' }}>
+        Something went wrong — please try again in a moment.
+      </p>
+    );
+  }
+
   return (
-    <form onSubmit={submit} className="flex flex-col sm:flex-row items-center justify-center gap-3">
-      <label htmlFor="prognostication-email" className="sr-only">
-        Email address
-      </label>
-      <input
-        id="prognostication-email"
-        type="email"
-        required
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        placeholder="your@email.com"
-        className="w-full sm:w-72 rounded-lg px-4 py-2.5 text-sm outline-none transition-colors focus:border-[color:var(--m-green)]"
-        style={{
-          background: 'var(--m-bg-2)',
-          border: '1px solid var(--m-border)',
-          color: 'var(--m-fg)',
-        }}
-      />
-      <button
-        type="submit"
-        className="inline-flex items-center gap-2 rounded-lg px-5 py-2.5 text-sm font-semibold transition-opacity hover:opacity-90 whitespace-nowrap"
-        style={{ background: 'var(--m-green)', color: 'oklch(12% 0.02 255)' }}
-      >
-        <Sparkles className="w-4 h-4" aria-hidden="true" />
-        Notify Me
-      </button>
-    </form>
+    <div>
+      <form onSubmit={submit} className="flex flex-col sm:flex-row items-center justify-center gap-3">
+        <label htmlFor="prognostication-email" className="sr-only">
+          Email address
+        </label>
+        <input
+          id="prognostication-email"
+          type="email"
+          required
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          placeholder="your@email.com"
+          className="w-full sm:w-72 rounded-lg px-4 py-2.5 text-sm outline-none transition-colors focus:border-[color:var(--m-green)]"
+          style={{
+            background: 'var(--m-bg-2)',
+            border: '1px solid var(--m-border)',
+            color: 'var(--m-fg)',
+          }}
+        />
+        <button
+          type="submit"
+          disabled={outcome === 'submitting'}
+          className="inline-flex items-center gap-2 rounded-lg px-5 py-2.5 text-sm font-semibold transition-opacity hover:opacity-90 disabled:opacity-60 whitespace-nowrap"
+          style={{ background: 'var(--m-green)', color: 'oklch(12% 0.02 255)' }}
+        >
+          <Sparkles className="w-4 h-4" aria-hidden="true" />
+          {outcome === 'submitting' ? 'Sending…' : 'Notify Me'}
+        </button>
+      </form>
+      <p className="mt-4 text-xs" style={{ color: 'var(--m-muted)' }}>
+        No spam. We only use this to notify you at launch.
+      </p>
+    </div>
   );
 }
 
@@ -456,9 +494,6 @@ export function ManusHome() {
             <div className="mt-8">
               <EmailCapture />
             </div>
-            <p className="mt-4 text-xs" style={{ color: 'var(--m-muted)' }}>
-              No spam. One notification when the feature launches.
-            </p>
           </div>
         </section>
         </main>
