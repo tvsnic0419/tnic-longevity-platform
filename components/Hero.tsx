@@ -2,14 +2,11 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { motion } from 'framer-motion';
 import { ClipboardList, LayoutDashboard, ArrowRight, Sparkles } from 'lucide-react';
 import { usePlatform } from '@/context/PlatformContext';
 import { getHeroPersonalization } from '@/lib/homepage-personalization';
-import { StatStrip } from '@/components/ui/StatStrip';
 import { ContextRail } from '@/components/ui/ContextRail';
 import { HeroNetworkCanvas } from '@/components/ui/HeroNetworkCanvas';
-import { HeroAgingTicker } from '@/components/ui/HeroAgingTicker';
 import { StarterQuiz } from '@/components/sections/StarterQuiz';
 
 export function Hero() {
@@ -49,16 +46,18 @@ export function Hero() {
                 </span>
               </div>
 
-              <h1 className="headline-editorial mb-5">
+              <h1
+                className="headline-editorial mb-5"
+                suppressHydrationWarning
+              >
                 {hero.line1}<br />
-                <span className="gradient-sweep-text">{hero.line2}</span>
+                <span
+                  className="gradient-sweep-text"
+                  suppressHydrationWarning
+                >
+                  {hero.line2}
+                </span>
               </h1>
-
-              {/* REFINED SHIMMER GRADIENT */}
-              <p className="max-w-2xl mx-auto lg:mx-0 mb-6 text-[26px] md:text-[30px] leading-[1.1] font-semibold tracking-[-0.025em] 
-                 bg-gradient-to-r from-[#f8fafc] via-[#67f6ff] to-[#f8fafc] bg-clip-text text-transparent">
-                Subtract years from your biological age.
-              </p>
 
               <p className="text-body text-lg max-w-2xl mx-auto lg:mx-0 mb-8 leading-relaxed text-[var(--color-text-secondary)]">
                 With evidence-graded protocols — privately, locally, and transparently.
