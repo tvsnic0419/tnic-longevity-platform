@@ -42,7 +42,10 @@ export function Nav() {
     };
   }, [mobileOpen]);
 
-  const isExternal = (href: string) => href.startsWith('/');
+  /** True only for fully-qualified external URLs (http/https/mailto). */
+  const isExternal = (href: string) =>
+    href.startsWith('http://') || href.startsWith('https://') || href.startsWith('mailto:');
+
 
   return (
     <nav className="fixed top-0 w-full z-50" aria-label="Main navigation">
@@ -94,8 +97,8 @@ export function Nav() {
             <ShoppingBag className="w-4 h-4 text-accent-amber" aria-hidden="true" />
             Shop
           </Link>
-          <Link href="/dashboard" className="focus-ring btn-gradient text-sm !py-2.5 !px-5 !min-h-0 rounded-full">
-            Open OS
+          <Link href="/products" className="focus-ring btn-gradient text-sm !py-2.5 !px-5 !min-h-0 rounded-full">
+            Shop Products
             <ArrowRight className="w-4 h-4" aria-hidden="true" />
           </Link>
         </div>
@@ -146,13 +149,14 @@ export function Nav() {
                     {link.label}
                   </Link>
                 ) : (
-                  <a
+                  <Link
                     key={link.href}
+                    href={link.href}
                     onClick={() => setMobileOpen(false)}
                     className="focus-ring interactive flex justify-between items-center text-foreground hover:text-accent-cyan py-3.5 min-h-[var(--space-touch)] text-base font-medium border-b border-border/50 last:border-0"
                   >
                     {link.label}
-                  </a>
+                  </Link>
                 ),
               )}
               <div className="flex flex-col gap-2 mt-3">
@@ -171,11 +175,11 @@ export function Nav() {
                   Protocol Shop
                 </Link>
                 <Link
-                  href="/dashboard"
+                  href="/products"
                   onClick={() => setMobileOpen(false)}
                   className="focus-ring btn-gradient text-sm text-center justify-center"
                 >
-                  Open Longevity OS
+                  Shop Products
                 </Link>
               </div>
             </div>

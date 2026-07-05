@@ -16,21 +16,18 @@ import { citationRegistry } from '@/lib/trust';
 import { compounds } from '@/lib/data';
 
 const hubLinks = [
-  { href: '/dashboard', label: 'My Longevity OS', icon: LayoutDashboard },
-  { href: '/quiz', label: '3-Min Quiz', icon: HelpCircle },
   { href: '/library', label: 'Anti-Aging Library', icon: Library },
-  { href: '/learn', label: 'Learn Hub', icon: GraduationCap },
-  { href: '/stacks', label: 'Stacks & Protocols', icon: Layers },
-  { href: '/labs', label: 'Lab Analysis Hub', icon: FlaskConical },
+  { href: '/hallmarks', label: '12 Hallmarks of Aging', icon: Dna },
+  { href: '/products', label: 'Vetted Products', icon: FlaskConical },
+  { href: '/shop', label: 'Protocol Shop', icon: Layers },
+  { href: '/#intelligence-suite', label: 'Intelligence Suite', icon: GraduationCap },
+  { href: '/library/compare', label: 'Compound Comparisons', icon: LayoutDashboard },
 ];
 
 const resourceLinks = [
-  { href: '/elite-8', label: 'Elite 8 Compounds', icon: Rocket },
-  { href: '/products', label: 'Products', icon: BookOpen },
-  { href: '/shop', label: 'Protocol Shop', icon: BookOpen },
+  { href: '/supplement-guides', label: 'Supplement Guides', icon: BookOpen },
   { href: '/faq', label: 'FAQ', icon: HelpCircle },
   { href: '/about', label: 'About / Founder', icon: HelpCircle },
-  { href: '/club', label: '150-Year Club', icon: Rocket },
   { href: '/trust', label: 'Trust & Transparency', icon: Shield },
   { href: '/trust/methodology', label: 'Methodology', icon: BookOpen },
   { href: '/trust/disclaimers', label: 'Disclaimers', icon: BookOpen },

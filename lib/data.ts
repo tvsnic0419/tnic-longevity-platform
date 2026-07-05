@@ -16,10 +16,10 @@ import type { Compound, Hallmark, PathwayNode, RoadmapItem } from './types';
 
 export const navLinks = [
   { href: '/library', label: 'Library', mod: 'MOD-LIB-13' },
-  { href: '/learn', label: 'Learn', mod: 'MOD-LRN-09' },
-  { href: '/stacks', label: 'Stacks', mod: 'MOD-ARC-04' },
-  { href: '/labs', label: 'Labs', mod: 'MOD-LAB-11' },
-  { href: '/tools', label: 'Tools', mod: 'MOD-TOL-14' },
+  { href: '/hallmarks', label: 'Hallmarks', mod: 'MOD-HLM-01' },
+  { href: '/products', label: 'Products', mod: 'MOD-PRD-15' },
+  { href: '/faq', label: 'FAQ', mod: 'MOD-FAQ-08' },
+  { href: '/about', label: 'About', mod: 'MOD-ABT-00' },
 ];
 
 export const communityPulse = [
@@ -68,7 +68,6 @@ export const compounds: Compound[] = [
     studies: [
       { title: 'Sulforaphane activates Nrf2 and protects against oxidative stress', journal: 'Oncogene', year: 2008, pmid: '18454171' },
       { title: 'Broccoli sprouts activate NRF2 in human airway epithelial cells', journal: 'Clin Immunol', year: 2016, pmid: '27356680' },
-      { title: 'Sulforaphane upregulates the mRNA expression of NRF2 and NQO1 in non-dialysis patients with chronic kidney disease', journal: 'Free Radic Biol Med', year: 2024, pmid: '38772511' },
       { title: 'Sulforaphane upregulates the mRNA expression of NRF2 and NQO1 in non-dialysis patients with chronic kidney disease', journal: 'Free Radic Biol Med', year: 2024, pmid: '38772511' },
     ],
   },
