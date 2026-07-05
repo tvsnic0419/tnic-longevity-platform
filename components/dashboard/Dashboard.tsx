@@ -10,6 +10,7 @@ import { journeyMilestones } from '@/lib/journey';
 import type { EvidenceLevel } from '@/lib/types';
 import StackBuilder from '@/components/stacks/StackBuilder';
 import { HallmarkCoverageGrid } from '@/components/os/HallmarkCoverageGrid';
+import { ShareScorecard } from '@/components/scorecard/ShareScorecard';
 import { UserMilestonesPanel } from '@/components/dashboard/UserMilestonesPanel';
 import EvidenceBadge from '@/components/trust/EvidenceBadge';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card';
@@ -198,6 +199,10 @@ export function Dashboard() {
 
         <div className="lg:col-span-3">
           <HallmarkCoverageGrid coveredIds={analysis.hallmarkCoverage} />
+        </div>
+
+        <div className="lg:col-span-3">
+          <ShareScorecard />
         </div>
 
         {dynamicHighlight && (
