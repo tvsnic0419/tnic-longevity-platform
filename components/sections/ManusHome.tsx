@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, type CSSProperties } from 'react';
+import { useEffect, useState, type CSSProperties } from 'react';
 import Link from 'next/link';
 import {
   FlaskConical,
@@ -11,19 +11,20 @@ import {
   Activity,
   ArrowRight,
   Beaker,
-  Menu,
-  X,
   ExternalLink,
 } from 'lucide-react';
+import { Nav } from '@/components/Nav';
+import { Footer } from '@/components/Footer';
 import { homeStats, hallmarkTiles, featuredCompounds } from '@/lib/home-stats';
 
 /**
  * Manus-baseline homepage.
  *
- * A faithful 1:1 rebuild of the reference design at tnic-longev-av5urgzz.manus.space —
- * restrained, editorial, one green accent, generous negative space. All colour tokens are
- * scoped to `.manus-root` via inline CSS custom properties so the rest of the site's design
- * system is untouched.
+ * A faithful rebuild of the reference design at tnic-longev-av5urgzz.manus.space —
+ * restrained, editorial, one green accent, generous negative space — using the
+ * site-wide Nav and Footer so the homepage shares one chrome with the rest of
+ * the platform. Section-local colour tokens are scoped to `.manus-root` via
+ * inline CSS custom properties and only affect the page body between them.
  */
 
 const TOKENS: CSSProperties = {
@@ -36,14 +37,6 @@ const TOKENS: CSSProperties = {
   ['--m-green' as string]: '#00da7e',
   ['--m-cyan' as string]: '#00bdbe',
 };
-
-const NAV = [
-  { label: 'Supplement Library', href: '/library' },
-  { label: 'Aging Pathways', href: '/hallmarks' },
-  { label: 'Synergy Matrix', href: '/stacks' },
-  { label: 'Protocol Builder', href: '/quiz' },
-  { label: 'AI Analysis', href: '/tools' },
-];
 
 const TIERS = [
   {
@@ -106,24 +99,6 @@ const FEATURES = [
   },
 ];
 
-function BrandMark({ size = 'nav' }: { size?: 'nav' | 'footer' }) {
-  const box = size === 'nav' ? 'w-8 h-8' : 'w-6 h-6';
-  const text = size === 'nav' ? 'text-xl' : 'text-base';
-  return (
-    <span className="inline-flex items-center gap-2">
-      <span
-        className={`${box} rounded-lg flex items-center justify-center`}
-        style={{ background: 'color-mix(in oklab, var(--m-green) 16%, transparent)' }}
-      >
-        <FlaskConical className="w-4 h-4" style={{ color: 'var(--m-green)' }} aria-hidden="true" />
-      </span>
-      <span className={`${text} font-bold tracking-tight`} style={{ color: 'var(--m-fg)' }}>
-        TNiC
-      </span>
-    </span>
-  );
-}
-
 function EmailCapture() {
   const [email, setEmail] = useState('');
   const [done, setDone] = useState(false);
@@ -183,76 +158,33 @@ function EmailCapture() {
 }
 
 export function ManusHome() {
-  const [menuOpen, setMenuOpen] = useState(false);
+  // The reference design is dark-only with no light variant — force dark
+  // chrome while this page is mounted (shared Nav/Footer are theme-aware and
+  // would otherwise clash with the page body's hardcoded dark palette).
+  // DOM-only: doesn't touch the user's saved theme preference or localStorage,
+  // and restores whatever was set before on unmount.
+  useEffect(() => {
+    const root = document.documentElement;
+    const prevTheme = root.getAttribute('data-theme');
+    const prevColorScheme = root.style.colorScheme;
+    root.setAttribute('data-theme', 'dark');
+    root.style.colorScheme = 'dark';
+    return () => {
+      if (prevTheme) root.setAttribute('data-theme', prevTheme);
+      root.style.colorScheme = prevColorScheme;
+    };
+  }, []);
 
   return (
-    <div
-      className="manus-root min-h-screen w-full"
-      style={{ ...TOKENS, background: 'var(--m-bg)', color: 'var(--m-fg)' }}
-    >
-      {/* ── Nav ── */}
-      <header
-        className="sticky top-0 z-50 backdrop-blur-md"
-        style={{
-          background: 'color-mix(in oklab, var(--m-bg) 82%, transparent)',
-          borderBottom: '1px solid var(--m-border)',
-        }}
+    <>
+      <Nav />
+      <div
+        className="manus-root min-h-screen w-full"
+        style={{ ...TOKENS, background: 'var(--m-bg)', color: 'var(--m-fg)' }}
       >
-        <nav className="mx-auto max-w-7xl px-6 h-16 flex items-center justify-between">
-          <Link href="/" className="focus-ring rounded-md" onClick={() => setMenuOpen(false)}>
-            <BrandMark />
-          </Link>
-          <ul className="hidden md:flex items-center gap-8 text-sm" style={{ color: 'var(--m-muted)' }}>
-            {NAV.map((item) => (
-              <li key={item.href}>
-                <Link
-                  href={item.href}
-                  className="transition-colors hover:text-[color:var(--m-fg)]"
-                >
-                  {item.label}
-                </Link>
-              </li>
-            ))}
-          </ul>
-          <button
-            type="button"
-            className="focus-ring md:hidden inline-flex items-center justify-center w-10 h-10 -mr-2 rounded-lg"
-            style={{ color: 'var(--m-fg)' }}
-            aria-label={menuOpen ? 'Close menu' : 'Open menu'}
-            aria-expanded={menuOpen}
-            onClick={() => setMenuOpen((v) => !v)}
-          >
-            {menuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-          </button>
-        </nav>
-
-        {/* Mobile drawer */}
-        {menuOpen && (
-          <div
-            className="md:hidden"
-            style={{ borderTop: '1px solid var(--m-border)', background: 'var(--m-bg)' }}
-          >
-            <ul className="mx-auto max-w-7xl px-6 py-3 flex flex-col">
-              {NAV.map((item) => (
-                <li key={item.href}>
-                  <Link
-                    href={item.href}
-                    onClick={() => setMenuOpen(false)}
-                    className="focus-ring block py-3 text-sm transition-colors hover:text-[color:var(--m-green)]"
-                    style={{ color: 'var(--m-fg)', borderBottom: '1px solid var(--m-border)' }}
-                  >
-                    {item.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
-      </header>
-
-      <main id="main-content" tabIndex={-1}>
+        <main id="main-content" tabIndex={-1}>
         {/* ── Hero ── */}
-        <section className="mx-auto max-w-7xl px-6 pt-20 pb-24 md:pt-28 md:pb-32">
+        <section className="mx-auto max-w-7xl px-6 pt-28 pb-24 md:pt-36 md:pb-32">
           <div className="flex flex-wrap items-center gap-3 mb-8">
             <span
               className="inline-flex items-center gap-2 rounded-full px-3 py-1 text-xs font-medium"
@@ -529,23 +461,9 @@ export function ManusHome() {
             </p>
           </div>
         </section>
-      </main>
-
-      {/* ── Footer ── */}
-      <footer style={{ borderTop: '1px solid var(--m-border)' }}>
-        <div className="mx-auto max-w-7xl px-6 py-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <span className="inline-flex items-center gap-2">
-            <BrandMark size="footer" />
-            <span className="text-xs" style={{ color: 'var(--m-muted)' }}>
-              Evidence-Based Longevity
-            </span>
-          </span>
-          <p className="text-xs text-center sm:text-right" style={{ color: 'var(--m-muted)' }}>
-            Educational resource only. Not medical advice. Consult a healthcare provider before
-            starting any supplement protocol.
-          </p>
-        </div>
-      </footer>
-    </div>
+        </main>
+      </div>
+      <Footer />
+    </>
   );
 }

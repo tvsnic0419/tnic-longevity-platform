@@ -13,6 +13,7 @@ import {
 } from 'lucide-react';
 import { POPULAR_GUIDE_LINKS } from '@/lib/index-priority';
 import { citationRegistry } from '@/lib/trust';
+import { compounds } from '@/lib/data';
 
 const hubLinks = [
   { href: '/dashboard', label: 'My Longevity OS', icon: LayoutDashboard },
@@ -38,6 +39,9 @@ const resourceLinks = [
 ];
 
 export function Footer() {
+  const tierACount = compounds.filter((c) => c.evidence === 'A').length;
+  const tierBCount = compounds.filter((c) => c.evidence === 'B').length;
+
   return (
     <footer className="relative py-14 md:py-20 footer-aurora border-t border-border/50" role="contentinfo">
       <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-accent-cyan/50 to-transparent" />
@@ -137,8 +141,8 @@ export function Footer() {
           <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-accent-emerald/25 to-transparent" />
           <p className="text-caption font-mono">© 2026 TNiC · Independent · Evidence-First</p>
           <div className="flex flex-wrap gap-x-4 gap-y-1 text-caption font-mono">
-            <span>Tier A: 4 compounds</span>
-            <span>Tier B: 2 compounds</span>
+            <span>Tier A: {tierACount} compounds</span>
+            <span>Tier B: {tierBCount} compounds</span>
             <span>{citationRegistry.length} indexed PMIDs</span>
           </div>
         </div>

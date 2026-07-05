@@ -4,6 +4,9 @@ import { ArrowRight, BookOpen, FlaskConical, Microscope, Shield, Zap, Leaf, Recy
 import { StructuredData } from '@/components/seo/StructuredData';
 import { buildPageMetadata, buildCollectionPageSchema, buildBreadcrumbSchema } from '@/lib/seo';
 import { SITE } from '@/lib/site';
+import { citationRegistry } from '@/lib/trust';
+
+const citationCount = citationRegistry.length;
 
 export const metadata: Metadata = buildPageMetadata({
   title: 'Longevity Supplement Guides 2026 — Evidence-Based Deep Dives | TNiC',
@@ -39,8 +42,8 @@ const guides = [
     title: 'Best Longevity Supplements 2026',
     subtitle: 'The complete ranked guide to evidence-backed longevity compounds',
     description:
-      'Start here. Our master guide ranks 12+ compounds by evidence quality, covers the Hallmarks of Aging framework, explains synergy principles, and includes honest cautions. Built on 50+ PubMed citations.',
-    pills: ['12+ compounds', 'Tier A–D ranking', '50+ citations'],
+      `Start here. Our master guide ranks 14 compounds by evidence quality, covers the Hallmarks of Aging framework, explains synergy principles, and includes honest cautions. Built on ${citationCount} PubMed citations.`,
+    pills: ['14 compounds', 'Tier A–D ranking', `${citationCount} citations`],
     evidenceTier: 'A',
     glowHover: 'glow-hover-cyan',
     borderHover: 'hover:border-accent-cyan/40',
@@ -321,7 +324,7 @@ export default function SupplementGuidesPage() {
               <p className="text-label mb-2">Head-to-head</p>
               <h2 className="heading-section mb-3">Supplement Comparisons</h2>
               <p className="text-body-sm text-muted-foreground max-w-xl">
-                Can't decide between two options? Our structured comparison pages score each compound
+                Can&apos;t decide between two options? Our structured comparison pages score each compound
                 on 6–10 dimensions with evidence-tier ratings.
               </p>
             </div>
