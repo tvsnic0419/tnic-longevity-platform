@@ -1,15 +1,19 @@
 'use client';
 
 import { useState } from 'react';
+import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import { Shield } from 'lucide-react';
 import { usePlatform } from '@/context/PlatformContext';
 
 export function PrivacyConsentBanner() {
   const { privacyConsent, acceptPrivacyConsent } = usePlatform();
+  const pathname = usePathname();
   const [dismissed, setDismissed] = useState(false);
 
-  if (privacyConsent || dismissed) return null;
+  // The landing page collects no health data; the consent notice belongs to the
+  // in-app routes (dashboard, labs, quiz) where local data is actually written.
+  if (pathname === '/' || privacyConsent || dismissed) return null;
 
   return (
     <div
