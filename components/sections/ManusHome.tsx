@@ -11,7 +11,10 @@ import {
   Activity,
   ArrowRight,
   Beaker,
+  Menu,
+  X,
 } from 'lucide-react';
+import { homeStats, hallmarkTiles } from '@/lib/home-stats';
 
 /**
  * Manus-baseline homepage.
@@ -35,7 +38,7 @@ const TOKENS: CSSProperties = {
 
 const NAV = [
   { label: 'Supplement Library', href: '/library' },
-  { label: 'Aging Pathways', href: '/learn' },
+  { label: 'Aging Pathways', href: '/hallmarks' },
   { label: 'Synergy Matrix', href: '/stacks' },
   { label: 'Protocol Builder', href: '/quiz' },
   { label: 'AI Analysis', href: '/tools' },
@@ -66,14 +69,14 @@ const FEATURES = [
   {
     Icon: FlaskConical,
     title: 'Supplement Library',
-    desc: '15+ compounds with full mechanism breakdowns, evidence tiers, and dosing context from published research.',
+    desc: `${homeStats.compoundCount} compounds with full mechanism breakdowns, evidence tiers, and dosing context from published research.`,
     href: '/library',
   },
   {
     Icon: Dna,
-    title: '12 Hallmarks of Aging',
+    title: `${homeStats.hallmarkCount} Hallmarks of Aging`,
     desc: 'Understand the biological mechanisms of aging and which interventions target each pathway.',
-    href: '/learn',
+    href: '/hallmarks',
   },
   {
     Icon: Share2,
@@ -100,21 +103,6 @@ const FEATURES = [
     href: '#prognostication',
     soon: true,
   },
-];
-
-const HALLMARKS = [
-  { name: 'Genomic Instability', n: 9 },
-  { name: 'Telomere Attrition', n: 5 },
-  { name: 'Epigenetic Alterations', n: 6 },
-  { name: 'Loss of Proteostasis', n: 5 },
-  { name: 'Deregulated Nutrient Sensing', n: 8 },
-  { name: 'Mitochondrial Dysfunction', n: 12 },
-  { name: 'Cellular Senescence', n: 4 },
-  { name: 'Stem Cell Exhaustion', n: 5 },
-  { name: 'Altered Intercellular Communication', n: 8 },
-  { name: 'Compromised Autophagy', n: 5 },
-  { name: 'Gut Dysbiosis', n: 4 },
-  { name: 'Chronic Inflammation', n: 8 },
 ];
 
 function BrandMark({ size = 'nav' }: { size?: 'nav' | 'footer' }) {
@@ -194,6 +182,8 @@ function EmailCapture() {
 }
 
 export function ManusHome() {
+  const [menuOpen, setMenuOpen] = useState(false);
+
   return (
     <div
       className="manus-root min-h-screen w-full"
@@ -208,7 +198,7 @@ export function ManusHome() {
         }}
       >
         <nav className="mx-auto max-w-7xl px-6 h-16 flex items-center justify-between">
-          <Link href="/" className="focus-ring rounded-md">
+          <Link href="/" className="focus-ring rounded-md" onClick={() => setMenuOpen(false)}>
             <BrandMark />
           </Link>
           <ul className="hidden md:flex items-center gap-8 text-sm" style={{ color: 'var(--m-muted)' }}>
@@ -223,7 +213,40 @@ export function ManusHome() {
               </li>
             ))}
           </ul>
+          <button
+            type="button"
+            className="focus-ring md:hidden inline-flex items-center justify-center w-10 h-10 -mr-2 rounded-lg"
+            style={{ color: 'var(--m-fg)' }}
+            aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+            aria-expanded={menuOpen}
+            onClick={() => setMenuOpen((v) => !v)}
+          >
+            {menuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+          </button>
         </nav>
+
+        {/* Mobile drawer */}
+        {menuOpen && (
+          <div
+            className="md:hidden"
+            style={{ borderTop: '1px solid var(--m-border)', background: 'var(--m-bg)' }}
+          >
+            <ul className="mx-auto max-w-7xl px-6 py-3 flex flex-col">
+              {NAV.map((item) => (
+                <li key={item.href}>
+                  <Link
+                    href={item.href}
+                    onClick={() => setMenuOpen(false)}
+                    className="focus-ring block py-3 text-sm transition-colors hover:text-[color:var(--m-green)]"
+                    style={{ color: 'var(--m-fg)', borderBottom: '1px solid var(--m-border)' }}
+                  >
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
       </header>
 
       <main id="main-content" tabIndex={-1}>
@@ -239,7 +262,7 @@ export function ManusHome() {
               }}
             >
               <span className="w-1.5 h-1.5 rounded-full" style={{ background: 'var(--m-green)' }} />
-              50 Compounds Indexed
+              {homeStats.compoundCount} Compounds Indexed
             </span>
             <span
               className="inline-flex items-center gap-2 rounded-full px-3 py-1 text-xs font-medium"
@@ -248,7 +271,7 @@ export function ManusHome() {
                 color: 'var(--m-cyan)',
               }}
             >
-              11 Tier A (Human Trials)
+              {homeStats.tierACount} Tier A (Human Trials)
             </span>
           </div>
 
@@ -372,14 +395,14 @@ export function ManusHome() {
           <div className="flex items-end justify-between gap-4 flex-wrap">
             <div>
               <h2 className="text-3xl font-bold tracking-tight" style={{ color: 'var(--m-fg)' }}>
-                The 12 Hallmarks of Aging
+                The {homeStats.hallmarkCount} Hallmarks of Aging
               </h2>
               <p className="mt-3 text-sm" style={{ color: 'var(--m-muted)' }}>
                 Each hallmark mapped to evidence-based supplement interventions.
               </p>
             </div>
             <Link
-              href="/learn"
+              href="/hallmarks"
               className="focus-ring inline-flex items-center gap-1.5 rounded-lg px-4 py-2 text-sm font-medium transition-colors hover:border-[color:var(--m-fg)]"
               style={{ border: '1px solid var(--m-border)', color: 'var(--m-fg)' }}
             >
@@ -389,18 +412,18 @@ export function ManusHome() {
           </div>
 
           <div className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
-            {HALLMARKS.map((h) => (
+            {hallmarkTiles.map((h) => (
               <Link
-                key={h.name}
-                href="/learn"
+                key={h.id}
+                href={h.href}
                 className="focus-ring rounded-lg p-4 text-center transition-colors hover:border-[color:var(--m-green)]"
                 style={{ background: 'var(--m-card)', border: '1px solid var(--m-border)' }}
               >
                 <div className="text-sm font-medium leading-snug" style={{ color: 'var(--m-fg)' }}>
-                  {h.name}
+                  {h.title}
                 </div>
                 <div className="mt-1 text-xs" style={{ color: 'var(--m-muted)' }}>
-                  {h.n} compounds
+                  {h.count === 1 ? '1 compound' : `${h.count} compounds`}
                 </div>
               </Link>
             ))}
