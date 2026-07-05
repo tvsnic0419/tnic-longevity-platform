@@ -13,8 +13,9 @@ import {
   Beaker,
   Menu,
   X,
+  ExternalLink,
 } from 'lucide-react';
-import { homeStats, hallmarkTiles } from '@/lib/home-stats';
+import { homeStats, hallmarkTiles, featuredCompounds } from '@/lib/home-stats';
 
 /**
  * Manus-baseline homepage.
@@ -309,6 +310,71 @@ export function ManusHome() {
             >
               Build Your Protocol
             </Link>
+          </div>
+        </section>
+
+        {/* ── Featured compounds ── */}
+        <section className="mx-auto max-w-7xl px-6 pb-24">
+          <div className="flex items-end justify-between gap-4 flex-wrap mb-8">
+            <div>
+              <h2 className="text-2xl font-bold tracking-tight" style={{ color: 'var(--m-fg)' }}>
+                Tier A, right now
+              </h2>
+              <p className="mt-2 text-sm" style={{ color: 'var(--m-muted)' }}>
+                A sample from the catalog — every entry cites its source.
+              </p>
+            </div>
+            <Link
+              href="/library"
+              className="focus-ring inline-flex items-center gap-1.5 text-sm font-medium transition-colors hover:text-[color:var(--m-green)]"
+              style={{ color: 'var(--m-fg)' }}
+            >
+              Browse the full library
+              <ArrowRight className="w-3.5 h-3.5" aria-hidden="true" />
+            </Link>
+          </div>
+
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {featuredCompounds.map((c) => (
+              <div
+                key={c.id}
+                className="group relative rounded-xl p-5 transition-colors hover:border-[color:var(--m-green)]"
+                style={{ background: 'var(--m-card)', border: '1px solid var(--m-border)' }}
+              >
+                <span
+                  className="inline-block rounded px-2 py-0.5 text-[10px] font-bold font-mono tracking-wide mb-3"
+                  style={{
+                    color: 'var(--m-green)',
+                    border: '1px solid color-mix(in oklab, var(--m-green) 45%, transparent)',
+                  }}
+                >
+                  Tier A
+                </span>
+                <h3 className="text-sm font-semibold mb-1" style={{ color: 'var(--m-fg)' }}>
+                  <Link href="/stacks" className="focus-ring after:absolute after:inset-0">
+                    {c.name}
+                  </Link>
+                </h3>
+                <p className="text-xs mb-3" style={{ color: 'var(--m-muted)' }}>
+                  {c.pathway}
+                </p>
+                <p className="text-xs font-mono mb-4" style={{ color: 'var(--m-muted)' }}>
+                  {c.dose}
+                </p>
+                {c.pmid && (
+                  <a
+                    href={`https://pubmed.ncbi.nlm.nih.gov/${c.pmid}/`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="focus-ring relative z-10 inline-flex items-center gap-1 text-[11px] font-mono hover:underline"
+                    style={{ color: 'var(--m-cyan)' }}
+                  >
+                    PMID {c.pmid}
+                    <ExternalLink className="w-3 h-3" aria-hidden="true" />
+                  </a>
+                )}
+              </div>
+            ))}
           </div>
         </section>
 
