@@ -1,5 +1,6 @@
 import { compounds, hallmarks } from '@/lib/data';
 import { citationRegistry } from '@/lib/trust';
+import type { Compound } from '@/lib/types';
 
 /**
  * Single source of truth for every number shown on the landing page.
@@ -48,6 +49,30 @@ export const hallmarkTiles: HallmarkTile[] = hallmarks.map((h) => {
     count: compoundsForHallmark(h.id),
   };
 });
+
+export interface FeaturedCompound {
+  id: string;
+  name: string;
+  pathway: string;
+  dose: string;
+  pmid: string;
+}
+
+/**
+ * A handful of real Tier-A compounds for the homepage "featured" strip —
+ * first four Tier-A entries in catalog order, each with its lead PMID.
+ * Pulled straight from `compounds`, so it can never drift from the library.
+ */
+export const featuredCompounds: FeaturedCompound[] = compounds
+  .filter((c: Compound) => c.evidence === 'A')
+  .slice(0, 4)
+  .map((c) => ({
+    id: c.id,
+    name: c.name,
+    pathway: c.pathway,
+    dose: c.dose,
+    pmid: c.studies[0]?.pmid ?? '',
+  }));
 
 export const homeStats = {
   /** Total compounds in the evidence-graded catalog. */
