@@ -16,6 +16,8 @@ import {
 import { Nav } from '@/components/Nav';
 import { Footer } from '@/components/Footer';
 import { homeStats, hallmarkTiles, featuredCompounds } from '@/lib/home-stats';
+import { IntelligenceSuite } from '@/components/intelligence/IntelligenceSuite';
+import { JournalCredibilityStrip } from '@/components/sections/JournalCredibilityStrip';
 
 /**
  * Manus-baseline homepage.
@@ -63,39 +65,38 @@ const FEATURES = [
   {
     Icon: FlaskConical,
     title: 'Supplement Library',
-    desc: `${homeStats.compoundCount} compounds with full mechanism breakdowns, evidence tiers, and dosing context from published research.`,
+    desc: `${homeStats.compoundCount} evidence-graded compounds with full mechanism breakdowns, dosing context, and PubMed citations.`,
     href: '/library',
   },
   {
     Icon: Dna,
     title: `${homeStats.hallmarkCount} Hallmarks of Aging`,
-    desc: 'Understand the biological mechanisms of aging and which interventions target each pathway.',
+    desc: 'Every hallmark of aging explained — mechanisms, biomarkers, and the top interventions ranked by human trial evidence.',
     href: '/hallmarks',
   },
   {
-    Icon: Share2,
-    title: 'Synergy Matrix',
-    desc: "Discover which compounds amplify each other's effects and the mechanistic rationale behind combinations.",
-    href: '/stacks',
-  },
-  {
-    Icon: Layers,
-    title: 'Protocol Builder',
-    desc: '3-step guided flow to build an evidence-matched supplement stack based on your goals and concerns.',
-    href: '/quiz',
+    Icon: Activity,
+    title: 'Biological Age Estimator',
+    desc: 'Four-domain quiz models your biological age and maps your highest-leverage interventions. No labs required.',
+    href: '#intelligence-suite',
   },
   {
     Icon: Sparkles,
-    title: 'AI Stack Analysis',
-    desc: 'Select your compounds and get an AI-generated synergy report, interaction warnings, and pathway coverage.',
-    href: '/tools',
+    title: 'Compound Intelligence',
+    desc: 'Describe your health goal in plain language — get an evidence-ranked compound shortlist with PMID citations.',
+    href: '#intelligence-suite',
   },
   {
-    Icon: Activity,
-    title: 'Health Prognostication',
-    desc: 'Coming soon: AI-powered projections of long-term health outcomes from consistent supplement interventions.',
-    href: '#prognostication',
-    soon: true,
+    Icon: Share2,
+    title: 'Stack Scorecard',
+    desc: 'Select your supplements, get a live hallmark coverage grade, and share your score. Viral-ready.',
+    href: '#intelligence-suite',
+  },
+  {
+    Icon: Layers,
+    title: 'Vetted Products',
+    desc: 'COA-verified, dose-matched picks from independent brands. Affiliate links disclosed — commission never influences listings.',
+    href: '/products',
   },
 ];
 
@@ -264,24 +265,35 @@ export function ManusHome() {
           </p>
 
           <div className="mt-10 flex flex-col sm:flex-row gap-4">
-            <Link
-              href="/library"
+            <a
+              href="#intelligence-suite"
               className="focus-ring inline-flex items-center justify-center gap-2 rounded-lg px-6 py-3 text-sm font-semibold transition-opacity hover:opacity-90"
               style={{ background: 'var(--m-green)', color: 'oklch(12% 0.02 255)' }}
             >
-              <Beaker className="w-4 h-4" aria-hidden="true" />
-              Explore the Library
+              <Activity className="w-4 h-4" aria-hidden="true" />
+              Try the Intelligence Suite
               <ArrowRight className="w-4 h-4" aria-hidden="true" />
-            </Link>
+            </a>
             <Link
-              href="/quiz"
+              href="/library"
               className="focus-ring inline-flex items-center justify-center gap-2 rounded-lg px-6 py-3 text-sm font-semibold transition-colors hover:border-[color:var(--m-fg)]"
               style={{ border: '1px solid var(--m-border)', color: 'var(--m-fg)' }}
             >
-              Build Your Protocol
+              <Beaker className="w-4 h-4" aria-hidden="true" />
+              Explore the Library
+            </Link>
+            <Link
+              href="/products"
+              className="focus-ring inline-flex items-center justify-center gap-2 rounded-lg px-6 py-3 text-sm font-semibold transition-colors hover:border-[color:var(--m-fg)]"
+              style={{ border: '1px solid var(--m-border)', color: 'var(--m-muted)' }}
+            >
+              Vetted Products
             </Link>
           </div>
         </section>
+
+        {/* ── Journal credibility strip ── */}
+        <JournalCredibilityStrip />
 
         {/* ── Featured compounds ── */}
         <section className="mx-auto max-w-7xl px-6 pb-24">
@@ -321,7 +333,7 @@ export function ManusHome() {
                   Tier A
                 </span>
                 <h3 className="text-sm font-semibold mb-1" style={{ color: 'var(--m-fg)' }}>
-                  <Link href="/stacks" className="focus-ring after:absolute after:inset-0">
+                  <Link href={`/library/compounds/${c.id}`} className="focus-ring after:absolute after:inset-0">
                     {c.name}
                   </Link>
                 </h3>
@@ -389,7 +401,7 @@ export function ManusHome() {
           </p>
 
           <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {FEATURES.map(({ Icon, title, desc, href, soon }) => (
+            {FEATURES.map(({ Icon, title, desc, href }) => (
               <Link
                 key={title}
                 href={href}
@@ -406,17 +418,6 @@ export function ManusHome() {
                   <h3 className="text-base font-semibold" style={{ color: 'var(--m-fg)' }}>
                     {title}
                   </h3>
-                  {soon && (
-                    <span
-                      className="rounded px-1.5 py-0.5 text-[10px] font-medium"
-                      style={{
-                        color: 'var(--m-cyan)',
-                        border: '1px solid color-mix(in oklab, var(--m-cyan) 40%, transparent)',
-                      }}
-                    >
-                      Soon
-                    </span>
-                  )}
                 </div>
                 <p className="text-sm leading-relaxed" style={{ color: 'var(--m-muted)' }}>
                   {desc}
@@ -466,36 +467,8 @@ export function ManusHome() {
           </div>
         </section>
 
-        {/* ── AI Health Prognostication ── */}
-        <section
-          id="prognostication"
-          className="scroll-mt-20"
-          style={{ borderTop: '1px solid var(--m-border)', background: 'var(--m-bg-2)' }}
-        >
-          <div className="mx-auto max-w-2xl px-6 py-24 text-center">
-            <span
-              className="inline-flex items-center gap-2 rounded-full px-3 py-1 text-xs font-medium"
-              style={{
-                color: 'var(--m-green)',
-                border: '1px solid color-mix(in oklab, var(--m-green) 40%, transparent)',
-              }}
-            >
-              <span className="w-1.5 h-1.5 rounded-full" style={{ background: 'var(--m-green)' }} />
-              In Development
-            </span>
-            <h2 className="mt-6 text-3xl font-bold tracking-tight" style={{ color: 'var(--m-fg)' }}>
-              AI Health Prognostication
-            </h2>
-            <p className="mt-4 text-sm leading-relaxed" style={{ color: 'var(--m-muted)' }}>
-              Upload labs, track your supplement protocol over time, and receive AI-generated
-              projections of how consistent interventions may influence your biological aging
-              trajectory. Grounded in published longitudinal data.
-            </p>
-            <div className="mt-8">
-              <EmailCapture />
-            </div>
-          </div>
-        </section>
+        {/* ── Intelligence Suite ── */}
+        <IntelligenceSuite />
         </main>
       </div>
       <Footer />

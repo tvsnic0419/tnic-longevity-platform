@@ -2666,3 +2666,22 @@ body::after {
 .graphic-glow {
   box-shadow: 0 0 20px rgba(0, 229, 255, 0.2);
 }
+
+/* ── Journal Credibility Strip marquee ── */
+@keyframes journal-scroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.journal-marquee {
+  animation: journal-scroll 36s linear infinite;
+}
+.journal-marquee:hover {
+  animation-play-state: paused;
+}
+@media (prefers-reduced-motion: reduce) {
+  .journal-marquee {
+    animation: none;
+    flex-wrap: wrap;
+    width: auto !important;
+  }
+}
