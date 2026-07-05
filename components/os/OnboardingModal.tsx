@@ -37,11 +37,11 @@ export function OnboardingModal({ onComplete }: OnboardingModalProps) {
   const [sleep, setSleep] = useState(60);
 
   useEffect(() => {
-    // Only trigger on homepage — never block /library, /stack, /labs, etc.
-    if (pathname !== '/') return;
+    // The landing page is a self-contained experience with its own CTAs — the
+    // auto-opening setup modal belongs to the in-app routes (dashboard, quiz, …).
+    if (pathname === '/') return;
     if (isOnboardingComplete()) return;
     if (sessionStorage.getItem(SESSION_DISMISSED_KEY)) return;
-    // Delay so the hero is visible first
     const t = setTimeout(() => setOpen(true), 2000);
     return () => clearTimeout(t);
   }, [pathname]);
