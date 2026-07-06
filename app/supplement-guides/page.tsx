@@ -5,8 +5,10 @@ import { StructuredData } from '@/components/seo/StructuredData';
 import { buildPageMetadata, buildCollectionPageSchema, buildBreadcrumbSchema } from '@/lib/seo';
 import { SITE } from '@/lib/site';
 import { citationRegistry } from '@/lib/trust';
+import { ELITE_8_COMPOUNDS } from '@/lib/elite-8-data';
 
 const citationCount = citationRegistry.length;
+const masterGuideCompoundCount = ELITE_8_COMPOUNDS.length;
 
 export const metadata: Metadata = buildPageMetadata({
   title: 'Longevity Supplement Guides 2026 — Evidence-Based Deep Dives | TNiC',
@@ -42,8 +44,8 @@ const guides = [
     title: 'Best Longevity Supplements 2026',
     subtitle: 'The complete ranked guide to evidence-backed longevity compounds',
     description:
-      `Start here. Our master guide ranks 14 compounds by evidence quality, covers the Hallmarks of Aging framework, explains synergy principles, and includes honest cautions. Built on ${citationCount} PubMed citations.`,
-    pills: ['14 compounds', 'Tier A–D ranking', `${citationCount} citations`],
+      `Start here. Our master guide ranks ${masterGuideCompoundCount} compounds by evidence quality, covers the Hallmarks of Aging framework, explains synergy principles, and includes honest cautions. Built on ${citationCount} PubMed citations.`,
+    pills: [`${masterGuideCompoundCount} compounds`, 'Tier A–D ranking', `${citationCount} citations`],
     evidenceTier: 'A',
     glowHover: 'glow-hover-cyan',
     borderHover: 'hover:border-accent-cyan/40',
